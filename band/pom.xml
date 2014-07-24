@@ -4,6 +4,10 @@
   <groupId>org.symphodia</groupId>
   <artifactId>band</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <packaging>pom</packaging>
+    <modules>
+        <module>band-ejb</module>
+        <module>band-war</module>
+    </modules>
+    <packaging>pom</packaging>
   <name>band</name>
 </project>
