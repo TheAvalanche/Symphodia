@@ -3,8 +3,8 @@
 
     <persistence-unit name="SymphodiaUnit">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
-        <jta-data-source>java:jboss/symphodia-ds</jta-data-source>
-        <jar-file>${project.build.finalName}.ear/lib/common-entity-1.0-SNAPSHOT.jar</jar-file>
+        <jta-data-source>java:jboss/symphodia-band-ds</jta-data-source>
+        <jar-file>${project.build.finalName}.ear/lib/common-band-domain-1.0-SNAPSHOT.jar</jar-file>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
             <property name="hibernate.hbm2ddl.auto" value="validate"/>
