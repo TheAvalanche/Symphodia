@@ -16,4 +16,8 @@ public class NewsService {
     public List<News> getAllNews() {
         return entityManager.createNamedQuery("News.getAll").getResultList();
     }
+
+    public void saveNews(News news) {
+        entityManager.persist(news);
+    }
 }

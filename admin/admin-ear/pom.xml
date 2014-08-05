@@ -2,11 +2,76 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>admin</artifactId>
+        <groupId>org.symphodia</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.symphodia</groupId>
     <artifactId>admin-ear</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <packaging>ear</packaging>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.symphodia</groupId>
+            <artifactId>admin-ejb</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>ejb</type>
+        </dependency>
+
+        <dependency>
+            <groupId>org.symphodia</groupId>
+            <artifactId>admin-war</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>war</type>
+        </dependency>
+
+        <dependency>
+            <groupId>org.symphodia</groupId>
+            <artifactId>band-ejb</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>ejb</type>
+        </dependency>
+
+        <dependency>
+            <groupId>ord.symphodia</groupId>
+            <artifactId>common-band-domain</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-ear-plugin</artifactId>
+                <configuration>
+                    <applicationName>admin</applicationName>
+                    <filtering>true</filtering>
+                    <modules>
+                        <ejbModule>
+                            <groupId>org.symphodia</groupId>
+                            <artifactId>admin-ejb</artifactId>
+                            <bundleFileName>admin-ejb.jar</bundleFileName>
+                        </ejbModule>
+                        <ejbModule>
+                            <groupId>org.symphodia</groupId>
+                            <artifactId>band-ejb</artifactId>
+                            <bundleFileName>band-ejb.jar</bundleFileName>
+                        </ejbModule>
+                        <webModule>
+                            <groupId>org.symphodia</groupId>
+                            <artifactId>admin-war</artifactId>
+                            <context-root>/admin</context-root>
+                            <bundleFileName>admin-war.war</bundleFileName>
+                        </webModule>
+                    </modules>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 
 </project>
