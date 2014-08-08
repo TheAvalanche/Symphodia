@@ -15,7 +15,7 @@ import java.util.List;
 
 @Stateless
 @LocalBean
-@Path("/news/")
+@Path("/news")
 public class NewsResource {
 
     @Inject
