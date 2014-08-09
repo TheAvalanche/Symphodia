@@ -1,3 +1,28 @@
 <div class="container">
-    <button type='button' class="btn btn-primary" ng-click="openAddNews()">Add News</button>
+    <button type="button" class="btn btn-primary" ng-click="openAddNews()">
+        <span class="glyphicon glyphicon-plus"></span> Add News
+    </button>
+    <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Title</th>
+            <th>Content</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="news in newsList" ng-mouseenter="showEdit=true" ng-mouseleave="showEdit=false">
+            <td class="col-md-1">
+                <span ng-show="!showEdit">{{news.id}}</span>
+                <button type="button" ng-show="showEdit" class="btn btn-xs btn-default">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </button>
+            </td>
+            <td class="col-md-1">{{news.creationDate}}</td>
+            <td class="col-md-3">{{news.title}}</td>
+            <td class="col-md-7">{{news.content}}</td>
+        </tr>
+        </tbody>
+    </table>
 </div>
