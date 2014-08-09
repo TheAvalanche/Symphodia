@@ -5,11 +5,11 @@
     <div class="modal-body">
         <div class="form-group">
             <label>Title</label>
-            <input type="text" class="form-control" id="titleInput" placeholder="Enter title">
+            <input ng-model="news.title" type="text" class="form-control" id="titleInput" placeholder="Enter title">
         </div>
         <div class="form-group">
             <label>Content</label>
-            <text-angular
+            <text-angular ng-model="news.content"
                     ta-toolbar="[['h1','h2','h3','p','quote','bold','italics','underline'],['ul','ol','justifyLeft','justifyCenter','justifyRight','indent','outdent'],['html','insertLink','insertImage','insertVideo']]"
                     type="text" id="contentInput" placeholder="Enter content"></text-angular>
         </div>
@@ -18,8 +18,8 @@
             <input type="file" id="fileInput">
         </div>
         <div class="modal-footer">
-            <button type="submit" class="btn btn-success">Save</button>
-            <button class="btn btn-warning">Cancel</button>
+            <button class="btn btn-success" ng-click="save()">Save</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
         </div>
     </div>
 </form>

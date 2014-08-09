@@ -12,6 +12,7 @@ import java.util.Date;
 public class News extends AbstractDomainObject {
 
     @Id
+    @GeneratedValue
     @Column(name = "ID")
     private Long id;
 
