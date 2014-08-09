@@ -2,12 +2,10 @@
     'use strict';
 
     angular.module('adminApp.controllers')
-        .controller('EditNewsCtrl', ['$scope', '$modalInstance', 'NewsService', function ($scope, $modalInstance, NewsService) {
+        .controller('EditNewsCtrl', ['$scope', '$modalInstance', 'NewsService', 'news', function ($scope, $modalInstance, NewsService, news) {
 
             var init = function() {
-                $scope.news = {
-                    creationDate: new Date()
-                };
+                $scope.news = news;
             };
 
             $scope.save = function() {

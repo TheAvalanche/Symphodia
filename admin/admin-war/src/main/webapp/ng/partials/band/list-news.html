@@ -1,5 +1,5 @@
 <div class="container">
-    <button type="button" class="btn btn-primary" ng-click="openAddNews()">
+    <button type="button" class="btn btn-primary" ng-click="openEditNews()">
         <span class="glyphicon glyphicon-plus"></span> Add News
     </button>
     <table class="table table-striped table-bordered">
@@ -15,7 +15,7 @@
         <tr ng-repeat="news in newsList" ng-mouseenter="showEdit=true" ng-mouseleave="showEdit=false">
             <td class="col-md-1">
                 <span ng-show="!showEdit">{{news.id}}</span>
-                <button type="button" ng-show="showEdit" class="btn btn-xs btn-default">
+                <button type="button" ng-show="showEdit" class="btn btn-xs btn-default" ng-click="openEditNews(news)">
                     <span class="glyphicon glyphicon-pencil"></span>
                 </button>
             </td>
