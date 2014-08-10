@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('adminApp.controllers')
-        .controller('EditNewsCtrl', ['$scope', '$modalInstance', 'NewsService', 'news', function ($scope, $modalInstance, NewsService, news) {
+        .controller('EditNewsCtrl', ['$scope', '$modalInstance', 'NewsService', 'FileUploader', 'news', function ($scope, $modalInstance, NewsService, FileUploader, news) {
 
             var init = function() {
                 $scope.news = news;
@@ -23,6 +23,14 @@
                 $modalInstance.dismiss('cancel');
             };
 
+            $scope.uploader = new FileUploader();
+            $scope.uploader.filters.push({
+                name: 'imageFilter',
+                fn: function(item /*{File|FileLikeObject}*/, options) {
+                    var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+                    return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+                }
+            });
 
             init();
 

@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html ng-app="adminApp">
     <head lang="en">
+        <!--TODO organize dependencies-->
         <meta charset="UTF-8">
         <title></title>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="/admin/ng/css/admin.css">
+        <link rel="stylesheet" href="css/admin.css">
         <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-route.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-sanitize.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/textAngular/1.2.2/textAngular.min.js"></script>
+        <script src="lib/angular-file-upload.min.js"></script>
         <script src="js/app.js" type="text/javascript"></script>
         <script src="js/controllers.js" type="text/javascript"></script>
         <script src="js/services.js" type="text/javascript"></script>
+        <script src="js/directives.js" type="text/javascript"></script>
         <script src="js/routes.js" type="text/javascript"></script>
         <script src="js/controllers/band/ListNewsCtrl.js" type="text/javascript"></script>
         <script src="js/controllers/band/EditNewsCtrl.js" type="text/javascript"></script>
         <script src="js/services/band/NewsService.js" type="text/javascript"></script>
+        <script src="js/directives/NgThumb.js" type="text/javascript"></script>
     </head>
     <body>
         <ng-include src="'./partials/header-and-menu.html'"></ng-include>
