@@ -10,6 +10,7 @@
     <modules>
         <module>../admin</module>
         <module>../band</module>
+        <module>../common</module>
     </modules>
 
     <properties>
@@ -29,7 +30,12 @@
     </dependencyManagement>
 
     <dependencies>
-
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>7.0</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>
