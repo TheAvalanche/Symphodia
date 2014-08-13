@@ -5,10 +5,10 @@
         .controller('ListNewsCtrl', ['$scope', '$modal', 'NewsService', function ($scope, $modal, NewsService) {
 
             NewsService.getAll().
-                success(function (data, status, headers, config) {
+                success(function (data) {
                     $scope.newsList = data;
                 }).
-                error(function (data, status, headers, config) {
+                error(function () {
                     $scope.newsList = [];
                 });
 

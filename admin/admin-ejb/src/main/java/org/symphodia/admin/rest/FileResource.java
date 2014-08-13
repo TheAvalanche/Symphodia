@@ -1,8 +1,5 @@
 package org.symphodia.admin.rest;
 
-
-
-import org.apache.commons.io.IOUtils;
 import org.jboss.resteasy.plugins.providers.multipart.InputPart;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 
@@ -12,6 +9,7 @@ import javax.ejb.Stateless;
 import javax.ws.rs.*;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.*;
@@ -33,9 +31,7 @@ public class FileResource {
         List<InputPart> inputParts = uploadForm.get("file");
 
         for (InputPart inputPart : inputParts) {
-
             try {
-
                 MultivaluedMap<String, String> header = inputPart.getHeaders();
                 String fileName = getFileName(header);
 
@@ -43,12 +39,9 @@ public class FileResource {
                 fileName = "C:\\Development\\wildfly-8.1.0.Final\\standalone\\deployments\\uploaded.war\\" + fileName;
 
                 writeFile(inputPart.getBody(InputStream.class, null),fileName);
-
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
     }
 

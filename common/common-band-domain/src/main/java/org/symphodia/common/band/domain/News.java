@@ -2,7 +2,9 @@ package org.symphodia.common.band.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "NEWS")
@@ -26,6 +28,11 @@ public class News extends AbstractDomainObject {
     @Column(name = "CONTENT")
     @NotNull
     private String content;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "NEWS_IMAGE_LIST")
+    @Column(name = "IMAGE")
+    private List<String> imageList = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -57,5 +64,21 @@ public class News extends AbstractDomainObject {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public List<String> getImageList() {
+        return imageList;
+    }
+
+    public void setImageList(List<String> imageList) {
+        this.imageList = imageList;
+    }
+
+    public void addImage(String image) {
+        this.imageList.add(image);
+    }
+
+    public void removeImage(String image) {
+        this.imageList.remove(image);
     }
 }
