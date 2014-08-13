@@ -41,9 +41,8 @@
                 $scope.uploader.uploadItem(fileItem);
             };
 
-            $scope.uploader.onCompleteItem = function(item, response, status, headers) {
-                $scope.news.imageList.push(item.name);
-                console.info($scope.news.imageList.length)
+            $scope.uploader.onCompleteItem = function(item) {
+                $scope.news.imageList.push(item.file.name);
             };
 
             init();
