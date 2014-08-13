@@ -15,32 +15,18 @@
         </div>
         <div class="form-group">
             <label>Images</label><br>
+            <div ng-repeat="imageGroup in imageGroupList" class="row">
+                <div ng-repeat="image in imageGroup" class="col-md-3">
+                    <button type="button" class="btn btn-danger btn-xs" ng-click="remove(image)">
+                        <span class="glyphicon glyphicon-remove"></span> Remove
+                    </button>
+                    <img class="img-responsive img-thumbnail" ng-src="http://localhost:8080/uploaded/{{image}}"/>
+                </div>
+            </div>
             <span class="btn btn-primary btn-file">
-                Choose file... <input type="file" nv-file-select uploader="uploader" multiple/>
+                <span class="glyphicon glyphicon-plus"></span> Add image...
+                <input type="file" nv-file-select uploader="uploader" multiple/>
             </span>
-        </div>
-        <div class="form-group" ng-show="uploader.queue.length">
-            <table class="table table-stripped">
-                <thead>
-                    <tr>
-                        <th width="50%">Name</th>
-                        <th>Progress</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="item in uploader.queue">
-                        <td>
-                            <strong>{{ item.file.name }}</strong>
-                            <div ng-thumb="{ file: item._file, height: 100 }"></div>
-                        </td>
-                        <td>
-                            <div class="progress" style="margin-bottom: 0;">
-                                <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
         <div class="modal-footer">
             <button class="btn btn-success" ng-click="save()"><span class="glyphicon glyphicon-ok"></span> Save</button>

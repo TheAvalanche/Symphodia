@@ -18,6 +18,6 @@ public class NewsService {
     }
 
     public void saveNews(News news) {
-        entityManager.persist(news);
+        entityManager.merge(news);
     }
 }
