@@ -9,6 +9,7 @@
             };
 
             $scope.save = function() {
+                $scope.uploader.uploadAll();
                 NewsService.save($scope.news).
                     success(function (data, status, headers, config) {
                         $modalInstance.close();
@@ -23,10 +24,12 @@
                 $modalInstance.dismiss('cancel');
             };
 
-            $scope.uploader = new FileUploader();
+            $scope.uploader = new FileUploader({
+                url: '/admin/rest/file/save'
+            });
             $scope.uploader.filters.push({
                 name: 'imageFilter',
-                fn: function(item /*{File|FileLikeObject}*/, options) {
+                fn: function(item) {
                     var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
                     return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
                 }

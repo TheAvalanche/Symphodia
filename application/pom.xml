@@ -20,9 +20,9 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.jboss.spec</groupId>
-                <artifactId>jboss-javaee-7.0</artifactId>
-                <version>1.0.0.Final</version>
+                <groupId>org.wildfly.bom</groupId>
+                <artifactId>jboss-javaee-7.0-with-all</artifactId>
+                <version>8.1.0.Final</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
