@@ -25,7 +25,7 @@
             };
 
             $scope.uploader = new FileUploader({
-                url: '/admin/rest/file/save'
+                url: '/admin/rest/file/saveImage'
             });
 
             $scope.uploader.filters.push({
@@ -36,8 +36,11 @@
                 }
             });
 
-            $scope.uploader.onAfterAddingFile = function (fileItem) {
-                $scope.uploader.uploadItem(fileItem);
+            $scope.uploader.onAfterAddingFile = function (item) {
+                var uniqueFileName = new Date().getTime().toString();
+                item.alias = uniqueFileName;
+                item.file.name = uniqueFileName;
+                $scope.uploader.uploadItem(item);
             };
 
             $scope.uploader.onCompleteItem = function (item) {
