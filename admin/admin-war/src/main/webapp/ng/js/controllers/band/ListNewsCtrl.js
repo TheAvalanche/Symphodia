@@ -38,7 +38,13 @@
             };
 
             $scope.removeNews = function(news) {
-
+                NewsService.remove(news).
+                    success(function (data) {
+                        //removed
+                    }).
+                    error(function () {
+                        //error
+                    });
             };
 
             $scope.minimizeText = function (text) {

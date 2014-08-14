@@ -11,6 +11,9 @@
                 },
                 save: function(news) {
                     return $http.post(restRoot + '/save', news);
+                },
+                remove: function(news) {
+                    return $http.post(restRoot + '/remove', news);
                 }
             };
         }]);

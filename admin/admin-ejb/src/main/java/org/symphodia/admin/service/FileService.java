@@ -12,7 +12,7 @@ public class FileService {
 
     private static final String PATH = "C:\\Development\\wildfly-8.1.0.Final\\standalone\\deployments\\uploaded.war\\";
 
-    public void saveAndMinifyImage(InputStream content, String fileName) throws IOException {
+    public void saveAndMinimizeImage(InputStream content, String fileName) throws IOException {
         String pathToFile =  PATH + fileName + ".png";
 
         ImageProcessor imageProcessor = new ImageProcessor(content);
@@ -22,7 +22,16 @@ public class FileService {
         writeFile(imageProcessor.toInputStream(), PATH + fileName + "_s.png");
     }
 
+    public void removeImage(String fileName) throws IOException {
+        deleteFile(PATH + fileName + ".png");
+        deleteFile(PATH + fileName + "_s.png");
+    }
+
     public void writeFile(InputStream content, String path) throws IOException {
         Files.copy(content, Paths.get(path));
+    }
+
+    public void deleteFile(String path) throws IOException {
+        Files.delete(Paths.get(path));
     }
 }

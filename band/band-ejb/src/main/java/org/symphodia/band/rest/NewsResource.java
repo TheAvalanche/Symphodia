@@ -32,4 +32,11 @@ public class NewsResource {
         service.saveNews(news);
     }
 
+    @POST
+    @Path("/remove")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void removeNews(News news) {
+        service.removeNews(news);
+    }
+
 }

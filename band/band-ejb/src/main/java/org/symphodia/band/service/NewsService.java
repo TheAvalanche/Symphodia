@@ -20,4 +20,9 @@ public class NewsService {
     public void saveNews(News news) {
         entityManager.merge(news);
     }
+
+    public void removeNews(News news) {
+        news = entityManager.find(News.class, news.getId());
+        entityManager.remove(news);
+    }
 }
