@@ -17,7 +17,7 @@
             <label>Images</label><br>
             <div ng-repeat="imageGroup in imageGroupList" class="row">
                 <div ng-repeat="image in imageGroup" class="col-md-3">
-                    <button type="button" class="btn btn-danger btn-xs" ng-click="remove(image)">
+                    <button type="button" class="btn btn-danger btn-xs" ng-click="removeImage(image)">
                         <span class="glyphicon glyphicon-trash"></span> Remove
                     </button>
                     <img class="img-responsive img-thumbnail" ng-src="http://localhost:8080/uploaded/{{image}}_s.png"/>
