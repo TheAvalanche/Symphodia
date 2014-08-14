@@ -21,14 +21,18 @@
                 <tr ng-repeat="news in newsList" ng-mouseenter="showEdit=true" ng-mouseleave="showEdit=false">
                     <td class="col-md-1">
                         <span ng-show="!showEdit">{{news.id}}</span>
-                        <button type="button" ng-show="showEdit" class="btn btn-xs btn-default"
+                        <button type="button" ng-show="showEdit" class="btn btn-xs btn-primary"
                                 ng-click="openEditNews(news)">
                             <span class="glyphicon glyphicon-pencil"></span>
                         </button>
+                        <button type="button" ng-show="showEdit" class="btn btn-xs btn-danger"
+                                ng-click="removeNews(news)">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
                     </td>
-                    <td class="col-md-1">{{news.creationDate}}</td>
-                    <td class="col-md-3">{{news.title}}</td>
-                    <td class="col-md-7">{{news.content}}</td>
+                    <td class="col-md-2"><span ng-bind="news.creationDate | date : 'dd/MM/yyyy H:mm'"></span></td>
+                    <td class="col-md-3"><span ng-bind="news.title"></span></td>
+                    <td class="col-md-6"><span ng-bind-html="minimizeText(news.content)"></span></td>
                 </tr>
                 </tbody>
             </table>

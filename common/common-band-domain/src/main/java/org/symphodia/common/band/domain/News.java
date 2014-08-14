@@ -9,7 +9,7 @@ import java.util.List;
 @Entity
 @Table(name = "NEWS")
 @NamedQueries({
-        @NamedQuery(name = "News.getAll", query = "SELECT n FROM News n")
+        @NamedQuery(name = "News.getAll", query = "SELECT n FROM News n ORDER BY n.id DESC")
 })
 public class News extends AbstractDomainObject {
 
