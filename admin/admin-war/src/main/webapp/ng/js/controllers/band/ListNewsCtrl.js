@@ -12,7 +12,7 @@
                     $scope.newsList = [];
                 });
 
-            $scope.openEditNews = function(news) {
+            $scope.editNews = function(news) {
                 var modalInstance = $modal.open({
                     templateUrl: '/admin/ng/partials/band/edit-news.html',
                     controller: 'EditNewsCtrl',
@@ -35,6 +35,10 @@
                 }, function () {
                     //cancel
                 });
+            };
+
+            $scope.removeNews = function(news) {
+
             };
 
             $scope.minimizeText = function (text) {

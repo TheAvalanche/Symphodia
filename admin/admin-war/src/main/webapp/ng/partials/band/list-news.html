@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-2">
-            <button type="button" class="btn btn-primary" ng-click="openEditNews()">
+            <button type="button" class="btn btn-primary" ng-click="editNews()">
                 <span class="glyphicon glyphicon-plus"></span> Add News
             </button>
         </div>
@@ -22,7 +22,7 @@
                     <td class="col-md-1">
                         <span ng-show="!showEdit">{{news.id}}</span>
                         <button type="button" ng-show="showEdit" class="btn btn-xs btn-primary"
-                                ng-click="openEditNews(news)">
+                                ng-click="editNews(news)">
                             <span class="glyphicon glyphicon-pencil"></span>
                         </button>
                         <button type="button" ng-show="showEdit" class="btn btn-xs btn-danger"
