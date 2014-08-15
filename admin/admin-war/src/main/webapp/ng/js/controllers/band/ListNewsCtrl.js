@@ -1,24 +1,22 @@
 (function () {
     'use strict';
-
+    //todo image removal on delete;
     angular.module('adminApp.controllers')
-        .controller('ListNewsCtrl', ['$scope', '$modal', 'NewsService', function ($scope, $modal, NewsService) {
+        .controller('ListNewsCtrl', ['$scope', '$modal', 'NewsService', 'FileService', function ($scope, $modal, NewsService, FileService) {
 
-            NewsService.getAll().
-                success(function (data) {
+            var init = function () {
+                NewsService.getAll().success(function (data) {
                     $scope.newsList = data;
-                }).
-                error(function () {
-                    $scope.newsList = [];
                 });
+            };
 
-            $scope.editNews = function(news) {
+            $scope.editNews = function (news) {
                 var modalInstance = $modal.open({
                     templateUrl: '/admin/ng/partials/band/edit-news.html',
                     controller: 'EditNewsCtrl',
                     windowClass: 'admin-modal',
                     resolve: {
-                        news: function() {
+                        news: function () {
                             if (news) {
                                 return news;
                             } else {
@@ -30,21 +28,20 @@
                     }
                 });
 
-                modalInstance.result.then(function (offeringBundleId) {
-                    //save
+                modalInstance.result.then(function () {
+                    init();
                 }, function () {
-                    //cancel
+                    init();
                 });
             };
 
-            $scope.removeNews = function(news) {
-                NewsService.remove(news).
-                    success(function (data) {
-                        //removed
-                    }).
-                    error(function () {
-                        //error
-                    });
+            $scope.removeNews = function (news) {
+                news.imageList.forEach(function (image) {
+                    FileService.removeImage(image);
+                });
+                NewsService.remove(news).success(function () {
+                    init();
+                });
             };
 
             $scope.minimizeText = function (text) {
