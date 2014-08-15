@@ -1,9 +1,13 @@
-package org.symphodia.admin.service;
+package org.symphodia.common.service;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class ImageProcessor {
 
@@ -29,7 +33,6 @@ public class ImageProcessor {
     }
 
     public void resizeProportionally(int minSize) {
-        int type = image.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : image.getType();
         int width = minSize;
         int height = minSize;
         if (image.getWidth() < image.getHeight()) {
@@ -37,6 +40,7 @@ public class ImageProcessor {
         } else if (image.getHeight() < image.getWidth()) {
             width = image.getWidth() / (image.getHeight() / minSize);
         }
+        int type = image.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : image.getType();
         image = resizeImage(width, height, type);
     }
 

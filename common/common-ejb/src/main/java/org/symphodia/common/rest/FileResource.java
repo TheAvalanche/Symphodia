@@ -1,14 +1,13 @@
-package org.symphodia.admin.rest;
+package org.symphodia.common.rest;
 
 import org.jboss.resteasy.plugins.providers.multipart.InputPart;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
-import org.symphodia.admin.service.FileService;
+import org.symphodia.common.service.FileService;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-
 import javax.inject.Inject;
-import javax.ws.rs.*;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import java.io.IOException;
 import java.io.InputStream;

@@ -1,9 +1,8 @@
-package org.symphodia.admin.service;
+package org.symphodia.common.service;
 
 import javax.ejb.Stateless;
 import java.io.IOException;
 import java.io.InputStream;
-
 import java.nio.file.Files;
 import java.nio.file.Paths;
 

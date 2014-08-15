@@ -36,7 +36,14 @@
         </dependency>
 
         <dependency>
-            <groupId>ord.symphodia</groupId>
+            <groupId>org.symphodia</groupId>
+            <artifactId>common-ejb</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>ejb</type>
+        </dependency>
+
+        <dependency>
+            <groupId>org.symphodia</groupId>
             <artifactId>common-band-domain</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
@@ -60,6 +67,11 @@
                             <groupId>org.symphodia</groupId>
                             <artifactId>band-ejb</artifactId>
                             <bundleFileName>band-ejb.jar</bundleFileName>
+                        </ejbModule>
+                        <ejbModule>
+                            <groupId>org.symphodia</groupId>
+                            <artifactId>common-ejb</artifactId>
+                            <bundleFileName>common-ejb.jar</bundleFileName>
                         </ejbModule>
                         <webModule>
                             <groupId>org.symphodia</groupId>
