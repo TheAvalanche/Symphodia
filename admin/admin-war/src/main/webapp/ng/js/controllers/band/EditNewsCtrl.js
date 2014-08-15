@@ -5,14 +5,16 @@
         .controller('EditNewsCtrl', ['$scope', '$modalInstance', '$filter', 'NewsService', 'FileService', 'FileUploader', 'news', function ($scope, $modalInstance, $filter, NewsService, FileService, FileUploader, news) {
 
             var init = function () {
-                $scope.news = news;
-                $scope.news.imageList = news.imageList || [];
+                $scope.news = news || {};
+                $scope.news.imageList = $scope.news.imageList || [];
+                $scope.news.creationDate = $scope.news.creationDate || new Date();
                 $scope.imageGroupList = $filter('GroupItems')($scope.news.imageList, 4);
-                $scope.removeQueue = [];
+                $scope.removeImageQueue = [];
+                $scope.addImageQueue = [];
             };
 
             $scope.save = function () {
-                $scope.removeQueue.forEach(function (image) {
+                $scope.removeImageQueue.forEach(function (image) {
                     FileService.removeImage(image);
                 });
                 NewsService.save($scope.news).success(function () {
@@ -21,25 +23,31 @@
             };
 
             $scope.cancel = function () {
-                $modalInstance.cancel();
+                $scope.addImageQueue.forEach(function (image) {
+                    FileService.removeImage(image);
+                });
+                $modalInstance.close();
             };
 
             $scope.uploader = new FileUploader({
                 url: '/admin/rest/file/saveImage',
+
                 onAfterAddingFile: function (item) {
                     var uniqueFileName = new Date().getTime().toString();
                     item.alias = uniqueFileName;
                     item.file.name = uniqueFileName;
                     $scope.uploader.uploadItem(item);
                 },
+
                 onCompleteItem: function (item) {
+                    $scope.addImageQueue.push(item.file.name);
                     $scope.news.imageList.push(item.file.name);
                     $scope.imageGroupList = $filter('GroupItems')($scope.news.imageList, 4);
                 }
             });
 
             $scope.removeImage = function (image) {
-                $scope.removeQueue.push(image);
+                $scope.removeImageQueue.push(image);
                 $scope.news.imageList.splice($scope.news.imageList.indexOf(image), 1);
                 $scope.imageGroupList = $filter('GroupItems')($scope.news.imageList, 4);
             };

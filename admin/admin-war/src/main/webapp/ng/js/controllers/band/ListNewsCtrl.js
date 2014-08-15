@@ -17,13 +17,7 @@
                     windowClass: 'admin-modal',
                     resolve: {
                         news: function () {
-                            if (news) {
-                                return news;
-                            } else {
-                                return {
-                                    creationDate: new Date()
-                                }
-                            }
+                            return news;
                         }
                     }
                 });
