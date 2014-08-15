@@ -21,3 +21,7 @@
     cursor: inherit;
     display: block;
 }
+
+.spacer {
+    margin-top: 10px;
+}

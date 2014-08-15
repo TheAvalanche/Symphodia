@@ -18,7 +18,8 @@ public class FileService {
         ImageProcessor imageProcessor = new ImageProcessor(content);
         writeFile(imageProcessor.toInputStream(), pathToFile);
 
-        imageProcessor.resize(180, 180);
+        imageProcessor.resizeProportionally(180);
+        imageProcessor.cropToSquare(180);
         writeFile(imageProcessor.toInputStream(), PATH + fileName + "_s.png");
     }
 

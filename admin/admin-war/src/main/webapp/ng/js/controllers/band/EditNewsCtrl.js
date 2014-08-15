@@ -53,10 +53,7 @@
                     success(function () {
                         $scope.news.imageList.splice($scope.news.imageList.indexOf(image), 1);
                         $scope.imageGroupList = $filter('GroupItems')($scope.news.imageList, 4);
-                    }).
-                    error(function () {
-
-                    });
+                    })
             };
 
             init();

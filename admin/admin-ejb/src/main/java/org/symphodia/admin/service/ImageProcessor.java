@@ -28,6 +28,24 @@ public class ImageProcessor {
         image = resizeImage(width, height, type);
     }
 
+    public void resizeProportionally(int minSize) {
+        int type = image.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : image.getType();
+        int width = minSize;
+        int height = minSize;
+        if (image.getWidth() < image.getHeight()) {
+            height = image.getHeight() / (image.getWidth() / minSize);
+        } else if (image.getHeight() < image.getWidth()) {
+            width = image.getWidth() / (image.getHeight() / minSize);
+        }
+        image = resizeImage(width, height, type);
+    }
+
+    public void cropToSquare(int size) {
+        int x = (image.getWidth() - size) / 2;
+        int y = (image.getHeight() - size) / 2;
+        image = image.getSubimage(x, y, size, size);
+    }
+
     private BufferedImage resizeImage(int width, int height, int type) {
 
         BufferedImage resizedImage = new BufferedImage(width, height, type);
