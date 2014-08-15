@@ -1,4 +1,8 @@
 package org.symphodia.common.domain;
 
-public class PropertyKey {
+public enum PropertyKey {
+
+    HOSTNAME;
+
+    private String defaultValue;
 }

@@ -27,7 +27,6 @@ public class PropertyService {
     public void init() {
         cache = CacheBuilder
                 .newBuilder()
-                .recordStats()
                 .build(new CacheLoader<PropertyKey, Property>() {
                     @Override
                     public Property load(PropertyKey propertyKey) throws Exception {
