@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    //todo image removal on delete;
+
     angular.module('adminApp.controllers')
         .controller('ListNewsCtrl', ['$scope', '$modal', 'NewsService', 'FileService', function ($scope, $modal, NewsService, FileService) {
 
