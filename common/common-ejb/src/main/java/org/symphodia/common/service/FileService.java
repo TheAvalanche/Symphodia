@@ -1,5 +1,7 @@
 package org.symphodia.common.service;
 
+import org.symphodia.common.image.ImageProcessor;
+
 import javax.ejb.Stateless;
 import java.io.IOException;
 import java.io.InputStream;

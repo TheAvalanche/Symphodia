@@ -14,6 +14,12 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.symphodia</groupId>
+            <artifactId>common-commons</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-jaxrs</artifactId>
             <scope>provided</scope>
