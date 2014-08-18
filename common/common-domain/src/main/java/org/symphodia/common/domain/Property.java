@@ -30,6 +30,14 @@ public class Property {
     @Column(name = "VALUE")
     private String value;
 
+    public Property() {
+    }
+
+    public Property(PropertyKey propertyKey, String value) {
+        this.propertyKey = propertyKey;
+        this.value = value;
+    }
+
     public long getId() {
         return id;
     }
@@ -53,4 +61,6 @@ public class Property {
     public void setValue(String value) {
         this.value = value;
     }
+
+
 }

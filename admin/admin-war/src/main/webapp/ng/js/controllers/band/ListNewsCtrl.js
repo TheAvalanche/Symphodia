@@ -15,6 +15,7 @@
                     templateUrl: '/admin/ng/partials/band/edit-news.html',
                     controller: 'EditNewsCtrl',
                     windowClass: 'admin-modal',
+                    backdrop: 'static',
                     resolve: {
                         news: function () {
                             return news;

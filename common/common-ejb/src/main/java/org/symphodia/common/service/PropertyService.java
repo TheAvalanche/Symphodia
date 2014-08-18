@@ -3,6 +3,7 @@ package org.symphodia.common.service;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
+import com.google.common.collect.Iterables;
 import org.symphodia.common.domain.Property;
 import org.symphodia.common.domain.PropertyKey;
 
@@ -13,12 +14,14 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import java.util.List;
 
 @Singleton
 @Startup
 public class PropertyService {
 
-    @PersistenceContext(unitName = "SymphodiaCommonUnit")
+    @PersistenceContext(unitName = "SymphodiaUnit")
     protected EntityManager entityManager;
 
     private LoadingCache<PropertyKey,Property> cache;
@@ -42,16 +45,26 @@ public class PropertyService {
     }
 
     private Property createAndPersistProperty(PropertyKey propertyKey) {
-        return null;
+        Property property = new Property(propertyKey, propertyKey.getDefaultValue());
+        entityManager.persist(property);
+        return property;
     }
 
-    private Property loadPropertyFromDatabase(PropertyKey propertyName) {
-        return null;
+    private Property loadPropertyFromDatabase(PropertyKey propertyKey) {
+        Query query = entityManager.createNamedQuery("Property.getProperty");
+        query.setParameter("propertyKey", propertyKey);
+
+        List<Property> results = (List<Property>) query.getResultList();
+        return Iterables.getFirst(results, null);
     }
 
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public Property getProperty(PropertyKey propertyKey) {
         return cache.getUnchecked(propertyKey);
+    }
+
+    public String get(PropertyKey propertyKey) {
+        return getProperty(propertyKey).getValue();
     }
 
 }

@@ -10,7 +10,7 @@ import java.util.List;
 @Stateless
 public class NewsService {
 
-    @PersistenceContext(unitName = "SymphodiaBandUnit")
+    @PersistenceContext(unitName = "SymphodiaUnit")
     private EntityManager entityManager;
 
     public List<News> getAllNews() {
