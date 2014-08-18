@@ -13,7 +13,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "PROPERTY")
 @NamedQueries({
-        @NamedQuery(name = "Property.getProperty", query = "SELECT p FROM Property p WHERE p.propertyKey = :propertyKey")
+        @NamedQuery(name = "Property.getProperty", query = "SELECT p FROM Property p WHERE p.propertyKey = :propertyKey"),
+        @NamedQuery(name = "Property.getAll", query = "SELECT p FROM Property p")
 })
 //TODO: add max length to column definition
 public class Property {

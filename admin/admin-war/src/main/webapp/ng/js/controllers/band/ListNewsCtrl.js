@@ -46,5 +46,7 @@
                 return text;
             };
 
+            init();
+
         }]);
 }());

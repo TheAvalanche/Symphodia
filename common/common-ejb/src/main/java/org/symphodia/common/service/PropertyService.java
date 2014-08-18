@@ -19,6 +19,7 @@ import java.util.List;
 
 @Singleton
 @Startup
+@SuppressWarnings("unchecked")
 public class PropertyService {
 
     @PersistenceContext(unitName = "SymphodiaUnit")
@@ -42,6 +43,10 @@ public class PropertyService {
                         return property;
                     }
                 });
+
+        for (PropertyKey propertyKey : PropertyKey.values()) {
+            cache.getUnchecked(propertyKey);
+        }
     }
 
     private Property createAndPersistProperty(PropertyKey propertyKey) {
@@ -58,13 +63,22 @@ public class PropertyService {
         return Iterables.getFirst(results, null);
     }
 
-    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-    public Property getProperty(PropertyKey propertyKey) {
-        return cache.getUnchecked(propertyKey);
+    public List<Property> getAllProperties() {
+        Query query = entityManager.createNamedQuery("Property.getAll");
+        return query.getResultList();
+    }
+
+    public void saveProperty(Property property) {
+        entityManager.merge(property);
     }
 
     public String get(PropertyKey propertyKey) {
         return getProperty(propertyKey).getValue();
+    }
+
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    public Property getProperty(PropertyKey propertyKey) {
+        return cache.getUnchecked(propertyKey);
     }
 
 }
