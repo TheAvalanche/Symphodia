@@ -8,6 +8,9 @@
             return {
                 getAll: function() {
                     return $http.get(restRoot + '/all');
+                },
+                save: function(property) {
+                    return $http.post(restRoot + '/save', property);
                 }
             };
         }]);

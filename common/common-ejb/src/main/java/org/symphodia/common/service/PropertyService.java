@@ -15,6 +15,7 @@ import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.ArrayList;
 import java.util.List;
 
 @Singleton
@@ -64,12 +65,12 @@ public class PropertyService {
     }
 
     public List<Property> getAllProperties() {
-        Query query = entityManager.createNamedQuery("Property.getAll");
-        return query.getResultList();
+        return new ArrayList<>(cache.asMap().values());
     }
 
     public void saveProperty(Property property) {
         entityManager.merge(property);
+        cache.refresh(property.getPropertyKey());
     }
 
     public String get(PropertyKey propertyKey) {

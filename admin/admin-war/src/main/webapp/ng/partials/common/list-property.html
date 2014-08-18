@@ -5,9 +5,9 @@
                 <div class="form-group" ng-repeat="property in propertyList">
                     <label class="col-md-3 control-label">{{property.propertyKey}}</label>
                     <div class="col-md-9 input-group">
-                        <input type="text" class="form-control" placeholder="Value" value="{{property.value}}">
+                        <input type="text" class="form-control" placeholder="Value" ng-model="property.value">
                         <span class="input-group-btn">
-                            <button class="btn btn-primary" type="button">Update</button>
+                            <button class="btn btn-primary" type="button" ng-click="save(property)">Update</button>
                         </span>
                     </div>
                 </div>
