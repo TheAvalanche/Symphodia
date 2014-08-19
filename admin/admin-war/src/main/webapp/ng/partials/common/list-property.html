@@ -7,7 +7,7 @@
                     <div class="col-md-9 input-group">
                         <input type="text" class="form-control" placeholder="Value" ng-model="property.value" ng-change="changed = true">
                         <span class="input-group-btn">
-                            <button class="btn btn-primary" type="button" ng-click="save(property)" ng-disabled="!changed">Update</button>
+                            <button class="btn btn-primary" type="button" ng-click="save(property); changed = false" ng-disabled="!changed">Update</button>
                         </span>
                     </div>
                 </div>
