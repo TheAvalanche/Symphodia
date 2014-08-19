@@ -5,9 +5,7 @@
         .controller('ListPropertyCtrl', ['$scope', 'PropertyService', function ($scope, PropertyService) {
 
             $scope.save = function(property) {
-                PropertyService.save(property).success(function () {
-
-                });
+                PropertyService.save(property);
             };
 
             $scope.toTitle = function(text) {
