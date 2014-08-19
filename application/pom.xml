@@ -64,6 +64,12 @@
             <artifactId>wildfly-arquillian-container-remote</artifactId>
             <version>8.1.0.Final</version>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>sun.jdk</groupId>
+                    <artifactId>jconsole</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 
