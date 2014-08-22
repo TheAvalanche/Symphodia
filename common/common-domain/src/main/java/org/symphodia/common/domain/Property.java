@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "PROPERTY")
@@ -16,7 +17,6 @@ import javax.persistence.Table;
         @NamedQuery(name = "Property.getProperty", query = "SELECT p FROM Property p WHERE p.propertyKey = :propertyKey"),
         @NamedQuery(name = "Property.getAll", query = "SELECT p FROM Property p")
 })
-//TODO: add max length to column definition
 public class Property {
 
     @Id
@@ -26,9 +26,11 @@ public class Property {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "PROPERTY_KEY")
+    @NotNull
     private PropertyKey propertyKey;
 
-    @Column(name = "VALUE")
+    @Column(name = "VALUE", length = 255)
+    @NotNull
     private String value;
 
     public Property() {

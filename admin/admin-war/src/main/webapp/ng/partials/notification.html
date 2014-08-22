@@ -1,0 +1,9 @@
+<div ng-repeat="message in getMessages()">
+    <div class="alert alert-dismissable" ng-class="message.cssClass" >
+        <button type="button" class="close" aria-hidden="true" ng-click="onClose($index)">&times;</button>
+        {{message.txt}}
+    </div>
+</div>
+<div ng-show="getMessages().length > 1" class="pull-right">
+    <a ng-click="clearMessages()">Hide all messages</a>
+</div>

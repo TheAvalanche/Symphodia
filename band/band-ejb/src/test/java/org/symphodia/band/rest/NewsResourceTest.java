@@ -5,13 +5,14 @@ import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.symphodia.band.service.NewsService;
-import org.symphodia.common.band.domain.AbstractDomainObject;
 import org.symphodia.common.band.domain.News;
+import org.symphodia.common.domain.AbstractDomainObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import javax.inject.Inject;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 public class NewsResourceTest extends Arquillian {
@@ -72,8 +73,16 @@ public class NewsResourceTest extends Arquillian {
 
     }
 
+    @Test(expectedExceptions = Exception.class)
+    public void testValidation() {
+        News news = new News();
+
+        newsResource.saveNews(news);
+    }
+
     private News createTestNews() {
         News news = new News();
+        news.setCreationDate(new Date());
         news.setTitle("Test title");
         news.setContent("Test content");
         news.setImageList(Arrays.asList("image1", "image2", "image3"));

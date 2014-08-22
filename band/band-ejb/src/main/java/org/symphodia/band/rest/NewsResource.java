@@ -6,7 +6,12 @@ import org.symphodia.common.band.domain.News;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.ws.rs.*;
+import javax.validation.constraints.NotNull;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
@@ -28,14 +33,14 @@ public class NewsResource {
     @POST
     @Path("/save")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void saveNews(News news) {
+    public void saveNews(@NotNull News news) {
         service.saveNews(news);
     }
 
     @POST
     @Path("/remove")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void removeNews(News news) {
+    public void removeNews(@NotNull News news) {
         service.removeNews(news);
     }
 

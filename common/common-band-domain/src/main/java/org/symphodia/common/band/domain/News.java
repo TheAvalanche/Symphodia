@@ -1,7 +1,21 @@
 package org.symphodia.common.band.domain;
 
-import javax.persistence.*;
+import org.symphodia.common.domain.AbstractDomainObject;
+
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.PrePersist;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -19,14 +33,18 @@ public class News extends AbstractDomainObject {
     private Long id;
 
     @Column(name = "CREATION_DATE")
+    @NotNull
+    @Past
     private Date creationDate;
 
-    @Column(name = "TITLE")
+    @Column(name = "TITLE", length = 255)
     @NotNull
+    @Size(min = 1, max = 255)
     private String title;
 
-    @Column(name = "CONTENT")
+    @Column(name = "CONTENT", length = 8096)
     @NotNull
+    @Size(min = 1, max = 8096)
     private String content;
 
     @ElementCollection(fetch = FetchType.EAGER)
@@ -80,5 +98,10 @@ public class News extends AbstractDomainObject {
 
     public void removeImage(String image) {
         this.imageList.remove(image);
+    }
+
+    @PrePersist
+    public void validate() {
+        super.validate();
     }
 }
