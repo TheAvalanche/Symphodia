@@ -8,6 +8,7 @@
                 transclude: true,
                 templateUrl : '/ng/partials/notification.html',
                 link: function (scope) {
+                    alert("Hello");
                     scope.getMessages = function () {
                         return MessageService.msg();
                     };
