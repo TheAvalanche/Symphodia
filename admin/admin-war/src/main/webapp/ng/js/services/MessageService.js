@@ -8,6 +8,9 @@
             var messageService = {
                 success: function (msg) {
                     messages.push({txt: msg, cssClass: 'alert-success'});
+                    $timeout(function() {
+                        messages.splice(messages.indexOf(msg), 1);
+                    }, 2000);
                 },
                 warn: function (msg) {
                     messages.push({txt: msg, cssClass: 'alert-warning'});

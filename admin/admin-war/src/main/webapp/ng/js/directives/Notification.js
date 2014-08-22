@@ -2,13 +2,12 @@
     'use strict';
 
     angular.module('adminApp.directives')
-        .directive('Notification', ['MessageService', function (MessageService) {
+        .directive('notification', ['MessageService', function (MessageService) {
             return {
                 restrict: 'E',
                 transclude: true,
-                templateUrl : '/ng/partials/notification.html',
+                templateUrl : '/admin/ng/partials/notification.html',
                 link: function (scope) {
-                    alert("Hello");
                     scope.getMessages = function () {
                         return MessageService.msg();
                     };
