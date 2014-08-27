@@ -25,3 +25,22 @@
 .spacer {
     margin-top: 10px;
 }
+
+.notification-fade.ng-enter,
+.notification-fade.ng-leave {
+    -webkit-transition:all linear 0.5s;
+    -moz-transition:all linear 0.5s;
+    -o-transition:all linear 0.5s;
+    transition:all linear 0.5s;
+    display:block!important;
+}
+
+.notification-fade.ng-enter.ng-enter-active,
+.notification-fade.ng-leave {
+    opacity:1;
+}
+
+.notification-fade.ng-enter,
+.notification-fade.ng-leave.ng-leave-active {
+    opacity:0;
+}

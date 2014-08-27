@@ -6,6 +6,7 @@ var adminApp = angular.module('adminApp', [
     'adminApp.directives',
     'adminApp.filters',
     'ngRoute',
+    'ngAnimate',
     'ngSanitize',
     'textAngular',
     'angularFileUpload',

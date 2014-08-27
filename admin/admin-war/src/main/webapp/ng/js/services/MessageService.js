@@ -7,16 +7,19 @@
 
             var messageService = {
                 success: function (msg) {
-                    messages.push({txt: msg, cssClass: 'alert-success'});
-                    $timeout(function() {
-                        messages.splice(messages.indexOf(msg), 1);
-                    }, 2000);
+                    overrideAll();
+                    pushWithTimeout(msg, 'alert-success');
+                    closeAfterTimout(msg);
                 },
                 warn: function (msg) {
-                    messages.push({txt: msg, cssClass: 'alert-warning'});
+                    overrideAll();
+                    pushWithTimeout(msg, 'alert-warning');
+                    closeAfterTimout(msg);
                 },
                 error: function (msg) {
-                    messages.push({txt: msg, cssClass: 'alert-danger'});
+                    overrideAll();
+                    pushWithTimeout(msg, 'alert-danger');
+                    closeAfterTimout(msg);
                 },
                 msg: function () {
                     return messages;
@@ -32,6 +35,24 @@
             $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
                 messageService.clear();
             });
+
+            var closeAfterTimout = function(msg) {
+                $timeout(function() {
+                    if (_.contains(messages, msg)) {
+                        messages.splice(messages.indexOf(msg), 1);
+                    }
+                }, 4000);
+            };
+
+            var pushWithTimeout = function(msg, cssClass) {
+                $timeout(function() {
+                    messages.push({txt: msg, cssClass: cssClass});
+                }, 500);
+            };
+
+            var overrideAll = function() {
+                messageService.clear();
+            };
 
             return  messageService;
         }]);
