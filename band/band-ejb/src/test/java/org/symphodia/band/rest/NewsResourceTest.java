@@ -35,7 +35,7 @@ public class NewsResourceTest extends Arquillian {
 
         newsResource.saveNews(createTestNews());
 
-        News news = getNewsFromDB();
+        News news = getOneFromDB();
         Assert.assertEquals(news.getTitle(), "Test title");
         Assert.assertEquals(news.getContent(), "Test content");
         Assert.assertEquals(news.getImageList().size(), 3);
@@ -45,7 +45,7 @@ public class NewsResourceTest extends Arquillian {
     @Test(dependsOnMethods = {"testSaveNews"})
     public void testUpdateNews() throws Exception {
 
-        News news = getNewsFromDB();
+        News news = getOneFromDB();
         news.setTitle("Test title updated");
         news.setContent("Test content updated");
         news.getImageList().add("image4");
@@ -53,7 +53,7 @@ public class NewsResourceTest extends Arquillian {
 
         newsResource.saveNews(news);
 
-        news = getNewsFromDB();
+        news = getOneFromDB();
         Assert.assertEquals(news.getTitle(), "Test title updated");
         Assert.assertEquals(news.getContent(), "Test content updated");
         Assert.assertEquals(news.getImageList().size(), 3);
@@ -64,13 +64,27 @@ public class NewsResourceTest extends Arquillian {
     }
 
     @Test(dependsOnMethods = {"testUpdateNews"})
-    public void testRemoveNews() {
-        News news = getNewsFromDB();
+    public void testCountNews() throws Exception {
+        Long count = newsResource.getNewsCount();
+        Assert.assertEquals(count, new Long(1));
+    }
 
-        newsResource.removeNews(news);
+    @Test(dependsOnMethods = {"testCountNews"})
+    public void testGetNewsPart() {
+        newsResource.saveNews(createTestNews());
+        newsResource.saveNews(createTestNews());
+
+        List<News> newsList = newsResource.getNewsPart(1, 2);
+        Assert.assertEquals(newsList.size(), 2);
+    }
+
+    @Test(dependsOnMethods = {"testGetNewsPart"})
+    public void testRemoveNews() {
+        List<News> newsList = newsResource.getAllNews();
+
+        newsList.stream().forEach(newsResource::removeNews);
 
         Assert.assertEquals(newsResource.getAllNews().size(), 0);
-
     }
 
     @Test(expectedExceptions = Exception.class)
@@ -89,7 +103,7 @@ public class NewsResourceTest extends Arquillian {
         return news;
     }
 
-    private News getNewsFromDB() {
+    private News getOneFromDB() {
         List<News> newsList = newsResource.getAllNews();
         Assert.assertEquals(newsList.size(), 1);
         return newsList.get(0);

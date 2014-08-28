@@ -23,7 +23,8 @@ import java.util.List;
 @Entity
 @Table(name = "NEWS")
 @NamedQueries({
-        @NamedQuery(name = "News.getAll", query = "SELECT n FROM News n ORDER BY n.id DESC")
+        @NamedQuery(name = "News.all", query = "SELECT n FROM News n ORDER BY n.id DESC"),
+        @NamedQuery(name = "News.count", query = "SELECT COUNT(n) FROM News n")
 })
 public class News extends AbstractDomainObject {
 

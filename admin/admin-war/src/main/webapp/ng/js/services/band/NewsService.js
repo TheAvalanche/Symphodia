@@ -6,8 +6,14 @@
             var restRoot = '/admin/rest/news';
 
             return {
-                getAll: function() {
+                all: function() {
                     return $http.get(restRoot + '/all');
+                },
+                count: function() {
+                    return $http.get(restRoot + '/count');
+                },
+                part: function (offset, max) {
+                    return $http.get(restRoot + '/part/' + offset + '/' + max)
                 },
                 save: function(news) {
                     return $http.post(restRoot + '/save', news);

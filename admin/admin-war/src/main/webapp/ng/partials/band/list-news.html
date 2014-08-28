@@ -2,9 +2,12 @@
     <div class="row notification">
         <notification></notification>
     </div>
+    <div class="row text-center">
+        <pagination total-items="totalPages" ng-model="currentPage" max-size="5" class="pagination-sm" direction-links="false" boundary-links="true"></pagination>
+    </div>
     <div class="row spacer">
         <div class="col-md-2">
-            <button type="button" class="btn btn-primary" ng-click="editNews()">
+            <button type="button" class="btn btn-default" ng-click="editNews()">
                 <span class="glyphicon glyphicon-plus"></span> Add News
             </button>
         </div>
@@ -40,5 +43,8 @@
                 </tbody>
             </table>
         </div>
+    </div>
+    <div class="row text-center">
+        <pagination total-items="totalPages" ng-model="currentPage" max-size="5" class="pagination-sm" direction-links="false" boundary-links="true"></pagination>
     </div>
 </div>

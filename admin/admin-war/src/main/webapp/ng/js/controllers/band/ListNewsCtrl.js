@@ -5,7 +5,11 @@
         .controller('ListNewsCtrl', ['$scope', '$modal', 'NewsService', 'FileService', 'MessageService', function ($scope, $modal, NewsService, FileService, MessageService) {
 
             var init = function () {
-                NewsService.getAll().success(function (data) {
+                $scope.currentPage = 1;
+                NewsService.count().success(function (data) {
+                    $scope.totalPages = data / $scope.getProperty('PAGE_SIZE');
+                });
+                NewsService.part(0, $scope.getProperty('PAGE_SIZE')).success(function (data) {
                     $scope.newsList = data;
                 });
             };
@@ -46,6 +50,10 @@
                     return text.substring(0, 50) + "...";
                 }
                 return text;
+            };
+
+            $scope.setPage = function (pageNo) {
+                $scope.currentPage = pageNo;
             };
 
             init();

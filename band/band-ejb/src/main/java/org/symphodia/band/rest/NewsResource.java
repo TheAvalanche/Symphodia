@@ -11,6 +11,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
@@ -28,6 +29,20 @@ public class NewsResource {
     @Produces(MediaType.APPLICATION_JSON)
     public List<News> getAllNews() {
         return service.getAllNews();
+    }
+
+    @GET
+    @Path("/part/{offset}/{max}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<News> getNewsPart(@NotNull @PathParam("offset") int offset, @NotNull @PathParam("max") int max) {
+        return service.getNewsPart(offset, max);
+    }
+
+    @GET
+    @Path("/count")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Long getNewsCount() {
+        return service.getNewsCount();
     }
 
     @POST
