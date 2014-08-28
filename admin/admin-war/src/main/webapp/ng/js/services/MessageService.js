@@ -7,19 +7,13 @@
 
             var messageService = {
                 success: function (msg) {
-                    overrideAll();
-                    pushWithTimeout(msg, 'alert-success');
-                    closeAfterTimout(msg);
+                    addSingleMsgWithTimout({txt: msg, cssClass: 'alert-success'});
                 },
                 warn: function (msg) {
-                    overrideAll();
-                    pushWithTimeout(msg, 'alert-warning');
-                    closeAfterTimout(msg);
+                    addSingleMsgWithTimout({txt: msg, cssClass: 'alert-warning'});
                 },
                 error: function (msg) {
-                    overrideAll();
-                    pushWithTimeout(msg, 'alert-danger');
-                    closeAfterTimout(msg);
+                    addSingleMsgWithTimout({txt: msg, cssClass: 'alert-danger'});
                 },
                 msg: function () {
                     return messages;
@@ -27,7 +21,7 @@
                 clear: function () {
                     messages.length = 0;
                 },
-                removeMessage: function(index) {
+                removeMessage: function (index) {
                     messages.splice(index, 1);
                 }
             };
@@ -36,22 +30,29 @@
                 messageService.clear();
             });
 
-            var closeAfterTimout = function(msg) {
+            var addSingleMsgWithTimout = function (message) {
+                addOrReplace(message);
+                closeWithTimeout(message);
+            };
+
+            var closeWithTimeout = function(message) {
                 $timeout(function() {
-                    if (_.contains(messages, msg)) {
-                        messages.splice(messages.indexOf(msg), 1);
+                    if (_.contains(messages, message)) {
+                        messages.splice(messages.indexOf(message), 1);
                     }
-                }, 4000);
+                }, 3000);
             };
 
-            var pushWithTimeout = function(msg, cssClass) {
-                $timeout(function() {
-                    messages.push({txt: msg, cssClass: cssClass});
-                }, 500);
-            };
+            var addOrReplace = function (message) {
+                if (_.isEmpty(messages)) {
+                    messages.push(message);
+                } else {
+                    messageService.clear();
+                    $timeout(function () {
+                        messages.push(message);
+                    }, 500);
+                }
 
-            var overrideAll = function() {
-                messageService.clear();
             };
 
             return  messageService;
