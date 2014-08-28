@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('adminApp.controllers')
-        .controller('ListNewsCtrl', ['$scope', '$modal', 'NewsService', 'FileService', function ($scope, $modal, NewsService, FileService) {
+        .controller('ListNewsCtrl', ['$scope', '$modal', 'NewsService', 'FileService', 'MessageService', function ($scope, $modal, NewsService, FileService, MessageService) {
 
             var init = function () {
                 NewsService.getAll().success(function (data) {
@@ -24,6 +24,7 @@
                 });
 
                 modalInstance.result.then(function () {
+                    MessageService.success("Saved");
                     init();
                 }, function () {
                     init();
@@ -35,6 +36,7 @@
                     FileService.removeImage(image);
                 });
                 NewsService.remove(news).success(function () {
+                    MessageService.warn("Removed");
                     init();
                 });
             };

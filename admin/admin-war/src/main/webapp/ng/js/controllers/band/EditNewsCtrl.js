@@ -18,7 +18,7 @@
                     FileService.removeImage(image);
                 });
                 NewsService.save($scope.news).success(function () {
-                    $modalInstance.dismiss();
+                    $modalInstance.close();
                 });
             };
 
@@ -26,7 +26,7 @@
                 $scope.addImageQueue.forEach(function (image) {
                     FileService.removeImage(image);
                 });
-                $modalInstance.close();
+                $modalInstance.dismiss();
             };
 
             $scope.uploader = new FileUploader({
