@@ -3,11 +3,11 @@
         <notification></notification>
     </div>
     <div class="row text-center">
-        <pagination total-items="totalPages" ng-model="currentPage" max-size="5" class="pagination-sm" direction-links="false" boundary-links="true"></pagination>
+        <pagination total-items="totalItems" items-per-page="{{getProperty('PAGE_SIZE')}}" ng-model="currentPage" ng-change="pageChanged()" max-size="5" class="pagination-sm" direction-links="false" boundary-links="true"></pagination>
     </div>
     <div class="row spacer">
         <div class="col-md-2">
-            <button type="button" class="btn btn-default" ng-click="editNews()">
+            <button type="button" class="btn btn-primary" ng-click="editNews()">
                 <span class="glyphicon glyphicon-plus"></span> Add News
             </button>
         </div>
@@ -45,6 +45,6 @@
         </div>
     </div>
     <div class="row text-center">
-        <pagination total-items="totalPages" ng-model="currentPage" max-size="5" class="pagination-sm" direction-links="false" boundary-links="true"></pagination>
+        <pagination total-items="totalItems" items-per-page="{{getProperty('PAGE_SIZE')}}" ng-model="currentPage" ng-change="pageChanged()" max-size="5" class="pagination-sm" direction-links="false" boundary-links="true"></pagination>
     </div>
 </div>

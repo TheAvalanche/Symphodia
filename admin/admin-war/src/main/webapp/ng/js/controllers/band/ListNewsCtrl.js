@@ -2,14 +2,18 @@
     'use strict';
 
     angular.module('adminApp.controllers')
-        .controller('ListNewsCtrl', ['$scope', '$modal', 'NewsService', 'FileService', 'MessageService', function ($scope, $modal, NewsService, FileService, MessageService) {
+        .controller('ListNewsCtrl', ['$scope', '$rootScope', '$modal', 'NewsService', 'FileService', 'MessageService', function ($scope, $rootScope, $modal, NewsService, FileService, MessageService) {
 
             var init = function () {
                 $scope.currentPage = 1;
                 NewsService.count().success(function (data) {
-                    $scope.totalPages = data / $scope.getProperty('PAGE_SIZE');
+                    $scope.totalItems = data;
                 });
-                NewsService.part(0, $scope.getProperty('PAGE_SIZE')).success(function (data) {
+                reloadNewsPart();
+            };
+
+            var reloadNewsPart = function () {
+                NewsService.part(($scope.currentPage - 1) * $rootScope.getProperty('PAGE_SIZE'), $rootScope.getProperty('PAGE_SIZE')).success(function (data) {
                     $scope.newsList = data;
                 });
             };
@@ -30,8 +34,6 @@
                 modalInstance.result.then(function () {
                     MessageService.success("Saved");
                     init();
-                }, function () {
-                    init();
                 });
             };
 
@@ -45,15 +47,15 @@
                 });
             };
 
+            $scope.pageChanged = function () {
+                reloadNewsPart();
+            };
+
             $scope.minimizeText = function (text) {
                 if (text.length >= 50) {
                     return text.substring(0, 50) + "...";
                 }
                 return text;
-            };
-
-            $scope.setPage = function (pageNo) {
-                $scope.currentPage = pageNo;
             };
 
             init();
