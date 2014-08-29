@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <form class="form-horizontal" role="form">
                 <div class="form-group" ng-repeat="property in propertyList" ng-init="changed = false">
-                    <label class="col-md-3 control-label" ng-bind="toTitle(property.propertyKey)"></label>
+                    <label class="col-md-3 control-label" ng-bind="property.propertyKey | TitleText"></label>
                     <div class="col-md-9 input-group">
                         <input type="text" class="form-control" placeholder="Value" ng-model="property.value" ng-change="changed = true">
                         <span class="input-group-btn">

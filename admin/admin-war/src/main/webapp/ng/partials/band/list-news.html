@@ -38,7 +38,7 @@
                     </td>
                     <td class="col-md-2"><span ng-bind="news.creationDate | date : 'dd/MM/yyyy H:mm'"></span></td>
                     <td class="col-md-3"><span ng-bind="news.title"></span></td>
-                    <td class="col-md-6"><span ng-bind-html="minimizeText(news.content)"></span></td>
+                    <td class="col-md-6"><span ng-bind-html="news.content | MinimizeText"></span></td>
                 </tr>
                 </tbody>
             </table>
