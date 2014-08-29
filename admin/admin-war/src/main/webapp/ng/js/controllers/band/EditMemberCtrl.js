@@ -9,6 +9,9 @@
                 $scope.member.image = $scope.member.image || [];
                 $scope.removeImageQueue = [];
                 $scope.addImageQueue = [];
+                MemberService.instruments().success(function(data) {
+                    $scope.instruments = data;
+                });
             };
 
             $scope.save = function () {

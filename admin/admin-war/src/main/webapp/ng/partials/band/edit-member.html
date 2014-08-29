@@ -7,14 +7,26 @@
 <form name="form" role="form" novalidate>
     <div class="modal-body">
         <div class="form-group">
-            <label>Title</label>
-            <input ng-model="news.title" type="text" class="form-control" id="titleInput" placeholder="Enter title" required>
+            <label>Name</label>
+            <input ng-model="member.name" type="text" class="form-control" id="nameInput" placeholder="Enter name" required>
         </div>
         <div class="form-group">
-            <label>Content</label>
-            <text-angular ng-model="news.content"
+            <label>Surname</label>
+            <input ng-model="member.surname" type="text" class="form-control" id="surnameInput" placeholder="Enter surname" required>
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <text-angular ng-model="member.description"
                           ta-toolbar="[['h1','h2','h3','p','quote','bold','italics','underline'],['ul','ol','indent','outdent'],['html','insertLink','insertImage','insertVideo']]"
-                          type="text" id="contentInput" placeholder="Enter content" required></text-angular>
+                          type="text" id="contentInput" placeholder="Enter description" required></text-angular>
+        </div>
+        <div class="form-group">
+            <label>Instrument</label>
+            <select ng-model="member.instrument"
+                    ng-options="instrument | TitleText for instrument in instruments"
+                    class="form-control">
+            </select>
+        </div>
         </div>
         <div class="form-group">
             <label>Image</label><br>

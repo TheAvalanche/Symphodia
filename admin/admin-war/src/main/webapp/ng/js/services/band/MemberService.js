@@ -20,6 +20,9 @@
                 },
                 remove: function(news) {
                     return $http.post(restRoot + '/remove', news);
+                },
+                instruments: function () {
+                    return $http.get(restRoot + '/instruments');
                 }
             };
         }]);
