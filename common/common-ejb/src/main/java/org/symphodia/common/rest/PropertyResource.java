@@ -10,7 +10,6 @@ import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import java.text.MessageFormat;
 import java.util.List;
 
 
@@ -28,14 +27,12 @@ public class PropertyResource {
     @GET
     @Path("/all")
     public List<Property> getAll() {
-        logger.info("getAll() is called");
         return propertyService.getAllProperties();
     }
 
     @POST
     @Path("/save")
     public void save(Property property) {
-        logger.info(MessageFormat.format("save() is called for property {0}", property.getPropertyKey()));
         propertyService.saveProperty(property);
     }
 }

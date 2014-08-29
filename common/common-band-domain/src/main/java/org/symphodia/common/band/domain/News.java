@@ -8,10 +8,12 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.PrePersist;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
@@ -26,10 +28,11 @@ import java.util.List;
         @NamedQuery(name = "News.all", query = "SELECT n FROM News n ORDER BY n.id DESC"),
         @NamedQuery(name = "News.count", query = "SELECT COUNT(n) FROM News n")
 })
+@SequenceGenerator(name = "NEWS_SEQ", sequenceName = "NEWS_SEQ", initialValue = 100000)
 public class News extends AbstractDomainObject {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "NEWS_SEQ")
     @Column(name = "ID")
     private Long id;
 

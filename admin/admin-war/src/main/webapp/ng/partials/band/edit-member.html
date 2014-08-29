@@ -1,0 +1,40 @@
+<div class="modal-header">
+    <h3 class="modal-title">Edit Member</h3>
+</div>
+<div class="row notification">
+    <notification></notification>
+</div>
+<form name="form" role="form" novalidate>
+    <div class="modal-body">
+        <div class="form-group">
+            <label>Title</label>
+            <input ng-model="news.title" type="text" class="form-control" id="titleInput" placeholder="Enter title" required>
+        </div>
+        <div class="form-group">
+            <label>Content</label>
+            <text-angular ng-model="news.content"
+                          ta-toolbar="[['h1','h2','h3','p','quote','bold','italics','underline'],['ul','ol','indent','outdent'],['html','insertLink','insertImage','insertVideo']]"
+                          type="text" id="contentInput" placeholder="Enter content" required></text-angular>
+        </div>
+        <div class="form-group">
+            <label>Image</label><br>
+            <div class="spacer">
+                <button type="button" class="btn btn-danger btn-xs" ng-click="removeImage(image)">
+                    <span class="glyphicon glyphicon-trash"></span> Remove
+                </button>
+                <img class="img-responsive img-thumbnail" ng-src="{{getProperty('HOSTNAME')}}uploaded/{{image}}_s.png"/>
+            </div>
+            <div class="spacer">
+                <span class="btn btn-primary btn-file">
+                    <span class="glyphicon glyphicon-plus"></span> Add image...
+                    <input type="file" nv-file-select uploader="uploader" accept="image/*"/>
+                </span>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-success" ng-click="save()" type="button" ng-disabled="form.$invalid"><span class="glyphicon glyphicon-ok"></span> Save</button>
+            <button class="btn btn-warning" ng-click="cancel()" type="button"><span class="glyphicon glyphicon-remove"></span> Cancel
+            </button>
+        </div>
+    </div>
+</form>
