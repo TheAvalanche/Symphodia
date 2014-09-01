@@ -34,6 +34,8 @@
                 modalInstance.result.then(function () {
                     MessageService.success("Saved");
                     init();
+                }, function () {
+                    init();
                 });
             };
 

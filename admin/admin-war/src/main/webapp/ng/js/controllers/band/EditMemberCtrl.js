@@ -6,7 +6,7 @@
 
             var init = function () {
                 $scope.member = member || {};
-                $scope.member.image = $scope.member.image || [];
+                $scope.member.image = $scope.member.image || null;
                 $scope.removeImageQueue = [];
                 $scope.addImageQueue = [];
                 MemberService.instruments().success(function(data) {
@@ -42,6 +42,9 @@
 
                 onCompleteItem: function (item) {
                     $scope.addImageQueue.push(item.file.name);
+                    if ($scope.member.image) {
+                        $scope.removeImageQueue.push($scope.member.image);
+                    }
                     $scope.member.image = item.file.name;
                 }
             });
