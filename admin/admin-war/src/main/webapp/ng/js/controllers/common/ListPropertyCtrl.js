@@ -2,12 +2,12 @@
     'use strict';
 
     angular.module('adminApp.controllers')
-        .controller('ListPropertyCtrl', ['$scope', 'PropertyService', 'MessageService', function ($scope, PropertyService, MessageService) {
+        .controller('ListPropertyCtrl', ['$scope', '$filter', 'PropertyService', 'MessageService', function ($scope, $filter, PropertyService, MessageService) {
 
             $scope.save = function(property) {
                 PropertyService.save(property)
                     .success(function () {
-                        MessageService.success($scope.toTitle(property.propertyKey) + " updated.");
+                        MessageService.success($filter('TitleText')(property.propertyKey) + " updated.");
                     });
             };
         }]);

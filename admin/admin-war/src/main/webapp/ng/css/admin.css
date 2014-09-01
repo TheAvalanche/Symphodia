@@ -26,11 +26,6 @@
     margin-top: 10px;
 }
 
-
-.notification {
-    height: 60px;
-}
-
 .notification-fade.ng-enter,
 .notification-fade.ng-leave {
     -webkit-transition:all linear 0.5s;
