@@ -29,7 +29,7 @@ public class MemberResource {
     @GET
     @Path("/all")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Member> getAllNews() {
+    public List<Member> getAllMember() {
         return service.getAllMember();
     }
 
@@ -50,14 +50,14 @@ public class MemberResource {
     @POST
     @Path("/save")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void saveNews(@NotNull Member member) {
+    public void saveMember(@NotNull Member member) {
         service.saveMember(member);
     }
 
     @POST
     @Path("/remove")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void removeNews(@NotNull Member member) {
+    public void removeMember(@NotNull Member member) {
         service.removeMember(member);
     }
 

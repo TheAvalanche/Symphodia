@@ -8,16 +8,18 @@
     <div class="modal-body">
         <div class="form-group">
             <label>Name</label>
-            <input ng-model="member.name" type="text" class="form-control" id="nameInput" placeholder="Enter name" required>
+            <input ng-model="member.name" type="text" class="form-control" id="nameInput" placeholder="Enter name"
+                   required>
         </div>
         <div class="form-group">
             <label>Surname</label>
-            <input ng-model="member.surname" type="text" class="form-control" id="surnameInput" placeholder="Enter surname" required>
+            <input ng-model="member.surname" type="text" class="form-control" id="surnameInput"
+                   placeholder="Enter surname" required>
         </div>
         <div class="form-group">
             <label>Description</label>
             <text-angular ng-model="member.description"
-                          ta-toolbar="[['h1','h2','h3','p','quote','bold','italics','underline'],['ul','ol','indent','outdent'],['html','insertLink','insertImage','insertVideo']]"
+                          ta-toolbar="{{getProperty('EDITOR_CONTROLS')}}"
                           type="text" id="contentInput" placeholder="Enter description" required></text-angular>
         </div>
         <div class="form-group">
@@ -27,14 +29,17 @@
                     class="form-control">
             </select>
         </div>
-        </div>
         <div class="form-group">
             <label>Image</label><br>
-            <div class="spacer">
-                <button type="button" class="btn btn-danger btn-xs" ng-click="removeImage(image)">
-                    <span class="glyphicon glyphicon-trash"></span> Remove
-                </button>
-                <img class="img-responsive img-thumbnail" ng-src="{{getProperty('HOSTNAME')}}uploaded/{{image}}_s.png"/>
+
+            <div class="row spacer">
+                <div class="col-md-3" ng-show="member.image">
+                    <button type="button" class="btn btn-danger btn-xs" ng-click="removeImage(member.image)">
+                        <span class="glyphicon glyphicon-trash"></span> Remove
+                    </button>
+                    <img class="img-responsive img-thumbnail"
+                         ng-src="{{getProperty('HOSTNAME')}}uploaded/{{member.image}}_s.png"/>
+                </div>
             </div>
             <div class="spacer">
                 <span class="btn btn-primary btn-file">
@@ -44,8 +49,11 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-success" ng-click="save()" type="button" ng-disabled="form.$invalid"><span class="glyphicon glyphicon-ok"></span> Save</button>
-            <button class="btn btn-warning" ng-click="cancel()" type="button"><span class="glyphicon glyphicon-remove"></span> Cancel
+            <button class="btn btn-success" ng-click="save()" type="button" ng-disabled="form.$invalid"><span
+                    class="glyphicon glyphicon-ok"></span> Save
+            </button>
+            <button class="btn btn-warning" ng-click="cancel()" type="button"><span
+                    class="glyphicon glyphicon-remove"></span> Cancel
             </button>
         </div>
     </div>

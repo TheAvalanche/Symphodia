@@ -3,7 +3,7 @@
         <notification></notification>
     </div>
     <div class="row text-center">
-        <pagination total-items="totalItems" items-per-page="{{getProperty('PAGE_SIZE')}}" ng-model="currentPage" ng-change="pageChanged()" max-size="5" class="pagination-sm" direction-links="false" boundary-links="true"></pagination>
+        <pagination ng-show="totalItems > {{getProperty('PAGE_SIZE')}}" total-items="totalItems" items-per-page="{{getProperty('PAGE_SIZE')}}" ng-model="currentPage" ng-change="pageChanged()" max-size="5" class="pagination-sm" direction-links="false" boundary-links="true"></pagination>
     </div>
     <div class="row spacer">
         <div class="col-md-2">
@@ -35,15 +35,14 @@
                             <span class="glyphicon glyphicon-trash"></span>
                         </button>
                     </td>
-<!--                    <td class="col-md-2"><span ng-bind="news.creationDate | date : 'dd/MM/yyyy H:mm'"></span></td>
-                    <td class="col-md-3"><span ng-bind="news.title"></span></td>
-                    <td class="col-md-6"><span ng-bind-html="news.content | MinimizeText"></span></td>-->
+                    <td class="col-md-3"><img class="img-responsive img-thumbnail" ng-src="{{getProperty('HOSTNAME')}}uploaded/{{member.image}}_s.png"/></td>
+                    <td class="col-md-8"><span><b>{{member.name}} {{member.surname}}</b></span><div ng-bind-html="member.description"></div></td>
                 </tr>
                 </tbody>
             </table>
         </div>
     </div>
     <div class="row text-center">
-        <pagination total-items="totalItems" items-per-page="{{getProperty('PAGE_SIZE')}}" ng-model="currentPage" ng-change="pageChanged()" max-size="5" class="pagination-sm" direction-links="false" boundary-links="true"></pagination>
+        <pagination ng-show="totalItems > {{getProperty('PAGE_SIZE')}}" total-items="totalItems" items-per-page="{{getProperty('PAGE_SIZE')}}" ng-model="currentPage" ng-change="pageChanged()" max-size="5" class="pagination-sm" direction-links="false" boundary-links="true"></pagination>
     </div>
 </div>

@@ -3,7 +3,7 @@
         <notification></notification>
     </div>
     <div class="row text-center">
-        <pagination total-items="totalItems" items-per-page="{{getProperty('PAGE_SIZE')}}" ng-model="currentPage" ng-change="pageChanged()" max-size="5" class="pagination-sm" direction-links="false" boundary-links="true"></pagination>
+        <pagination ng-show="totalItems > {{getProperty('PAGE_SIZE')}}" total-items="totalItems" items-per-page="{{getProperty('PAGE_SIZE')}}" ng-model="currentPage" ng-change="pageChanged()" max-size="5" class="pagination-sm" direction-links="false" boundary-links="true"></pagination>
     </div>
     <div class="row spacer">
         <div class="col-md-2">
@@ -45,6 +45,6 @@
         </div>
     </div>
     <div class="row text-center">
-        <pagination total-items="totalItems" items-per-page="{{getProperty('PAGE_SIZE')}}" ng-model="currentPage" ng-change="pageChanged()" max-size="5" class="pagination-sm" direction-links="false" boundary-links="true"></pagination>
+        <pagination ng-show="totalItems > {{getProperty('PAGE_SIZE')}}" total-items="totalItems" items-per-page="{{getProperty('PAGE_SIZE')}}" ng-model="currentPage" ng-change="pageChanged()" max-size="5" class="pagination-sm" direction-links="false" boundary-links="true"></pagination>
     </div>
 </div>
