@@ -7,13 +7,13 @@
 
             var messageService = {
                 success: function (msg) {
-                    addSingleMsgWithTimout({txt: msg, cssClass: 'alert-success'});
+                    addMsgWithTimeout({txt: msg, cssClass: 'alert-success'});
                 },
                 warn: function (msg) {
-                    addSingleMsgWithTimout({txt: msg, cssClass: 'alert-warning'});
+                    addMsgWithTimeout({txt: msg, cssClass: 'alert-warning'});
                 },
                 error: function (msg) {
-                    addSingleMsgWithTimout({txt: msg, cssClass: 'alert-danger'});
+                    addMsgWithTimeout({txt: msg, cssClass: 'alert-danger'});
                 },
                 msg: function () {
                     return messages;
@@ -30,7 +30,12 @@
                 messageService.clear();
             });
 
-            var addSingleMsgWithTimout = function (message) {
+            var addMsgWithTimeout = function (message) {
+                add(message);
+                closeWithTimeout(message);
+            };
+
+            var addSingleMsgWithTimeout = function (message) {
                 addOrReplace(message);
                 closeWithTimeout(message);
             };
@@ -45,14 +50,17 @@
 
             var addOrReplace = function (message) {
                 if (_.isEmpty(messages)) {
-                    messages.push(message);
+                    add(message);
                 } else {
                     messageService.clear();
                     $timeout(function () {
-                        messages.push(message);
+                        add(message);
                     }, 500);
                 }
+            };
 
+            var add = function (message) {
+                messages.push(message);
             };
 
             return  messageService;

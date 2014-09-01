@@ -26,13 +26,30 @@
     margin-top: 10px;
 }
 
+.notifications {
+    position: fixed;
+    top: 55px;
+    left: 10px;
+    z-index: 1000;
+}
+
+.notification {
+    margin-bottom: 0 !important;
+}
+
+.notification-fade {
+    width: 300px;
+    display: block;
+    margin: 10px 25px;
+}
+
 .notification-fade.ng-enter,
 .notification-fade.ng-leave {
     -webkit-transition:all linear 0.5s;
     -moz-transition:all linear 0.5s;
     -o-transition:all linear 0.5s;
     transition:all linear 0.5s;
-    display:block!important;
+    display:block !important;
 }
 
 .notification-fade.ng-enter.ng-enter-active,
