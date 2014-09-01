@@ -14,8 +14,12 @@ import javax.persistence.NamedQuery;
 import javax.persistence.PrePersist;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
+import java.util.Date;
 
 @Entity
 @Table(name = "MEMBER")
@@ -45,6 +49,12 @@ public class Member extends AbstractDomainObject {
     @NotNull
     @Size(min = 1, max = 2048)
     private String description;
+
+    @Column(name = "DATE_OF_BIRTH")
+    @Temporal(TemporalType.DATE)
+    @Past
+    @NotNull
+    private Date dateOfBirth;
 
     @Column(name = "INSTRUMENT", length = 255)
     @Enumerated(EnumType.ORDINAL)
@@ -80,6 +90,14 @@ public class Member extends AbstractDomainObject {
 
     public String getDescription() {
         return description;
+    }
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public void setDescription(String description) {
