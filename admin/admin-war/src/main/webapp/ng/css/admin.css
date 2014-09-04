@@ -1,3 +1,15 @@
+.background {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-image: url('img/texture.jpg');
+    background-repeat:repeat;
+}
+
 .admin-modal > .modal-dialog {
     width: 850px;
 }
@@ -24,6 +36,10 @@
 
 .spacer {
     margin-top: 10px;
+}
+
+.spacer-big {
+    margin-top: 50px;
 }
 
 .notifications {
