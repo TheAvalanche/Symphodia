@@ -14,7 +14,6 @@
     <name>admin</name>
 
     <modules>
-        <module>admin-ejb</module>
         <module>admin-war</module>
         <module>admin-ear</module>
     </modules>
