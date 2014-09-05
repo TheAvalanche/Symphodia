@@ -29,22 +29,22 @@ public class MemberResource {
     @GET
     @Path("/all")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Member> getAllMember() {
-        return service.getAllMember();
+    public List<Member> getAllMembers() {
+        return service.getAllMembers();
     }
 
     @GET
     @Path("/part/{offset}/{max}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Member> getMemberPart(@NotNull @PathParam("offset") int offset, @NotNull @PathParam("max") int max) {
-        return service.getMemberPart(offset, max);
+    public List<Member> getMembersPart(@NotNull @PathParam("offset") int offset, @NotNull @PathParam("max") int max) {
+        return service.getMembersPart(offset, max);
     }
 
     @GET
     @Path("/count")
     @Produces(MediaType.APPLICATION_JSON)
-    public Long getMemberCount() {
-        return service.getMemberCount();
+    public Long getMembersCount() {
+        return service.getMembersCount();
     }
 
     @POST

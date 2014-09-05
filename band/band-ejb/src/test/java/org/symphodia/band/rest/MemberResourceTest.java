@@ -72,7 +72,7 @@ public class MemberResourceTest extends Arquillian {
 
     @Test(dependsOnMethods = {"testUpdateMember"})
     public void testCountMember() throws Exception {
-        Long count = memberResource.getMemberCount();
+        Long count = memberResource.getMembersCount();
         Assert.assertEquals(count, new Long(1));
     }
 
@@ -81,17 +81,17 @@ public class MemberResourceTest extends Arquillian {
         memberResource.saveMember(createTestMember());
         memberResource.saveMember(createTestMember());
 
-        List<Member> memberList = memberResource.getMemberPart(1, 2);
+        List<Member> memberList = memberResource.getMembersPart(1, 2);
         Assert.assertEquals(memberList.size(), 2);
     }
 
     @Test(dependsOnMethods = {"testGetMemberPart"})
     public void testRemoveMember() {
-        List<Member> memberList = memberResource.getAllMember();
+        List<Member> memberList = memberResource.getAllMembers();
 
         memberList.stream().forEach(memberResource::removeMember);
 
-        Assert.assertEquals(memberResource.getAllMember().size(), 0);
+        Assert.assertEquals(memberResource.getAllMembers().size(), 0);
     }
 
     @Test(expectedExceptions = Exception.class)
@@ -113,7 +113,7 @@ public class MemberResourceTest extends Arquillian {
     }
 
     private Member getOneFromDB() {
-        List<Member> memberList = memberResource.getAllMember();
+        List<Member> memberList = memberResource.getAllMembers();
         Assert.assertEquals(memberList.size(), 1);
         return memberList.get(0);
     }

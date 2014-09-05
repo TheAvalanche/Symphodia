@@ -14,19 +14,19 @@ public class MemberService {
     @PersistenceContext(unitName = "SymphodiaUnit")
     private EntityManager entityManager;
 
-    public List<Member> getAllMember() {
+    public List<Member> getAllMembers() {
         TypedQuery<Member> query = entityManager.createNamedQuery("Member.all", Member.class);
         return query.getResultList();
     }
 
-    public List<Member> getMemberPart(int offset, int max) {
+    public List<Member> getMembersPart(int offset, int max) {
         TypedQuery<Member> query = entityManager.createNamedQuery("Member.all", Member.class);
         query.setFirstResult(offset);
         query.setMaxResults(max);
         return query.getResultList();
     }
 
-    public Long getMemberCount() {
+    public Long getMembersCount() {
         TypedQuery<Long> query = entityManager.createNamedQuery("Member.count", Long.class);
         return query.getSingleResult();
     }

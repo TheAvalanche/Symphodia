@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('adminApp.controllers')
-        .controller('ListPropertyCtrl', ['$scope', '$filter', 'PropertyService', 'MessageService', function ($scope, $filter, PropertyService, MessageService) {
+        .controller('ListPropertiesCtrl', ['$scope', '$filter', 'PropertyService', 'MessageService', function ($scope, $filter, PropertyService, MessageService) {
 
             $scope.save = function(property) {
                 PropertyService.save(property)
