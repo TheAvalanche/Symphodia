@@ -4,11 +4,9 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.symphodia.band.service.MemberService;
 import org.symphodia.common.band.domain.Instrument;
 import org.symphodia.common.band.domain.Member;
 import org.symphodia.common.date.DateUtil;
-import org.symphodia.common.domain.AbstractDomainObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -20,12 +18,10 @@ public class MemberResourceTest extends Arquillian {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addClasses(AbstractDomainObject.class,
-                            Member.class,
-                            Instrument.class,
-                            MemberResource.class,
-                            MemberService.class,
-                            DateUtil.class)
+                .addPackage("org.symphodia.common.band.domain")
+                .addPackage("org.symphodia.common.domain")
+                .addPackage("org.symphodia.band.rest")
+                .addPackage("org.symphodia.band.service")
                 .addAsResource("META-INF/persistence.xml");
     }
 

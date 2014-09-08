@@ -20,6 +20,8 @@ public class NewsResourceTest extends Arquillian {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage("org.symphodia.common.band.domain")
                 .addPackage("org.symphodia.common.domain")
+                .addPackage("org.symphodia.band.rest")
+                .addPackage("org.symphodia.band.service")
                 .addAsResource("META-INF/persistence.xml");
     }
 
