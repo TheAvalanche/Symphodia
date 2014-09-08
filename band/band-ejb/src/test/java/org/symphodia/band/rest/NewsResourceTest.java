@@ -4,9 +4,7 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.symphodia.band.service.NewsService;
 import org.symphodia.common.band.domain.News;
-import org.symphodia.common.domain.AbstractDomainObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -20,10 +18,8 @@ public class NewsResourceTest extends Arquillian {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addClasses(AbstractDomainObject.class,
-                            News.class,
-                            NewsResource.class,
-                            NewsService.class)
+                .addPackage("org.symphodia.common.band.domain")
+                .addPackage("org.symphodia.common.domain")
                 .addAsResource("META-INF/persistence.xml");
     }
 

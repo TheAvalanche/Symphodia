@@ -31,12 +31,7 @@
             });
 
             var addMsgWithTimeout = function (message) {
-                add(message);
-                closeWithTimeout(message);
-            };
-
-            var addSingleMsgWithTimeout = function (message) {
-                addOrReplace(message);
+                messages.push(message);
                 closeWithTimeout(message);
             };
 
@@ -46,21 +41,6 @@
                         messages.splice(messages.indexOf(message), 1);
                     }
                 }, 3000);
-            };
-
-            var addOrReplace = function (message) {
-                if (_.isEmpty(messages)) {
-                    add(message);
-                } else {
-                    messageService.clear();
-                    $timeout(function () {
-                        add(message);
-                    }, 500);
-                }
-            };
-
-            var add = function (message) {
-                messages.push(message);
             };
 
             return  messageService;
