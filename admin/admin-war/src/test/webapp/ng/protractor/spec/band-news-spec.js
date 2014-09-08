@@ -22,6 +22,7 @@
             newsPage.addNews();
             newsPage.setTitle("Test Title");
             newsPage.setContent("Test Content");
+            newsPage.setImage('C:/Projects/Symphodia/admin/admin-war/src/test/resources/test.png');
             newsPage.saveNews();
 
             expect(element.all(by.repeater('news in newsList').column('news.title')).first().getText()).toEqual("Test Title");
@@ -34,6 +35,7 @@
             newsPage.updateFirstNews();
             newsPage.setTitle("Test Title Updated");
             newsPage.setContent("Test Content Updated");
+            newsPage.setImage('C:/Projects/Symphodia/admin/admin-war/src/test/resources/test2.png');
             newsPage.saveNews();
 
             expect(element.all(by.repeater('news in newsList').column('news.title')).first().getText()).toEqual("Test Title Updated");

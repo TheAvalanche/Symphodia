@@ -8,11 +8,11 @@
         },
         updateFirstNews: function () {
             browser.actions().mouseMove(element.all(by.repeater('news in newsList')).first()).perform();
-            element(by.css(".glyphicon-pencil")).click();
+            element.all(by.css(".glyphicon-pencil")).get(0).click();
         },
         removeFirstNews: function () {
             browser.actions().mouseMove(element.all(by.repeater('news in newsList')).first()).perform();
-            element(by.css(".glyphicon-trash")).click();
+            element.all(by.css(".glyphicon-trash")).get(0).click();
         },
         saveNews: function () {
             element(by.buttonText('Save')).click();
@@ -22,8 +22,11 @@
             element(by.model('news.title')).sendKeys(title);
         },
         setContent: function(content) {
-            element(by.model('news.content')).element(by.model('html')).clear();
-            element(by.model('news.content')).element(by.model('html')).sendKeys(content);
+            element(by.model('news.content')).all(by.model('html')).get(0).clear();
+            element(by.model('news.content')).all(by.model('html')).get(0).sendKeys(content);
+        },
+        setImage: function(image) {
+            element(by.css('input[type="file"]')).sendKeys(image);
         }
     };
 }());
