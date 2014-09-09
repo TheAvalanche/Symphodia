@@ -1,9 +1,14 @@
-<carousel interval="myInterval">
-    <slide ng-repeat="slide in slides" active="slide.active">
-        <img ng-src="{{slide.image}}" style="margin:auto;">
+<carousel>
+    <slide>
+        <img src="http://localhost:8080/uploaded/header.jpg" style="margin:auto;">
         <div class="carousel-caption">
-            <h4>Slide {{$index}}</h4>
-            <p>{{slide.text}}</p>
+            <p>Beautiful!</p>
+        </div>
+    </slide>
+    <slide>
+        <img src="http://localhost:8080/uploaded/header.jpg" style="margin:auto;">
+        <div class="carousel-caption">
+            <p>D'aww!</p>
         </div>
     </slide>
 </carousel>
