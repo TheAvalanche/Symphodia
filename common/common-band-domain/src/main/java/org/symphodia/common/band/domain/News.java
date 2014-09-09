@@ -28,7 +28,9 @@ import java.util.List;
 @Table(name = "NEWS")
 @NamedQueries({
         @NamedQuery(name = "News.all", query = "SELECT n FROM News n ORDER BY n.id DESC"),
-        @NamedQuery(name = "News.count", query = "SELECT COUNT(n) FROM News n")
+        @NamedQuery(name = "News.count", query = "SELECT COUNT(n) FROM News n"),
+        @NamedQuery(name = "News.allByBand", query = "SELECT n FROM News n WHERE n.band = :band ORDER BY n.id DESC"),
+        @NamedQuery(name = "News.countByBand", query = "SELECT COUNT(n) FROM News n WHERE n.band = :band")
 })
 @SequenceGenerator(name = "NEWS_SEQ", sequenceName = "NEWS_SEQ", initialValue = 100000)
 public class News extends AbstractDomainObject {

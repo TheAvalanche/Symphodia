@@ -20,7 +20,7 @@
 
             $scope.editNews = function (news) {
                 var modalInstance = $modal.open({
-                    templateUrl: '/admin/ng/partials/band/edit-news.html',
+                    templateUrl: '/admin/partials/band/edit-news.html',
                     controller: 'EditNewsCtrl',
                     windowClass: 'admin-modal',
                     backdrop: 'static',

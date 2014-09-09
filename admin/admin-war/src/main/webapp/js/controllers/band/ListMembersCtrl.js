@@ -20,7 +20,7 @@
 
             $scope.editMember = function (member) {
                 var modalInstance = $modal.open({
-                    templateUrl: '/admin/ng/partials/band/edit-member.html',
+                    templateUrl: '/admin/partials/band/edit-member.html',
                     controller: 'EditMemberCtrl',
                     windowClass: 'admin-modal',
                     backdrop: 'static',

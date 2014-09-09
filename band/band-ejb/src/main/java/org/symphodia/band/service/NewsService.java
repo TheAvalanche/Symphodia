@@ -31,6 +31,24 @@ public class NewsService {
         return query.getSingleResult();
     }
 
+    public List<News> getAllNewsByBand() {
+        TypedQuery<News> query = entityManager.createNamedQuery("News.allByBand", News.class);
+        return query.getResultList();
+    }
+
+    public List<News> getNewsPartByBand(int offset, int max) {
+        TypedQuery<News> query = entityManager.createNamedQuery("News.allByBand", News.class);
+        query.setFirstResult(offset);
+        query.setMaxResults(max);
+        return query.getResultList();
+    }
+
+    public Long getNewsCountByBand() {
+        TypedQuery<Long> query = entityManager.createNamedQuery("News.countByBand", Long.class);
+
+        return query.getSingleResult();
+    }
+
     public void saveNews(News news) {
         entityManager.merge(news);
     }

@@ -6,7 +6,7 @@
             return {
                 restrict: 'E',
                 transclude: true,
-                templateUrl : '/admin/ng/partials/notification.html',
+                templateUrl : '/admin/partials/notification.html',
                 link: function (scope) {
                     scope.getMessages = function () {
                         return MessageService.msg();
