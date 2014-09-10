@@ -1,5 +1,6 @@
 package org.symphodia.common.band.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.symphodia.common.domain.AbstractDomainObject;
 
 import javax.persistence.CollectionTable;
@@ -29,8 +30,8 @@ import java.util.List;
 @NamedQueries({
         @NamedQuery(name = "News.all", query = "SELECT n FROM News n ORDER BY n.id DESC"),
         @NamedQuery(name = "News.count", query = "SELECT COUNT(n) FROM News n"),
-        @NamedQuery(name = "News.allByBand", query = "SELECT n FROM News n WHERE n.band = :band ORDER BY n.id DESC"),
-        @NamedQuery(name = "News.countByBand", query = "SELECT COUNT(n) FROM News n WHERE n.band = :band")
+        @NamedQuery(name = "News.allByBand", query = "SELECT n FROM News n WHERE n.band.id = :bandId ORDER BY n.id DESC"),
+        @NamedQuery(name = "News.countByBand", query = "SELECT COUNT(n) FROM News n WHERE n.band.id = :bandId")
 })
 @SequenceGenerator(name = "NEWS_SEQ", sequenceName = "NEWS_SEQ", initialValue = 100000)
 public class News extends AbstractDomainObject {
@@ -42,6 +43,7 @@ public class News extends AbstractDomainObject {
 
     @ManyToOne(targetEntity = Band.class)
     @JoinColumn(name="BAND_ID")
+    @JsonIgnore
     private Band band;
 
     @Column(name = "CREATION_DATE")

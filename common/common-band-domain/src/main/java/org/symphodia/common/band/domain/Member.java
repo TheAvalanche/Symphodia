@@ -1,5 +1,6 @@
 package org.symphodia.common.band.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.symphodia.common.domain.AbstractDomainObject;
 
 import javax.persistence.Column;
@@ -41,6 +42,7 @@ public class Member extends AbstractDomainObject {
 
     @ManyToOne(targetEntity = Band.class)
     @JoinColumn(name="BAND_ID")
+    @JsonIgnore
     private Band band;
 
     @Column(name = "NAME", length = 255)

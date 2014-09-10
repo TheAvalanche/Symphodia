@@ -4,6 +4,8 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.symphodia.band.service.BandService;
+import org.symphodia.common.band.domain.Band;
 import org.symphodia.common.band.domain.News;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -28,30 +30,48 @@ public class NewsResourceTest extends Arquillian {
     @Inject
     private NewsResource newsResource;
 
+    @Inject
+    private BandService bandService;
+
     @Test
-    public void testSaveNews() throws Exception {
+    public void newsWorkflowIntegrationTest() throws Exception {
+        Band band = createBand();
+        testSaveNews(band);
+        testUpdateNews(band);
+        testCountNews(band);
+        testGetNewsPart(band);
+        testRemoveNews(band);
+        tearDown(band);
+    }
 
-        newsResource.saveNews(createTestNews());
+    public Band createBand() {
+        Band band = createTestBand();
+        bandService.saveBand(band);
+        
+        return bandService.getAllBands().get(0);
+    }
 
-        News news = getOneFromDB();
+    public void testSaveNews(Band band) throws Exception {
+        newsResource.saveNewsToBand(band.getId(), createTestNews());
+
+        News news = getOneFromDB(band);
         Assert.assertEquals(news.getTitle(), "Test title");
         Assert.assertEquals(news.getContent(), "Test content");
         Assert.assertEquals(news.getImageList().size(), 3);
 
     }
 
-    @Test(dependsOnMethods = {"testSaveNews"})
-    public void testUpdateNews() throws Exception {
+    public void testUpdateNews(Band band) throws Exception {
 
-        News news = getOneFromDB();
+        News news = getOneFromDB(band);
         news.setTitle("Test title updated");
         news.setContent("Test content updated");
         news.getImageList().add("image4");
         news.getImageList().remove("image3");
 
-        newsResource.saveNews(news);
+        newsResource.saveNewsToBand(band.getId(), news);
 
-        news = getOneFromDB();
+        news = getOneFromDB(band);
         Assert.assertEquals(news.getTitle(), "Test title updated");
         Assert.assertEquals(news.getContent(), "Test content updated");
         Assert.assertEquals(news.getImageList().size(), 3);
@@ -61,35 +81,29 @@ public class NewsResourceTest extends Arquillian {
 
     }
 
-    @Test(dependsOnMethods = {"testUpdateNews"})
-    public void testCountNews() throws Exception {
-        Long count = newsResource.getNewsCount();
+    public void testCountNews(Band band) throws Exception {
+        Long count = newsResource.getNewsCountByBand(band.getId());
         Assert.assertEquals(count, new Long(1));
     }
 
-    @Test(dependsOnMethods = {"testCountNews"})
-    public void testGetNewsPart() {
-        newsResource.saveNews(createTestNews());
-        newsResource.saveNews(createTestNews());
+    public void testGetNewsPart(Band band) {
+        newsResource.saveNewsToBand(band.getId(), createTestNews());
+        newsResource.saveNewsToBand(band.getId(), createTestNews());
 
-        List<News> newsList = newsResource.getNewsPart(1, 2);
+        List<News> newsList = newsResource.getNewsPartByBand(band.getId(), 1, 2);
         Assert.assertEquals(newsList.size(), 2);
     }
 
-    @Test(dependsOnMethods = {"testGetNewsPart"})
-    public void testRemoveNews() {
-        List<News> newsList = newsResource.getAllNews();
+    public void testRemoveNews(Band band) {
+        List<News> newsList = newsResource.getAllNewsByBand(band.getId());
 
-        newsList.stream().forEach(newsResource::removeNews);
+        newsList.stream().forEach(a -> newsResource.removeNewsFromBand(band.getId(), a));
 
-        Assert.assertEquals(newsResource.getAllNews().size(), 0);
+        Assert.assertEquals(newsResource.getAllNewsByBand(band.getId()).size(), 0);
     }
 
-    @Test(expectedExceptions = Exception.class)
-    public void testValidation() {
-        News news = new News();
-
-        newsResource.saveNews(news);
+    public void tearDown(Band band) {
+        bandService.removeBand(band);
     }
 
     private News createTestNews() {
@@ -101,8 +115,15 @@ public class NewsResourceTest extends Arquillian {
         return news;
     }
 
-    private News getOneFromDB() {
-        List<News> newsList = newsResource.getAllNews();
+    private Band createTestBand() {
+        Band band = new Band();
+        band.setName("Test name");
+        band.setDescription("Test description");
+        return band;
+    }
+
+    private News getOneFromDB(Band band) {
+        List<News> newsList = newsResource.getAllNewsByBand(band.getId());
         Assert.assertEquals(newsList.size(), 1);
         return newsList.get(0);
     }

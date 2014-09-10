@@ -1,5 +1,6 @@
 package org.symphodia.band.service;
 
+import org.symphodia.common.band.domain.Band;
 import org.symphodia.common.band.domain.News;
 
 import javax.ejb.Stateless;
@@ -14,46 +15,34 @@ public class NewsService {
     @PersistenceContext(unitName = "SymphodiaUnit")
     private EntityManager entityManager;
 
-    public List<News> getAllNews() {
-        TypedQuery<News> query = entityManager.createNamedQuery("News.all", News.class);
+    public List<News> getAllNewsByBand(Long bandId) {
+        TypedQuery<News> query = entityManager.createNamedQuery("News.allByBand", News.class);
+        query.setParameter("bandId", bandId);
         return query.getResultList();
     }
 
-    public List<News> getNewsPart(int offset, int max) {
-        TypedQuery<News> query = entityManager.createNamedQuery("News.all", News.class);
+    public List<News> getNewsPartByBand(Long bandId, int offset, int max) {
+        TypedQuery<News> query = entityManager.createNamedQuery("News.allByBand", News.class);
+        query.setParameter("bandId", bandId);
         query.setFirstResult(offset);
         query.setMaxResults(max);
         return query.getResultList();
     }
 
-    public Long getNewsCount() {
-        TypedQuery<Long> query = entityManager.createNamedQuery("News.count", Long.class);
-        return query.getSingleResult();
-    }
-
-    public List<News> getAllNewsByBand() {
-        TypedQuery<News> query = entityManager.createNamedQuery("News.allByBand", News.class);
-        return query.getResultList();
-    }
-
-    public List<News> getNewsPartByBand(int offset, int max) {
-        TypedQuery<News> query = entityManager.createNamedQuery("News.allByBand", News.class);
-        query.setFirstResult(offset);
-        query.setMaxResults(max);
-        return query.getResultList();
-    }
-
-    public Long getNewsCountByBand() {
+    public Long getNewsCountByBand(Long bandId) {
         TypedQuery<Long> query = entityManager.createNamedQuery("News.countByBand", Long.class);
+        query.setParameter("bandId", bandId);
 
         return query.getSingleResult();
     }
 
-    public void saveNews(News news) {
+    public void saveNewsToBand(Long bandId, News news) {
+        Band band = entityManager.find(Band.class, bandId);
+        news.setBand(band);
         entityManager.merge(news);
     }
 
-    public void removeNews(News news) {
+    public void removeNewsFromBand(Long bandId, News news) {
         news = entityManager.find(News.class, news.getId());
         entityManager.remove(news);
     }
