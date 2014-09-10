@@ -67,7 +67,7 @@ public class Member extends AbstractDomainObject {
     private Date dateOfBirth;
 
     @Column(name = "INSTRUMENT", length = 255)
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     @NotNull
     private Instrument instrument;
 
