@@ -28,8 +28,6 @@ import java.util.List;
 @Entity
 @Table(name = "NEWS")
 @NamedQueries({
-        @NamedQuery(name = "News.all", query = "SELECT n FROM News n ORDER BY n.id DESC"),
-        @NamedQuery(name = "News.count", query = "SELECT COUNT(n) FROM News n"),
         @NamedQuery(name = "News.allByBand", query = "SELECT n FROM News n WHERE n.band.id = :bandId ORDER BY n.id DESC"),
         @NamedQuery(name = "News.countByBand", query = "SELECT COUNT(n) FROM News n WHERE n.band.id = :bandId")
 })

@@ -97,7 +97,7 @@ public class NewsResourceTest extends Arquillian {
     public void testRemoveNews(Band band) {
         List<News> newsList = newsResource.getAllNewsByBand(band.getId());
 
-        newsList.stream().forEach(a -> newsResource.removeNewsFromBand(band.getId(), a));
+        newsList.stream().forEach(n -> newsResource.removeNewsFromBand(band.getId(), n));
 
         Assert.assertEquals(newsResource.getAllNewsByBand(band.getId()).size(), 0);
     }

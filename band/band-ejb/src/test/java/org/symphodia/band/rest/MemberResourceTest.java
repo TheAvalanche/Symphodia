@@ -4,6 +4,8 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.symphodia.band.service.BandService;
+import org.symphodia.common.band.domain.Band;
 import org.symphodia.common.band.domain.Instrument;
 import org.symphodia.common.band.domain.Member;
 import org.symphodia.common.date.DateUtil;
@@ -20,6 +22,7 @@ public class MemberResourceTest extends Arquillian {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage("org.symphodia.common.band.domain")
                 .addPackage("org.symphodia.common.domain")
+                .addPackage("org.symphodia.common.date")
                 .addPackage("org.symphodia.band.rest")
                 .addPackage("org.symphodia.band.service")
                 .addAsResource("META-INF/persistence.xml");
@@ -28,12 +31,32 @@ public class MemberResourceTest extends Arquillian {
     @Inject
     private MemberResource memberResource;
 
+    @Inject
+    private BandService bandService;
+
     @Test
-    public void testSaveMember() throws Exception {
+    public void memberWorkflowIntegrationTest() throws Exception {
+        Band band = createBand();
+        testSaveMember(band);
+        testUpdateMember(band);
+        testCountMember(band);
+        testGetMemberPart(band);
+        testRemoveMember(band);
+        tearDown(band);
+    }
 
-        memberResource.saveMember(createTestMember());
+    public Band createBand() {
+        Band band = createTestBand();
+        bandService.saveBand(band);
 
-        Member member = getOneFromDB();
+        return bandService.getAllBands().get(0);
+    }
+
+    public void testSaveMember(Band band) throws Exception {
+
+        memberResource.saveMemberToBand(band.getId(), createTestMember());
+
+        Member member = getOneFromDB(band);
         Assert.assertEquals(member.getName(), "Test name");
         Assert.assertEquals(member.getSurname(), "Test surname");
         Assert.assertEquals(member.getDescription(), "Test description");
@@ -43,10 +66,9 @@ public class MemberResourceTest extends Arquillian {
 
     }
 
-    @Test(dependsOnMethods = {"testSaveMember"})
-    public void testUpdateMember() throws Exception {
+    public void testUpdateMember(Band band) throws Exception {
 
-        Member member = getOneFromDB();
+        Member member = getOneFromDB(band);
         member.setName("Test name updated");
         member.setSurname("Test surname updated");
         member.setDescription("Test description updated");
@@ -54,9 +76,9 @@ public class MemberResourceTest extends Arquillian {
         member.setInstrument(Instrument.BASS);
         member.setImage("image2");
 
-        memberResource.saveMember(member);
+        memberResource.saveMemberToBand(band.getId(), member);
 
-        member = getOneFromDB();
+        member = getOneFromDB(band);
         Assert.assertEquals(member.getName(), "Test name updated");
         Assert.assertEquals(member.getSurname(), "Test surname updated");
         Assert.assertEquals(member.getDescription(), "Test description updated");
@@ -66,35 +88,29 @@ public class MemberResourceTest extends Arquillian {
 
     }
 
-    @Test(dependsOnMethods = {"testUpdateMember"})
-    public void testCountMember() throws Exception {
-        Long count = memberResource.getMembersCount();
+    public void testCountMember(Band band) throws Exception {
+        Long count = memberResource.getMembersCountByBand(band.getId());
         Assert.assertEquals(count, new Long(1));
     }
 
-    @Test(dependsOnMethods = {"testCountMember"})
-    public void testGetMemberPart() {
-        memberResource.saveMember(createTestMember());
-        memberResource.saveMember(createTestMember());
+    public void testGetMemberPart(Band band) {
+        memberResource.saveMemberToBand(band.getId(), createTestMember());
+        memberResource.saveMemberToBand(band.getId(), createTestMember());
 
-        List<Member> memberList = memberResource.getMembersPart(1, 2);
+        List<Member> memberList = memberResource.getMembersPartByBand(band.getId(), 1, 2);
         Assert.assertEquals(memberList.size(), 2);
     }
 
-    @Test(dependsOnMethods = {"testGetMemberPart"})
-    public void testRemoveMember() {
-        List<Member> memberList = memberResource.getAllMembers();
+    public void testRemoveMember(Band band) {
+        List<Member> memberList = memberResource.getAllMembersByBand(band.getId());
 
-        memberList.stream().forEach(memberResource::removeMember);
+        memberList.stream().forEach(n -> memberResource.removeMemberFromBand(band.getId(), n));
 
-        Assert.assertEquals(memberResource.getAllMembers().size(), 0);
+        Assert.assertEquals(memberResource.getAllMembersByBand(band.getId()).size(), 0);
     }
 
-    @Test(expectedExceptions = Exception.class)
-    public void testValidation() {
-        Member member = new Member();
-
-        memberResource.saveMember(member);
+    public void tearDown(Band band) {
+        bandService.removeBand(band);
     }
 
     private Member createTestMember() {
@@ -108,8 +124,15 @@ public class MemberResourceTest extends Arquillian {
         return member;
     }
 
-    private Member getOneFromDB() {
-        List<Member> memberList = memberResource.getAllMembers();
+    private Band createTestBand() {
+        Band band = new Band();
+        band.setName("Test name");
+        band.setDescription("Test description");
+        return band;
+    }
+
+    private Member getOneFromDB(Band band) {
+        List<Member> memberList = memberResource.getAllMembersByBand(band.getId());
         Assert.assertEquals(memberList.size(), 1);
         return memberList.get(0);
     }

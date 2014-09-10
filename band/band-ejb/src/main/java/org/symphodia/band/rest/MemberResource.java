@@ -27,38 +27,40 @@ public class MemberResource {
     private MemberService service;
 
     @GET
-    @Path("/all")
+    @Path("{bandId}/all")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Member> getAllMembers() {
-        return service.getAllMembers();
+    public List<Member> getAllMembersByBand(@NotNull @PathParam("bandId") Long bandId) {
+        return service.getAllMembersByBand(bandId);
     }
 
     @GET
-    @Path("/part/{offset}/{max}")
+    @Path("{bandId}/part/{offset}/{max}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Member> getMembersPart(@NotNull @PathParam("offset") int offset, @NotNull @PathParam("max") int max) {
-        return service.getMembersPart(offset, max);
+    public List<Member> getMembersPartByBand(@NotNull @PathParam("bandId") Long bandId,
+                                             @NotNull @PathParam("offset") int offset,
+                                             @NotNull @PathParam("max") int max) {
+        return service.getMembersPartByBand(bandId, offset, max);
     }
 
     @GET
-    @Path("/count")
+    @Path("{bandId}/count")
     @Produces(MediaType.APPLICATION_JSON)
-    public Long getMembersCount() {
-        return service.getMembersCount();
+    public Long getMembersCountByBand(@NotNull @PathParam("bandId") Long bandId) {
+        return service.getMembersCountByBand(bandId);
     }
 
     @POST
-    @Path("/save")
+    @Path("{bandId}/save")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void saveMember(@NotNull Member member) {
-        service.saveMember(member);
+    public void saveMemberToBand(@NotNull @PathParam("bandId") Long bandId, @NotNull Member member) {
+        service.saveMemberByBand(bandId, member);
     }
 
     @POST
-    @Path("/remove")
+    @Path("{bandId}/remove")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void removeMember(@NotNull Member member) {
-        service.removeMember(member);
+    public void removeMemberFromBand(@NotNull @PathParam("bandId") Long bandId, @NotNull Member member) {
+        service.removeMemberFromBand(bandId, member);
     }
 
     @GET

@@ -1,5 +1,6 @@
 package org.symphodia.band.service;
 
+import org.symphodia.common.band.domain.Band;
 import org.symphodia.common.band.domain.Member;
 
 import javax.ejb.Stateless;
@@ -14,28 +15,33 @@ public class MemberService {
     @PersistenceContext(unitName = "SymphodiaUnit")
     private EntityManager entityManager;
 
-    public List<Member> getAllMembers() {
-        TypedQuery<Member> query = entityManager.createNamedQuery("Member.all", Member.class);
+    public List<Member> getAllMembersByBand(Long bandId) {
+        TypedQuery<Member> query = entityManager.createNamedQuery("Member.allByBand", Member.class);
+        query.setParameter("bandId", bandId);
         return query.getResultList();
     }
 
-    public List<Member> getMembersPart(int offset, int max) {
-        TypedQuery<Member> query = entityManager.createNamedQuery("Member.all", Member.class);
+    public List<Member> getMembersPartByBand(Long bandId, int offset, int max) {
+        TypedQuery<Member> query = entityManager.createNamedQuery("Member.allByBand", Member.class);
+        query.setParameter("bandId", bandId);
         query.setFirstResult(offset);
         query.setMaxResults(max);
         return query.getResultList();
     }
 
-    public Long getMembersCount() {
-        TypedQuery<Long> query = entityManager.createNamedQuery("Member.count", Long.class);
+    public Long getMembersCountByBand(Long bandId) {
+        TypedQuery<Long> query = entityManager.createNamedQuery("Member.countByBand", Long.class);
+        query.setParameter("bandId", bandId);
         return query.getSingleResult();
     }
 
-    public void saveMember(Member member) {
+    public void saveMemberByBand(Long bandId, Member member) {
+        Band band = entityManager.find(Band.class, bandId);
+        member.setBand(band);
         entityManager.merge(member);
     }
 
-    public void removeMember(Member member) {
+    public void removeMemberFromBand(Long bandId, Member member) {
         member = entityManager.find(Member.class, member.getId());
         entityManager.remove(member);
     }

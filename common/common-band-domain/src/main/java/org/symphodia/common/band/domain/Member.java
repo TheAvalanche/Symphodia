@@ -29,8 +29,8 @@ import java.util.Date;
 @NamedQueries({
         @NamedQuery(name = "Member.all", query = "SELECT m FROM Member m ORDER BY m.id DESC"),
         @NamedQuery(name = "Member.count", query = "SELECT COUNT(m) FROM Member m"),
-        @NamedQuery(name = "Member.allByBand", query = "SELECT m FROM Member m WHERE m.band = :band ORDER BY m.id DESC"),
-        @NamedQuery(name = "Member.countByBand", query = "SELECT COUNT(m) FROM Member m WHERE m.band = :band")
+        @NamedQuery(name = "Member.allByBand", query = "SELECT m FROM Member m WHERE m.band.id = :bandId ORDER BY m.id DESC"),
+        @NamedQuery(name = "Member.countByBand", query = "SELECT COUNT(m) FROM Member m WHERE m.band.id = :bandId")
 })
 @SequenceGenerator(name = "MEMBER_SEQ", sequenceName = "MEMBER_SEQ", initialValue = 1000)
 public class Member extends AbstractDomainObject {
