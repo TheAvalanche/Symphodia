@@ -1,6 +1,6 @@
 package org.symphodia.band.service;
 
-import org.symphodia.common.band.domain.Band;
+import org.symphodia.common.domain.band.Band;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

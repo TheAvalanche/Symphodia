@@ -15,7 +15,6 @@
     <version>1.0-SNAPSHOT</version>
 
     <modules>
-        <module>common-band-domain</module>
         <module>common-ejb</module>
         <module>common-commons</module>
         <module>common-domain</module>

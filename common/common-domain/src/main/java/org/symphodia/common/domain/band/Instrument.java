@@ -1,4 +1,4 @@
-package org.symphodia.common.band.domain;
+package org.symphodia.common.domain.band;
 
 public enum Instrument {
 

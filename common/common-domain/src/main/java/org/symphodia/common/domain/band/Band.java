@@ -1,4 +1,4 @@
-package org.symphodia.common.band.domain;
+package org.symphodia.common.domain.band;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;

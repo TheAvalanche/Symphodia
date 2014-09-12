@@ -5,8 +5,8 @@ import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.symphodia.band.service.BandService;
-import org.symphodia.common.band.domain.Band;
-import org.symphodia.common.band.domain.News;
+import org.symphodia.common.domain.band.Band;
+import org.symphodia.common.domain.band.News;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
