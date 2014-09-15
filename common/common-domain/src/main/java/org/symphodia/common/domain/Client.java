@@ -1,15 +1,20 @@
 package org.symphodia.common.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.validator.constraints.Email;
 import org.symphodia.common.domain.band.Band;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -17,6 +22,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "CLIENT")
+@NamedQueries({
+        @NamedQuery(name = "Client.byUsername", query = "SELECT c FROM Client c WHERE c.username = :username")
+})
 @SequenceGenerator(name = "CLIENT_SEQ", sequenceName = "CLIENT_SEQ", initialValue = 200000)
 public class Client {
 
@@ -27,21 +35,25 @@ public class Client {
 
     @Column(name = "USERNAME", length = 255)
     @NotNull
+    @Email
     private String username;
 
     @Column(name = "PASSWORD", length = 255)
     @NotNull
+    @JsonIgnore
     private String password;
 
     @Column(name = "ROLE", length = 255)
     @NotNull
+    @JsonIgnore
     private String role;
 
     @Column(name = "ROLE_GROUP", length = 255)
     @NotNull
+    @JsonIgnore
     private String roleGroup;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "CLIENT_BAND",
             joinColumns = @JoinColumn(name = "CLIENT_ID"),
             inverseJoinColumns = @JoinColumn(name = "BAND_ID"))

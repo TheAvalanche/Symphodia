@@ -1,5 +1,7 @@
 package org.symphodia.common.domain.band;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -38,9 +40,11 @@ public class Band {
     private String description;
 
     @OneToMany(mappedBy = "band")
+    @JsonIgnore
     private List<Member> memberList;
 
     @OneToMany(mappedBy = "band")
+    @JsonIgnore
     private List<News> newsList;
 
     @Embedded

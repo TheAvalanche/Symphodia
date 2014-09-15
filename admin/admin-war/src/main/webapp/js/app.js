@@ -12,7 +12,11 @@ var adminApp = angular.module('adminApp', [
     'angularFileUpload',
     'ui.bootstrap']);
 
-adminApp.run(["$rootScope", "PropertyService", function($rootScope, PropertyService) {
+adminApp.run(["$rootScope", "ClientService", "PropertyService", function($rootScope, ClientService, PropertyService) {
+
+    ClientService.getClient().success(function (data) {
+        $rootScope.client = data;
+    });
 
     PropertyService.getAll().success(function (data) {
         $rootScope.propertyList = data;
