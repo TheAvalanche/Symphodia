@@ -14,6 +14,6 @@ module.exports = {
 
     adminBaseUrl:
         'http://' + (process.env.HTTP_HOST || 'localhost') +
-        ':' + (process.env.HTTP_PORT || '8080') + '/admin/ng/'
+        ':' + (process.env.HTTP_PORT || '8080') + '/admin/'
 
 };

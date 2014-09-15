@@ -16,7 +16,7 @@ exports.config = {
 
     params: {
         login: {
-            username: 'admin',
+            username: 'admin@test.com',
             password: 'admin'
         }
     },
