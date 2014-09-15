@@ -20,7 +20,7 @@ public class NewsResourceTest extends Arquillian {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage("org.symphodia.common.band.domain")
+                .addPackage("org.symphodia.common.domain.band")
                 .addPackage("org.symphodia.common.domain")
                 .addPackage("org.symphodia.band.rest")
                 .addPackage("org.symphodia.band.service")
