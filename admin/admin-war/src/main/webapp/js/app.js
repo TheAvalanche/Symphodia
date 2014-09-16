@@ -16,10 +16,6 @@ adminApp.run(["$rootScope", "ClientService", "PropertyService", function($rootSc
 
     ClientService.getClient().success(function (data) {
         $rootScope.client = data;
-
-        if ($rootScope.client.bands.length == 1) {
-            $rootScope.bandId = $rootScope.client.bands[0].id;
-        }
     });
 
     PropertyService.getAll().success(function (data) {
