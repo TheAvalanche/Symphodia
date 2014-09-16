@@ -36,35 +36,12 @@
     <script src="js/services/common/PropertyService.js" type="text/javascript"></script>
     <script src="js/services/MessageService.js" type="text/javascript"></script>
     <script src="js/directives/Notification.js" type="text/javascript"></script>
+    <script src="js/directives/Menu.js" type="text/javascript"></script>
     <script src="js/filters/GroupItems.js" type="text/javascript"></script>
     <script src="js/filters/MinimizeText.js" type="text/javascript"></script>
     <script src="js/filters/TitleText.js" type="text/javascript"></script>
 </head>
 <body>
-<nav ng-show="band" class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">{{band.name}}</a>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    <a id="menu-band" class="dropdown-toggle" data-toggle="dropdown">Band <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a id="menu-band-news" href="/admin/index.html#/band/{{band.id}}/news">News</a></li>
-                        <li><a id="menu-band-members" href="/admin/index.html#/band/{{band.id}}/members">Members</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a id="menu-common" class="dropdown-toggle" data-toggle="dropdown">Common <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a id="menu-common-properties" href="/admin/index.html#/common/properties">Properties</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
 <ng-view></ng-view>
 </body>
 </html>
