@@ -5,7 +5,7 @@
 
         <jta-data-source>java:jboss/symphodia-ds</jta-data-source>
 
-        <jar-file>${project.build.finalName}.ear/lib/common-domain-1.0-SNAPSHOT.jar</jar-file>
+        <jar-file>${project.build.finalName}.ear/lib/server-domain-1.0-SNAPSHOT.jar</jar-file>
 
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
