@@ -6,7 +6,7 @@
         <ejb>band-ejb.jar</ejb>
     </module>
     <module>
-        <ejb>common-ejb.jar</ejb>
+        <ejb>server-ejb.jar</ejb>
     </module>
     <module>
         <web>

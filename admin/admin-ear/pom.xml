@@ -30,14 +30,14 @@
 
         <dependency>
             <groupId>org.symphodia</groupId>
-            <artifactId>common-ejb</artifactId>
+            <artifactId>server-ejb</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>ejb</type>
         </dependency>
 
         <dependency>
             <groupId>org.symphodia</groupId>
-            <artifactId>common-domain</artifactId>
+            <artifactId>server-domain</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
@@ -58,8 +58,8 @@
                         </ejbModule>
                         <ejbModule>
                             <groupId>org.symphodia</groupId>
-                            <artifactId>common-ejb</artifactId>
-                            <bundleFileName>common-ejb.jar</bundleFileName>
+                            <artifactId>server-ejb</artifactId>
+                            <bundleFileName>server-ejb.jar</bundleFileName>
                         </ejbModule>
                         <webModule>
                             <groupId>org.symphodia</groupId>

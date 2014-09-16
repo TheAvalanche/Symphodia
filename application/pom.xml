@@ -10,7 +10,7 @@
     <modules>
         <module>../admin</module>
         <module>../band</module>
-        <module>../common</module>
+        <module>../server</module>
     </modules>
 
     <properties>
