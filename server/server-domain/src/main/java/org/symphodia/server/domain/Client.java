@@ -1,8 +1,8 @@
-package org.symphodia.common.domain;
+package org.symphodia.server.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Email;
-import org.symphodia.common.domain.band.Band;
+import org.symphodia.server.domain.band.Band;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

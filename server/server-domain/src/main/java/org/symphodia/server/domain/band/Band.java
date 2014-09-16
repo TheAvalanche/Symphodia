@@ -1,6 +1,7 @@
-package org.symphodia.common.domain.band;
+package org.symphodia.server.domain.band;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;

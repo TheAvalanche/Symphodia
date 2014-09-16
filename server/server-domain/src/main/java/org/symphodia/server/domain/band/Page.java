@@ -1,4 +1,4 @@
-package org.symphodia.common.domain.band;
+package org.symphodia.server.domain.band;
 
 import javax.persistence.Embeddable;
 

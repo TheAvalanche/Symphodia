@@ -1,4 +1,4 @@
-package org.symphodia.common.rest;
+package org.symphodia.server.rest;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

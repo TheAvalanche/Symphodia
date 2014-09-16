@@ -1,7 +1,7 @@
 package org.symphodia.band.rest;
 
 import org.symphodia.band.service.NewsService;
-import org.symphodia.common.domain.band.News;
+import org.symphodia.server.domain.band.News;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;

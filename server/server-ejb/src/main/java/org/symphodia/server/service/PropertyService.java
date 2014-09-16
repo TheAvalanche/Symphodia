@@ -1,11 +1,11 @@
-package org.symphodia.common.service;
+package org.symphodia.server.service;
 
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.google.common.collect.Iterables;
-import org.symphodia.common.domain.Property;
-import org.symphodia.common.domain.PropertyKey;
+import org.symphodia.server.domain.Property;
+import org.symphodia.server.domain.PropertyKey;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;

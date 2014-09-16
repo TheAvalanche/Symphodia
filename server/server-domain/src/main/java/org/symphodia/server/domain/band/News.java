@@ -1,7 +1,7 @@
-package org.symphodia.common.domain.band;
+package org.symphodia.server.domain.band;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.symphodia.common.domain.AbstractDomainObject;
+import org.symphodia.server.domain.AbstractDomainObject;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;

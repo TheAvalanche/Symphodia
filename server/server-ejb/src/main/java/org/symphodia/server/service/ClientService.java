@@ -1,6 +1,7 @@
-package org.symphodia.common.service;
+package org.symphodia.server.service;
 
-import org.symphodia.common.domain.Client;
+
+import org.symphodia.server.domain.Client;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
