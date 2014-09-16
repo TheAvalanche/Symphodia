@@ -1,4 +1,4 @@
-package org.symphodia.band.service;
+package org.symphodia.server.ejb.service;
 
 import org.symphodia.server.domain.band.Band;
 import org.symphodia.server.domain.band.News;

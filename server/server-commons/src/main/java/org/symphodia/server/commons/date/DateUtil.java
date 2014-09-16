@@ -1,4 +1,4 @@
-package org.symphodia.server.date;
+package org.symphodia.server.commons.date;
 
 import java.time.LocalDate;
 import java.time.ZoneId;

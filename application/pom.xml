@@ -9,7 +9,6 @@
 
     <modules>
         <module>../admin</module>
-        <module>../band</module>
         <module>../server</module>
     </modules>
 

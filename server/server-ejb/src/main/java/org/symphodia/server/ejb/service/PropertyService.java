@@ -1,4 +1,4 @@
-package org.symphodia.server.service;
+package org.symphodia.server.ejb.service;
 
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;

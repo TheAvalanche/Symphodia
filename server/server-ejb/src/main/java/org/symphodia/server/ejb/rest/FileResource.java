@@ -1,8 +1,8 @@
-package org.symphodia.server.rest;
+package org.symphodia.server.ejb.rest;
 
 import org.jboss.resteasy.plugins.providers.multipart.InputPart;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
-import org.symphodia.server.service.FileService;
+import org.symphodia.server.ejb.service.FileService;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;

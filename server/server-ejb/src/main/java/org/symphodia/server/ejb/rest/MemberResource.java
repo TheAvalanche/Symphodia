@@ -1,8 +1,9 @@
-package org.symphodia.band.rest;
+package org.symphodia.server.ejb.rest;
 
-import org.symphodia.band.service.MemberService;
+
 import org.symphodia.server.domain.band.Instrument;
 import org.symphodia.server.domain.band.Member;
+import org.symphodia.server.ejb.service.MemberService;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;

@@ -23,13 +23,6 @@
 
         <dependency>
             <groupId>org.symphodia</groupId>
-            <artifactId>band-ejb</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>ejb</type>
-        </dependency>
-
-        <dependency>
-            <groupId>org.symphodia</groupId>
             <artifactId>server-ejb</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>ejb</type>
@@ -51,11 +44,6 @@
                     <applicationName>admin</applicationName>
                     <filtering>true</filtering>
                     <modules>
-                        <ejbModule>
-                            <groupId>org.symphodia</groupId>
-                            <artifactId>band-ejb</artifactId>
-                            <bundleFileName>band-ejb.jar</bundleFileName>
-                        </ejbModule>
                         <ejbModule>
                             <groupId>org.symphodia</groupId>
                             <artifactId>server-ejb</artifactId>

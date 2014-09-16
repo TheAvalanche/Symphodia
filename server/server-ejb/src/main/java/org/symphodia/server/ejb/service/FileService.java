@@ -1,7 +1,7 @@
-package org.symphodia.server.service;
+package org.symphodia.server.ejb.service;
 
 
-import org.symphodia.server.image.ImageProcessor;
+import org.symphodia.server.commons.image.ImageProcessor;
 import org.symphodia.server.domain.PropertyKey;
 
 import javax.ejb.Stateless;

@@ -1,4 +1,4 @@
-package org.symphodia.server.image;
+package org.symphodia.server.commons.image;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

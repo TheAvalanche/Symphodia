@@ -1,12 +1,12 @@
-package org.symphodia.band.rest;
+package org.symphodia.server.ejb.rest;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.symphodia.band.service.BandService;
 import org.symphodia.server.domain.band.Band;
 import org.symphodia.server.domain.band.News;
+import org.symphodia.server.ejb.service.BandService;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

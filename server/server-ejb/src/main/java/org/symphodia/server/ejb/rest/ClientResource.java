@@ -1,8 +1,8 @@
-package org.symphodia.server.rest;
+package org.symphodia.server.ejb.rest;
 
 
-import org.symphodia.server.service.ClientService;
 import org.symphodia.server.domain.Client;
+import org.symphodia.server.ejb.service.ClientService;
 
 import javax.annotation.Resource;
 import javax.ejb.LocalBean;
