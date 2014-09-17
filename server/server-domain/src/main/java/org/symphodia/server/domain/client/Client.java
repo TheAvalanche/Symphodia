@@ -1,4 +1,4 @@
-package org.symphodia.server.domain;
+package org.symphodia.server.domain.client;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Email;

@@ -1,4 +1,4 @@
-package org.symphodia.server.domain;
+package org.symphodia.server.domain.common;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

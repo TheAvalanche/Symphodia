@@ -1,8 +1,8 @@
-package org.symphodia.server.ejb.rest;
+package org.symphodia.server.ejb.rest.common;
 
 import org.apache.log4j.Logger;
-import org.symphodia.server.domain.Property;
-import org.symphodia.server.ejb.service.PropertyService;
+import org.symphodia.server.domain.common.Property;
+import org.symphodia.server.ejb.service.common.PropertyService;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
