@@ -1,3 +1,3 @@
 <div ng-repeat="band in client.bands">
-    <button type="button" class="btn btn-primary" ng-click="selectBand(band)">{{band.name}}</button>
+    <a class="btn btn-primary" href="/admin/index.html#/band/{{band.id}}/main" ng-click="selectBand(band)">{{band.name}}</a>
 </div>

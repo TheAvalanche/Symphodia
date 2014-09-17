@@ -16,6 +16,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -42,11 +43,11 @@ public class Band {
 
     @OneToMany(mappedBy = "band")
     @JsonIgnore
-    private List<Member> memberList;
+    private List<Member> memberList = new ArrayList<>();
 
     @OneToMany(mappedBy = "band")
     @JsonIgnore
-    private List<News> newsList;
+    private List<News> newsList = new ArrayList<>();
 
     @Embedded
     private Page page;

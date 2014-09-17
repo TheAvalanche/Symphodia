@@ -3,9 +3,6 @@
     <application-name>admin</application-name>
     <display-name>admin-ear</display-name>
     <module>
-        <ejb>band-ejb.jar</ejb>
-    </module>
-    <module>
         <ejb>server-ejb.jar</ejb>
     </module>
     <module>

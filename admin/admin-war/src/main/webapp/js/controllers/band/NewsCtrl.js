@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('adminApp.controllers')
-        .controller('ListNewsCtrl', ['$scope', '$rootScope', '$modal', 'NewsService', 'FileService', 'MessageService', function ($scope, $rootScope, $modal, NewsService, FileService, MessageService) {
+        .controller('NewsCtrl', ['$scope', '$rootScope', '$modal', 'NewsService', 'FileService', 'MessageService', function ($scope, $rootScope, $modal, NewsService, FileService, MessageService) {
 
             var init = function () {
                 $scope.currentPage = 1;

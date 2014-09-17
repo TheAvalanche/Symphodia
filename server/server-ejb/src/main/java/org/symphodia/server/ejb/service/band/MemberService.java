@@ -1,4 +1,4 @@
-package org.symphodia.server.ejb.service;
+package org.symphodia.server.ejb.service.band;
 
 import org.symphodia.server.domain.band.Band;
 import org.symphodia.server.domain.band.Member;

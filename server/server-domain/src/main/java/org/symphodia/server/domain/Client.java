@@ -18,6 +18,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -57,7 +58,7 @@ public class Client {
     @JoinTable(name = "CLIENT_BAND",
             joinColumns = @JoinColumn(name = "CLIENT_ID"),
             inverseJoinColumns = @JoinColumn(name = "BAND_ID"))
-    private List<Band> bands;
+    private List<Band> bands = new ArrayList<>();
 
     public Long getId() {
         return id;

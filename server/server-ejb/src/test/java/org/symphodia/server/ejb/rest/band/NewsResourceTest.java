@@ -1,4 +1,4 @@
-package org.symphodia.server.ejb.rest;
+package org.symphodia.server.ejb.rest.band;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
@@ -6,7 +6,8 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.symphodia.server.domain.band.Band;
 import org.symphodia.server.domain.band.News;
-import org.symphodia.server.ejb.service.BandService;
+import org.symphodia.server.ejb.rest.band.NewsResource;
+import org.symphodia.server.ejb.service.band.BandService;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -20,10 +21,11 @@ public class NewsResourceTest extends Arquillian {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage("org.symphodia.common.domain.band")
-                .addPackage("org.symphodia.common.domain")
-                .addPackage("org.symphodia.band.rest")
-                .addPackage("org.symphodia.band.service")
+                .addPackage("org.symphodia.server.domain.band")
+                .addPackage("org.symphodia.server.domain")
+                .addPackage("org.symphodia.server.commons.date")
+                .addPackage("org.symphodia.server.ejb.rest.band")
+                .addPackage("org.symphodia.server.ejb.service.band")
                 .addAsResource("META-INF/persistence.xml");
     }
 

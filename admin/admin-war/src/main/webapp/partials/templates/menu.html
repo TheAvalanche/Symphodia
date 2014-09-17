@@ -1,18 +1,12 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">{{band.name}}</a>
+            <a class="navbar-brand" href="/admin/index.html#/band/{{band.id}}/main">{{band.name}}</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a id="menu-band-news" href="/admin/index.html#/band/{{band.id}}/news">News</a></li>
                 <li><a id="menu-band-members" href="/admin/index.html#/band/{{band.id}}/members">Members</a></li>
-                <li class="dropdown">
-                    <a id="menu-common" class="dropdown-toggle" data-toggle="dropdown">Common <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a id="menu-common-properties" href="/admin/index.html#/common/properties">Properties</a></li>
-                    </ul>
-                </li>
             </ul>
         </div>
     </div>
