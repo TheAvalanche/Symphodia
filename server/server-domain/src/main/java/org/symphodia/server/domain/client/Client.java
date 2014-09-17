@@ -24,6 +24,7 @@ import java.util.List;
 @Entity
 @Table(name = "CLIENT")
 @NamedQueries({
+        @NamedQuery(name = "Client.all", query = "SELECT c FROM Client c ORDER BY c.id DESC"),
         @NamedQuery(name = "Client.byUsername", query = "SELECT c FROM Client c WHERE c.username = :username")
 })
 @SequenceGenerator(name = "CLIENT_SEQ", sequenceName = "CLIENT_SEQ", initialValue = 200000)
