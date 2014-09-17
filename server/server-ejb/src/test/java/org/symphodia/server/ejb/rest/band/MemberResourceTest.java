@@ -34,25 +34,26 @@ public class MemberResourceTest extends Arquillian {
     @Inject
     private BandService bandService;
 
+    private Band band;
+
     @Test
     public void memberWorkflowIntegrationTest() throws Exception {
-        Band band = createBand();
-        testSaveMember(band);
-        testUpdateMember(band);
-        testCountMember(band);
-        testGetMemberPart(band);
-        testRemoveMember(band);
-        tearDown(band);
+        setUp();
+        testSaveMember();
+        testUpdateMember();
+        testCountMember();
+        testGetMemberPart();
+        testRemoveMember();
+        tearDown();
     }
 
-    public Band createBand() {
-        Band band = createTestBand();
-        bandService.saveBand(band);
+    public void setUp() {
+        bandService.saveBand(createTestBand());
 
-        return bandService.getAllBands().get(0);
+        band = bandService.getAllBands().get(0);
     }
 
-    public void testSaveMember(Band band) throws Exception {
+    public void testSaveMember() throws Exception {
 
         memberResource.saveMemberToBand(band.getId(), createTestMember());
 
@@ -66,7 +67,7 @@ public class MemberResourceTest extends Arquillian {
 
     }
 
-    public void testUpdateMember(Band band) throws Exception {
+    public void testUpdateMember() throws Exception {
 
         Member member = getOneFromDB(band);
         member.setName("Test name updated");
@@ -88,12 +89,12 @@ public class MemberResourceTest extends Arquillian {
 
     }
 
-    public void testCountMember(Band band) throws Exception {
+    public void testCountMember() throws Exception {
         Long count = memberResource.getMembersCountByBand(band.getId());
         Assert.assertEquals(count, new Long(1));
     }
 
-    public void testGetMemberPart(Band band) {
+    public void testGetMemberPart() {
         memberResource.saveMemberToBand(band.getId(), createTestMember());
         memberResource.saveMemberToBand(band.getId(), createTestMember());
 
@@ -101,7 +102,7 @@ public class MemberResourceTest extends Arquillian {
         Assert.assertEquals(memberList.size(), 2);
     }
 
-    public void testRemoveMember(Band band) {
+    public void testRemoveMember() {
         List<Member> memberList = memberResource.getAllMembersByBand(band.getId());
 
         memberList.stream().forEach(n -> memberResource.removeMemberFromBand(band.getId(), n));
@@ -109,7 +110,7 @@ public class MemberResourceTest extends Arquillian {
         Assert.assertEquals(memberResource.getAllMembersByBand(band.getId()).size(), 0);
     }
 
-    public void tearDown(Band band) {
+    public void tearDown() {
         bandService.removeBand(band);
     }
 

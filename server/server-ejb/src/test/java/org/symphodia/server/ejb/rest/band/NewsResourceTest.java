@@ -6,7 +6,6 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.symphodia.server.domain.band.Band;
 import org.symphodia.server.domain.band.News;
-import org.symphodia.server.ejb.rest.band.NewsResource;
 import org.symphodia.server.ejb.service.band.BandService;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -35,25 +34,26 @@ public class NewsResourceTest extends Arquillian {
     @Inject
     private BandService bandService;
 
+    private Band band;
+
     @Test
     public void newsWorkflowIntegrationTest() throws Exception {
-        Band band = createBand();
-        testSaveNews(band);
-        testUpdateNews(band);
-        testCountNews(band);
-        testGetNewsPart(band);
-        testRemoveNews(band);
-        tearDown(band);
+        setUp();
+        testSaveNews();
+        testUpdateNews();
+        testCountNews();
+        testGetNewsPart();
+        testRemoveNews();
+        tearDown();
     }
 
-    public Band createBand() {
-        Band band = createTestBand();
-        bandService.saveBand(band);
-        
-        return bandService.getAllBands().get(0);
+    public void setUp() {
+        bandService.saveBand(createTestBand());
+
+        band = bandService.getAllBands().get(0);
     }
 
-    public void testSaveNews(Band band) throws Exception {
+    public void testSaveNews() throws Exception {
         newsResource.saveNewsToBand(band.getId(), createTestNews());
 
         News news = getOneFromDB(band);
@@ -63,7 +63,7 @@ public class NewsResourceTest extends Arquillian {
 
     }
 
-    public void testUpdateNews(Band band) throws Exception {
+    public void testUpdateNews() throws Exception {
 
         News news = getOneFromDB(band);
         news.setTitle("Test title updated");
@@ -83,12 +83,12 @@ public class NewsResourceTest extends Arquillian {
 
     }
 
-    public void testCountNews(Band band) throws Exception {
+    public void testCountNews() throws Exception {
         Long count = newsResource.getNewsCountByBand(band.getId());
         Assert.assertEquals(count, new Long(1));
     }
 
-    public void testGetNewsPart(Band band) {
+    public void testGetNewsPart() {
         newsResource.saveNewsToBand(band.getId(), createTestNews());
         newsResource.saveNewsToBand(band.getId(), createTestNews());
 
@@ -96,7 +96,7 @@ public class NewsResourceTest extends Arquillian {
         Assert.assertEquals(newsList.size(), 2);
     }
 
-    public void testRemoveNews(Band band) {
+    public void testRemoveNews() {
         List<News> newsList = newsResource.getAllNewsByBand(band.getId());
 
         newsList.stream().forEach(n -> newsResource.removeNewsFromBand(band.getId(), n));
@@ -104,7 +104,7 @@ public class NewsResourceTest extends Arquillian {
         Assert.assertEquals(newsResource.getAllNewsByBand(band.getId()).size(), 0);
     }
 
-    public void tearDown(Band band) {
+    public void tearDown() {
         bandService.removeBand(band);
     }
 

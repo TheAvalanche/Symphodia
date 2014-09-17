@@ -19,4 +19,8 @@ public class ClientService {
         query.setParameter("username", username);
         return query.getSingleResult();
     }
+
+    public void saveClient(Client client) {
+        entityManager.merge(client);
+    }
 }

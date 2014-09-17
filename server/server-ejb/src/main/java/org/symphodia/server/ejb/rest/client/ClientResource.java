@@ -10,6 +10,7 @@ import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 
 @Stateless
@@ -27,5 +28,11 @@ public class ClientResource {
     @Path("/client")
     public Client getClient() {
         return clientService.getClient(context.getCallerPrincipal().getName());
+    }
+    
+    @POST
+    @Path("/save")
+    public void saveClient(Client client) {
+        clientService.saveClient(client);
     }
 }
