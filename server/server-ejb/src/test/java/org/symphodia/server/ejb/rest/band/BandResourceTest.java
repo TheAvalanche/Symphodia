@@ -28,7 +28,7 @@ public class BandResourceTest extends Arquillian {
     private BandResource bandResource;
 
     @Test
-    public void memberWorkflowIntegrationTest() throws Exception {
+    public void bandWorkflowIntegrationTest() throws Exception {
         testSaveBand();
         testUpdateBand();
         testRemoveBand();

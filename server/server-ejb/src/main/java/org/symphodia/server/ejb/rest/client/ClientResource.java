@@ -11,9 +11,13 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 import javax.websocket.server.PathParam;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import java.util.List;
 
 @Stateless
 @LocalBean
@@ -27,25 +31,43 @@ public class ClientResource {
     private ClientService clientService;
 
     @GET
+    @Path("/all")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Client> getAllClients() {
+        return clientService.getAllClients();
+    }
+
+    @GET
     @Path("/client")
+    @Produces(MediaType.APPLICATION_JSON)
     public Client getClient() {
         return clientService.getClient(context.getCallerPrincipal().getName());
     }
 
     @GET
     @Path("/client/{username}")
+    @Produces(MediaType.APPLICATION_JSON)
     public Client getClient(@NotNull @PathParam("username") String username) {
         return clientService.getClient(username);
+    }
+
+    @POST
+    @Path("/link")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void linkClientAndBand(Long clientId, Long bandId) {
+        clientService.linkClientAndBand(clientId, bandId);
     }
     
     @POST
     @Path("/save")
+    @Consumes(MediaType.APPLICATION_JSON)
     public void saveClient(@NotNull Client client) {
         clientService.saveClient(client);
     }
 
     @POST
     @Path("/remove")
+    @Consumes(MediaType.APPLICATION_JSON)
     public void removeClient(@NotNull Client client) {
         clientService.removeClient(client);
     }

@@ -36,9 +36,9 @@ public class ImageProcessor {
         int width = minSize;
         int height = minSize;
         if (image.getWidth() < image.getHeight()) {
-            height = image.getHeight() / (image.getWidth() / minSize);
+            height = (image.getHeight() * minSize) / image.getWidth();
         } else if (image.getHeight() < image.getWidth()) {
-            width = image.getWidth() / (image.getHeight() / minSize);
+            width = (image.getWidth() * minSize) / image.getHeight();
         }
         int type = image.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : image.getType();
         image = resizeImage(width, height, type);
