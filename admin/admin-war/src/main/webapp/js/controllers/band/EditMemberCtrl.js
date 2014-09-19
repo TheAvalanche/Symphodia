@@ -2,7 +2,8 @@
     'use strict';
 
     angular.module('adminApp.controllers')
-        .controller('EditMemberCtrl', ['$scope', '$modalInstance', '$filter', 'MemberService', 'FileService', 'FileUploader', 'member', function ($scope, $modalInstance, $filter, MemberService, FileService, FileUploader, member) {
+        .controller('EditMemberCtrl', ['$scope', 'rootScope', '$modalInstance', '$filter', 'MemberService', 'FileService', 'FileUploader', 'member',
+            function ($scope, $rootScope, $modalInstance, $filter, MemberService, FileService, FileUploader, member) {
 
             var init = function () {
                 $scope.member = member || {};
@@ -31,7 +32,7 @@
             };
 
             $scope.uploader = new FileUploader({
-                url: '/admin/rest/file/saveImage',
+                url: '/admin/rest/file/' +  $rootScope.band.id + '/saveImage',
 
                 onAfterAddingFile: function (item) {
                     var uniqueFileName = new Date().getTime().toString();

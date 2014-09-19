@@ -7,8 +7,12 @@ import org.symphodia.server.ejb.service.common.FileService;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.validation.constraints.NotNull;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.core.MediaType;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -24,19 +28,20 @@ public class FileResource {
     private FileService fileService;
 
     @POST
-    @Path("saveImage")
-    public void saveImage(MultipartFormDataInput input) throws IOException {
+    @Path("/{bandId}/saveImage")
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    public void saveImageToBand(@NotNull @PathParam("bandId") Long bandId, MultipartFormDataInput input) throws IOException {
 
         for (Map.Entry<String, List<InputPart>> entry : input.getFormDataMap().entrySet()) {
             for (InputPart inputPart : entry.getValue()) {
-                fileService.saveAndMinimizeImage(inputPart.getBody(InputStream.class, null), entry.getKey());
+                fileService.saveAndMinimizeImage(inputPart.getBody(InputStream.class, null), entry.getKey(), bandId + "/");
             }
         }
     }
 
     @POST
-    @Path("removeImage")
-    public void removeImage(String filename) throws IOException {
-        fileService.removeImage(filename);
+    @Path("/{bandId}/removeImage")
+    public void removeImageFromBand(@NotNull @PathParam("bandId") Long bandId, String filename) throws IOException {
+        fileService.removeImage(filename, bandId + "/");
     }
 }

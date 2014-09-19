@@ -26,14 +26,14 @@ public class NewsResource {
     private NewsService service;
 
     @GET
-    @Path("{bandId}/all")
+    @Path("/{bandId}/all")
     @Produces(MediaType.APPLICATION_JSON)
     public List<News> getAllNewsByBand(@NotNull @PathParam("bandId") Long bandId) {
         return service.getAllNewsByBand(bandId);
     }
 
     @GET
-    @Path("{bandId}/part/{offset}/{max}")
+    @Path("/{bandId}/part/{offset}/{max}")
     @Produces(MediaType.APPLICATION_JSON)
     public List<News> getNewsPartByBand(@NotNull @PathParam("bandId") Long bandId,
                                         @NotNull @PathParam("offset") int offset,
@@ -42,21 +42,21 @@ public class NewsResource {
     }
 
     @GET
-    @Path("{bandId}/count")
+    @Path("/{bandId}/count")
     @Produces(MediaType.APPLICATION_JSON)
     public Long getNewsCountByBand(@NotNull @PathParam("bandId") Long bandId) {
         return service.getNewsCountByBand(bandId);
     }
 
     @POST
-    @Path("{bandId}/save")
+    @Path("/{bandId}/save")
     @Consumes(MediaType.APPLICATION_JSON)
     public void saveNewsToBand(@NotNull @PathParam("bandId") Long bandId, @NotNull News news) {
         service.saveNewsToBand(bandId, news);
     }
 
     @POST
-    @Path("{bandId}/remove")
+    @Path("/{bandId}/remove")
     @Consumes(MediaType.APPLICATION_JSON)
     public void removeNewsFromBand(@NotNull @PathParam("bandId") Long bandId, @NotNull News news) {
         service.removeNewsFromBand(bandId, news);

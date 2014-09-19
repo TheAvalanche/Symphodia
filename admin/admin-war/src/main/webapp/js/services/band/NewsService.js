@@ -2,9 +2,9 @@
     'use strict';
 
     angular.module('adminApp.services')
-        .factory('NewsService', ['$http', '$routeParams', function ($http, $routeParams) {
+        .factory('NewsService', ['$http', '$rootScope', function ($http, $rootScope) {
             var restRoot = '/admin/rest/news';
-            var restRootBand = restRoot + '/' + $routeParams.bandId;
+            var restRootBand = restRoot + '/' + $rootScope.band.id;
 
             return {
                 all: function() {

@@ -1,8 +1,8 @@
 <div class="container">
     <div class="row spacer">
         <div class="col-md-2">
-            <button type="button" class="btn btn-primary" ng-click="addGroup()">
-                <span class="glyphicon glyphicon-plus"></span> Add Group
+            <button type="button" class="btn btn-primary" ng-click="addBand()">
+                <span class="glyphicon glyphicon-plus"></span> Add Band
             </button>
         </div>
     </div>
@@ -12,7 +12,7 @@
                 <img src="...">
                 <div class="caption">
                     <h3>{{band.name}}</h3>
-                    <a class="btn btn-primary" href="/admin/index.html#/band/{{band.id}}/main" ng-click="selectBand(band)">Go!</a>
+                    <a class="btn btn-primary" href="/admin/index.html#/band/main" ng-click="selectBand(band)">Go!</a>
                 </div>
             </div>
         </div>

@@ -28,14 +28,14 @@ public class MemberResource {
     private MemberService service;
 
     @GET
-    @Path("{bandId}/all")
+    @Path("/{bandId}/all")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Member> getAllMembersByBand(@NotNull @PathParam("bandId") Long bandId) {
         return service.getAllMembersByBand(bandId);
     }
 
     @GET
-    @Path("{bandId}/part/{offset}/{max}")
+    @Path("/{bandId}/part/{offset}/{max}")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Member> getMembersPartByBand(@NotNull @PathParam("bandId") Long bandId,
                                              @NotNull @PathParam("offset") int offset,
@@ -44,21 +44,21 @@ public class MemberResource {
     }
 
     @GET
-    @Path("{bandId}/count")
+    @Path("/{bandId}/count")
     @Produces(MediaType.APPLICATION_JSON)
     public Long getMembersCountByBand(@NotNull @PathParam("bandId") Long bandId) {
         return service.getMembersCountByBand(bandId);
     }
 
     @POST
-    @Path("{bandId}/save")
+    @Path("/{bandId}/save")
     @Consumes(MediaType.APPLICATION_JSON)
     public void saveMemberToBand(@NotNull @PathParam("bandId") Long bandId, @NotNull Member member) {
         service.saveMemberByBand(bandId, member);
     }
 
     @POST
-    @Path("{bandId}/remove")
+    @Path("/{bandId}/remove")
     @Consumes(MediaType.APPLICATION_JSON)
     public void removeMemberFromBand(@NotNull @PathParam("bandId") Long bandId, @NotNull Member member) {
         service.removeMemberFromBand(bandId, member);
