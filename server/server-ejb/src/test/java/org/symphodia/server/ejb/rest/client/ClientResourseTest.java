@@ -65,7 +65,7 @@ public class ClientResourseTest extends Arquillian {
 
     public void testUpdateClient() throws Exception {
 
-        Client client = clientResource.getClient("test@test.com");
+        Client client = getOneClientFromDB();
         client.setUsername("testUpdated@test.com");
         client.setPassword("testUpdated");
         client.setRole("testUpdated");
@@ -73,7 +73,7 @@ public class ClientResourseTest extends Arquillian {
 
         clientResource.saveClient(client);
 
-        client = clientResource.getClient("testUpdated@test.com");
+        client = getOneClientFromDB();
 
         Assert.assertNotNull(client);
         Assert.assertEquals(client.getUsername(), "testUpdated@test.com");
@@ -91,11 +91,11 @@ public class ClientResourseTest extends Arquillian {
     }
 
     public void testLinkClientAndBand() {
-        Client client = clientResource.getClient("test@test.com");
+        Client client = getOneClientFromDB();
         Band band = getOneBandFromDB();
         clientResource.linkClientAndBand(client.getId(), band.getId());
 
-        client = clientResource.getClient("test@test.com");
+        client = getOneClientFromDB();
         Assert.assertEquals(client.getBands().size(), 1);
     }
 
