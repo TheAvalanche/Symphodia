@@ -36,7 +36,7 @@
                             <span class="glyphicon glyphicon-trash"></span>
                         </button>
                     </td>
-                    <td class="col-md-3"><img class="img-responsive img-thumbnail" ng-src="{{getProperty('HOSTNAME')}}uploaded/{{member.image}}_s.png"/></td>
+                    <td class="col-md-3"><img class="img-responsive img-thumbnail" ng-src="{{getProperty('HOSTNAME')}}uploaded/{{band.id}}/{{member.imageList[0]}}_s.png"/></td>
                     <td class="col-md-8"><span><b>{{member.name}} {{member.surname}} <i>({{member.dateOfBirth}})</i></b></span><div ng-bind-html="member.description"></div></td>
                 </tr>
                 </tbody>

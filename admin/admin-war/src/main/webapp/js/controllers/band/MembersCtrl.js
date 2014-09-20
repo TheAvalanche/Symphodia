@@ -40,7 +40,9 @@
             };
 
             $scope.removeMember = function (member) {
-                FileService.removeImage(member.image);
+                member.imageList.forEach(function (image) {
+                    FileService.removeImage(image);
+                });
                 MemberService.remove(member).success(function () {
                     MessageService.warn("Removed");
                     init();

@@ -13,6 +13,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import javax.inject.Inject;
+import java.util.Arrays;
 import java.util.List;
 
 public class MemberResourceTest extends Arquillian {
@@ -63,7 +64,7 @@ public class MemberResourceTest extends Arquillian {
         Assert.assertEquals(member.getDescription(), "Test description");
         Assert.assertEquals(member.getDateOfBirth(), DateUtil.toDate(2014, 1, 1));
         Assert.assertEquals(member.getInstrument(), Instrument.GUITAR);
-        Assert.assertEquals(member.getImage(), "image1");
+        Assert.assertEquals(member.getImageList().size(), 3);
 
     }
 
@@ -75,7 +76,8 @@ public class MemberResourceTest extends Arquillian {
         member.setDescription("Test description updated");
         member.setDateOfBirth(DateUtil.toDate(2014, 1, 2));
         member.setInstrument(Instrument.BASS);
-        member.setImage("image2");
+        member.getImageList().add("image4");
+        member.getImageList().remove("image3");
 
         memberResource.saveMemberToBand(band.getId(), member);
 
@@ -85,7 +87,9 @@ public class MemberResourceTest extends Arquillian {
         Assert.assertEquals(member.getDescription(), "Test description updated");
         Assert.assertEquals(member.getDateOfBirth(), DateUtil.toDate(2014, 1, 2));
         Assert.assertEquals(member.getInstrument(), Instrument.BASS);
-        Assert.assertEquals(member.getImage(), "image2");
+        Assert.assertTrue(member.getImageList().contains("image1"));
+        Assert.assertTrue(member.getImageList().contains("image2"));
+        Assert.assertTrue(member.getImageList().contains("image4"));
 
     }
 
@@ -121,7 +125,7 @@ public class MemberResourceTest extends Arquillian {
         member.setDescription("Test description");
         member.setDateOfBirth(DateUtil.toDate(2014, 1, 1));
         member.setInstrument(Instrument.GUITAR);
-        member.setImage("image1");
+        member.setImageList(Arrays.asList("image1", "image2", "image3"));
         return member;
     }
 

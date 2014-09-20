@@ -3,10 +3,13 @@ package org.symphodia.server.domain.band;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.symphodia.server.domain.AbstractDomainObject;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,7 +25,9 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "MEMBER")
@@ -71,8 +76,10 @@ public class Member extends AbstractDomainObject {
     @NotNull
     private Instrument instrument;
 
-    @Column(name = "IMAGE", length = 255)
-    private String image;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "MEMBER_IMAGE_LIST")
+    @Column(name = "IMAGE")
+    private List<String> imageList = new ArrayList<>();
 
     public long getId() {
         return id;
@@ -130,12 +137,20 @@ public class Member extends AbstractDomainObject {
         this.instrument = instrument;
     }
 
-    public String getImage() {
-        return image;
+    public List<String> getImageList() {
+        return imageList;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImageList(List<String> imageList) {
+        this.imageList = imageList;
+    }
+
+    public void addImage(String image) {
+        this.imageList.add(image);
+    }
+
+    public void removeImage(String image) {
+        this.imageList.remove(image);
     }
 
     @PrePersist

@@ -34,21 +34,7 @@
         <div class="form-group">
             <label>Image</label><br>
 
-            <div class="row spacer">
-                <div class="col-md-3" ng-show="member.image">
-                    <button type="button" class="btn btn-danger btn-xs" ng-click="removeImage(member.image)">
-                        <span class="glyphicon glyphicon-trash"></span> Remove
-                    </button>
-                    <img class="img-responsive img-thumbnail"
-                         ng-src="{{getProperty('HOSTNAME')}}uploaded/{{band.id}}/{{member.image}}_s.png"/>
-                </div>
-            </div>
-            <div class="spacer">
-                <span class="btn btn-primary btn-file">
-                    <span class="glyphicon glyphicon-plus"></span> Add image...
-                    <input type="file" nv-file-select uploader="uploader" accept="image/*"/>
-                </span>
-            </div>
+            <s-image-upload></s-image-upload>
         </div>
         <div class="modal-footer">
             <button class="btn btn-success" ng-click="save()" type="button" ng-disabled="form.$invalid"><span
