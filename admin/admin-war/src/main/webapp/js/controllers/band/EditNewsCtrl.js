@@ -2,8 +2,8 @@
     'use strict';
 
     angular.module('adminApp.controllers')
-        .controller('EditNewsCtrl', ['$scope', '$rootScope', '$modalInstance', '$filter', 'NewsService', 'FileService', 'FileUploader', 'news',
-            function ($scope, $rootScope, $modalInstance, $filter, NewsService, FileService, FileUploader, news) {
+        .controller('EditNewsCtrl', ['$scope', '$modalInstance', 'NewsService', 'news',
+            function ($scope, $modalInstance, NewsService, news) {
 
             var init = function () {
                 $scope.news = news || {};
