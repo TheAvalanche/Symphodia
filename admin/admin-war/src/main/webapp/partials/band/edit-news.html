@@ -5,7 +5,8 @@
     <div class="modal-body">
         <div class="form-group">
             <label>Title</label>
-            <input ng-model="news.title" type="text" class="form-control" id="titleInput" placeholder="Enter title" required>
+            <input ng-model="news.title" type="text" class="form-control" id="titleInput" placeholder="Enter title"
+                   required>
         </div>
         <div class="form-group">
             <label>Content</label>
@@ -18,8 +19,11 @@
             <s-image-upload></s-image-upload>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-success" ng-click="save()" type="button" ng-disabled="form.$invalid"><span class="glyphicon glyphicon-ok"></span> Save</button>
-            <button class="btn btn-warning" ng-click="cancel()" type="button"><span class="glyphicon glyphicon-remove"></span> Cancel
+            <button class="btn btn-success" ng-click="save()" type="button" ng-disabled="form.$invalid"><span
+                    class="glyphicon glyphicon-ok"></span> Save
+            </button>
+            <button class="btn btn-warning" ng-click="cancel()" type="button"><span
+                    class="glyphicon glyphicon-remove"></span> Cancel
             </button>
         </div>
     </div>
