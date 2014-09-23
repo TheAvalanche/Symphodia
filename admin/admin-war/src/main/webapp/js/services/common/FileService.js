@@ -2,9 +2,9 @@
     'use strict';
 
     angular.module('adminApp.services')
-        .factory('FileService', ['$http', '$rootScope', function ($http, $rootScope) {
+        .factory('FileService', ['$http', 'ContextService', function ($http, ContextService) {
             var restRoot = '/admin/rest/file';
-            var restRootBand = restRoot + '/' + $rootScope.band.id;
+            var restRootBand = restRoot + '/' + ContextService.getBand().id;
 
             return {
                 removeImage: function(filename) {

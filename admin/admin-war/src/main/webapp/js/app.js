@@ -14,10 +14,6 @@ var adminApp = angular.module('adminApp', [
 
 adminApp.run(["$rootScope", "ClientService", "PropertyService", function($rootScope, ClientService, PropertyService) {
 
-    ClientService.getClient().success(function (data) {
-        $rootScope.client = data;
-    });
-
     PropertyService.getAll().success(function (data) {
         $rootScope.propertyList = data;
         $rootScope.getProperty = function (propertyKey) {

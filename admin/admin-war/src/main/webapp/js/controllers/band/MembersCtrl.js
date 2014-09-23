@@ -2,9 +2,11 @@
     'use strict';
 
     angular.module('adminApp.controllers')
-        .controller('MembersCtrl', ['$scope', '$rootScope', '$modal', 'MemberService', 'FileService', 'MessageService', function ($scope, $rootScope, $modal, MemberService, FileService, MessageService) {
+        .controller('MembersCtrl', ['$scope', '$rootScope', '$modal', 'MemberService', 'FileService', 'MessageService', 'ContextService',
+            function ($scope, $rootScope, $modal, MemberService, FileService, MessageService, ContextService) {
 
             var init = function () {
+                $scope.band = ContextService.getBand();
                 $scope.currentPage = 1;
                 MemberService.count().success(function (data) {
                     $scope.totalItems = data;

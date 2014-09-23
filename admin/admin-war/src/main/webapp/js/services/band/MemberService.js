@@ -2,9 +2,9 @@
     'use strict';
 
     angular.module('adminApp.services')
-        .factory('MemberService', ['$http', '$rootScope', function ($http, $rootScope) {
+        .factory('MemberService', ['$http', 'ContextService', function ($http, ContextService) {
             var restRoot = '/admin/rest/member';
-            var restRootBand = restRoot + '/' + $rootScope.band.id;
+            var restRootBand = restRoot + '/' + ContextService.getBand().id
 
             return {
                 all: function() {

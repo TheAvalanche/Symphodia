@@ -2,10 +2,11 @@
     'use strict';
 
     angular.module('adminApp.controllers')
-        .controller('MainCtrl', ['$scope', '$rootScope', 'BandService', 'MessageService', function ($scope, $rootScope, BandService, MessageService) {
+        .controller('MainCtrl', ['$scope', 'BandService', 'MessageService', 'ContextService',
+            function ($scope, BandService, MessageService, ContextService) {
 
             var init = function () {
-                $scope.band = $rootScope.band || {};
+                $scope.band = ContextService.getBand() || {};
                 $scope.band.page = $scope.band.page || {};
                 $scope.band.page.imageList = $scope.band.page.imageList || [];
                 $scope.imageList = $scope.band.page.imageList;

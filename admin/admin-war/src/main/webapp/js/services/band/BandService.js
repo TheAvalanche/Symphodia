@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('adminApp.services')
-        .factory('BandService', ['$http', '$rootScope', function ($http, $rootScope) {
+        .factory('BandService', ['$http', function ($http) {
             var restRoot = '/admin/rest/band';
 
             return {

@@ -2,7 +2,8 @@
     'use strict';
 
     angular.module('adminApp.directives')
-        .directive('sImageUpload', ['$rootScope', '$filter', 'FileService', 'FileUploader', function ($rootScope, $filter, FileService, FileUploader) {
+        .directive('sImageUpload', ['$filter', 'FileService', 'FileUploader', 'ContextService',
+            function ($filter, FileService, FileUploader, ContextService) {
             return {
                 restrict: 'E',
                 templateUrl : '/admin/partials/templates/image-upload.html',
@@ -13,7 +14,7 @@
                     scope.imageGroupList = $filter('GroupItems')(scope.imageList, 4);
 
                     scope.uploader = new FileUploader({
-                        url: '/admin/rest/file/' +  $rootScope.band.id + '/saveImage',
+                        url: '/admin/rest/file/' +  ContextService.getBand().id + '/saveImage',
 
                         onAfterAddingFile: function (item) {
                             var uniqueFileName = new Date().getTime().toString();
