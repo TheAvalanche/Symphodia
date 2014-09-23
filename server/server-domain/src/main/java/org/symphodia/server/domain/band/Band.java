@@ -49,6 +49,10 @@ public class Band {
     @JsonIgnore
     private List<News> newsList = new ArrayList<>();
 
+    @OneToMany(mappedBy = "band")
+    @JsonIgnore
+    private List<Album> albumList = new ArrayList<>();
+
     @Embedded
     private Page page;
 

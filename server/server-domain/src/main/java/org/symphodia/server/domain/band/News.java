@@ -31,7 +31,7 @@ import java.util.List;
         @NamedQuery(name = "News.allByBand", query = "SELECT n FROM News n WHERE n.band.id = :bandId ORDER BY n.id DESC"),
         @NamedQuery(name = "News.countByBand", query = "SELECT COUNT(n) FROM News n WHERE n.band.id = :bandId")
 })
-@SequenceGenerator(name = "NEWS_SEQ", sequenceName = "NEWS_SEQ", initialValue = 100000)
+@SequenceGenerator(name = "NEWS_SEQ", sequenceName = "NEWS_SEQ", initialValue = 1000000)
 public class News extends AbstractDomainObject {
 
     @Id
