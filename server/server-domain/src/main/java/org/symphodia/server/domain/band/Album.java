@@ -1,15 +1,20 @@
 package org.symphodia.server.domain.band;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.symphodia.server.domain.AbstractDomainObject;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -22,7 +27,7 @@ import java.util.List;
 @Entity
 @Table(name = "ALBUM")
 @SequenceGenerator(name = "ALBUM_SEQ", sequenceName = "ALBUM_SEQ", initialValue = 200000)
-public class Album {
+public class Album extends AbstractDomainObject {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ALBUM_SEQ")
@@ -49,6 +54,11 @@ public class Album {
 
     @OneToMany(mappedBy = "album")
     private List<Song> songList = new ArrayList<>();
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "ALBUM_IMAGE_LIST")
+    @Column(name = "IMAGE")
+    private List<String> imageList = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -104,5 +114,26 @@ public class Album {
 
     public void removeSong(Song song) {
         this.songList.remove(song);
+    }
+
+    public List<String> getImageList() {
+        return imageList;
+    }
+
+    public void setImageList(List<String> imageList) {
+        this.imageList = imageList;
+    }
+
+    public void addImage(String image) {
+        this.imageList.add(image);
+    }
+
+    public void removeImage(String image) {
+        this.imageList.remove(image);
+    }
+
+    @PrePersist
+    public void validate() {
+        super.validate();
     }
 }

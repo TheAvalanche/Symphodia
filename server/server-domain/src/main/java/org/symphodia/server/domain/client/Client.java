@@ -2,6 +2,7 @@ package org.symphodia.server.domain.client;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Email;
+import org.symphodia.server.domain.AbstractDomainObject;
 import org.symphodia.server.domain.band.Band;
 
 import javax.persistence.Column;
@@ -15,6 +16,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.PrePersist;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -28,7 +30,7 @@ import java.util.List;
         @NamedQuery(name = "Client.byUsername", query = "SELECT c FROM Client c WHERE c.username = :username")
 })
 @SequenceGenerator(name = "CLIENT_SEQ", sequenceName = "CLIENT_SEQ", initialValue = 200000)
-public class Client {
+public class Client extends AbstractDomainObject {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CLIENT_SEQ")
@@ -107,5 +109,10 @@ public class Client {
 
     public void setBands(List<Band> bands) {
         this.bands = bands;
+    }
+
+    @PrePersist
+    public void validate() {
+        super.validate();
     }
 }

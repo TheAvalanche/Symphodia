@@ -1,6 +1,7 @@
 package org.symphodia.server.domain.band;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.symphodia.server.domain.AbstractDomainObject;
 
 
 import javax.persistence.Column;
@@ -12,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -25,7 +27,7 @@ import java.util.List;
         @NamedQuery(name = "Band.all", query = "SELECT b FROM Band b ORDER BY b.id DESC")
 })
 @SequenceGenerator(name = "BAND_SEQ", sequenceName = "BAND_SEQ", initialValue = 100000)
-public class Band {
+public class Band extends AbstractDomainObject {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "BAND_SEQ")
@@ -102,5 +104,10 @@ public class Band {
 
     public void setPage(Page page) {
         this.page = page;
+    }
+
+    @PrePersist
+    public void validate() {
+        super.validate();
     }
 }

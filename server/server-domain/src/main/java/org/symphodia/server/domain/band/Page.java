@@ -1,5 +1,7 @@
 package org.symphodia.server.domain.band;
 
+import org.symphodia.server.domain.AbstractDomainObject;
+
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -9,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Embeddable
-public class Page {
+public class Page extends AbstractDomainObject {
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "PAGE_IMAGE_LIST")
