@@ -7,18 +7,21 @@ import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,6 +29,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "ALBUM")
+@NamedQueries({
+        @NamedQuery(name = "Album.allByBand", query = "SELECT a FROM Album a WHERE a.band.id = :bandId ORDER BY a.id DESC"),
+})
 @SequenceGenerator(name = "ALBUM_SEQ", sequenceName = "ALBUM_SEQ", initialValue = 200000)
 public class Album extends AbstractDomainObject {
 
@@ -51,6 +57,11 @@ public class Album extends AbstractDomainObject {
     @Column(name = "DESCRIPTION", length = 4096)
     @Size(min = 1, max = 4096)
     private String description;
+
+    @Column(name = "ALBUM_TYPE", length = 255)
+    @Enumerated(EnumType.STRING)
+    @NotNull
+    private AlbumType albumType = AlbumType.FULL;
 
     @OneToMany(mappedBy = "album")
     private List<Song> songList = new ArrayList<>();

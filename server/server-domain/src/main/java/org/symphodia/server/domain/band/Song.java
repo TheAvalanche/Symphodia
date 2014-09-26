@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.PrePersist;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -18,6 +20,9 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "SONG")
+@NamedQueries({
+        @NamedQuery(name = "Song.allByAlbum", query = "SELECT s FROM Song s WHERE s.album.id = :albumId ORDER BY s.id DESC"),
+})
 @SequenceGenerator(name = "SONG_SEQ", sequenceName = "SONG_SEQ", initialValue = 2000000)
 public class Song extends AbstractDomainObject {
 
