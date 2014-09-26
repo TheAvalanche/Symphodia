@@ -111,6 +111,14 @@ public class Album extends AbstractDomainObject {
         this.description = description;
     }
 
+    public AlbumType getAlbumType() {
+        return albumType;
+    }
+
+    public void setAlbumType(AlbumType albumType) {
+        this.albumType = albumType;
+    }
+
     public List<Song> getSongList() {
         return songList;
     }
