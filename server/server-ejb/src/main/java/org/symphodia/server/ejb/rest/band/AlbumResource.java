@@ -1,6 +1,8 @@
 package org.symphodia.server.ejb.rest.band;
 
 import org.symphodia.server.domain.band.Album;
+import org.symphodia.server.domain.band.AlbumType;
+import org.symphodia.server.domain.band.Instrument;
 import org.symphodia.server.ejb.service.band.AlbumService;
 
 import javax.ejb.LocalBean;
@@ -14,6 +16,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -44,5 +47,12 @@ public class AlbumResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public void removeAlbumFromBand(@NotNull @PathParam("bandId") Long bandId, @NotNull Album album) {
         service.removeAlbumFromBand(bandId, album);
+    }
+
+    @GET
+    @Path("/albumTypes")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<AlbumType> getAlbumTypes() {
+        return Arrays.asList(AlbumType.values());
     }
 }

@@ -5,8 +5,8 @@
     </div>
     <div class="row spacer">
         <div class="col-md-2">
-            <button type="button" class="btn btn-primary" ng-click="editMember()">
-                <span class="glyphicon glyphicon-plus"></span> Add Member
+            <button type="button" class="btn btn-primary" ng-click="editAlbum()">
+                <span class="glyphicon glyphicon-plus"></span> Add Album
             </button>
         </div>
     </div>
@@ -17,24 +17,24 @@
                 <tr>
                     <th>ID</th>
                     <th>Image</th>
-                    <th>Content</th>
+                    <th>Title</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="member in memberList" ng-mouseenter="showEdit=true" ng-mouseleave="showEdit=false">
+                <tr ng-repeat="album in albumList" ng-mouseenter="showEdit=true" ng-mouseleave="showEdit=false">
                     <td class="col-md-1">
                         <span ng-show="!showEdit">{{member.id}}</span>
                         <button type="button" ng-show="showEdit" class="btn btn-xs btn-primary"
-                                ng-click="editMember(member)">
+                                ng-click="editAlbum(album)">
                             <span class="glyphicon glyphicon-pencil"></span>
                         </button>
                         <button type="button" ng-show="showEdit" class="btn btn-xs btn-danger"
-                                ng-click="removeMember(member)">
+                                ng-click="removeAlbum(album)">
                             <span class="glyphicon glyphicon-trash"></span>
                         </button>
                     </td>
-                    <td class="col-md-3"><img class="img-responsive img-thumbnail" ng-src="{{getProperty('HOSTNAME')}}uploaded/{{band.id}}/{{member.imageList[0]}}_s.png"/></td>
-                    <td class="col-md-8"><span><b>{{member.name}} {{member.surname}} <i>({{member.dateOfBirth}})</i></b></span><div ng-bind-html="member.description"></div></td>
+                    <td class="col-md-3"><img class="img-responsive img-thumbnail" ng-src="{{getProperty('HOSTNAME')}}uploaded/{{band.id}}/{{album.imageList[0]}}_s.png"/></td>
+                    <td class="col-md-8"><span ng-bind="album.title"></span></td>
                 </tr>
                 </tbody>
             </table>

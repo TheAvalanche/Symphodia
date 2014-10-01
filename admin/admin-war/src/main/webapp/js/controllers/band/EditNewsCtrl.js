@@ -2,10 +2,11 @@
     'use strict';
 
     angular.module('adminApp.controllers')
-        .controller('EditNewsCtrl', ['$scope', '$modalInstance', 'NewsService', 'news',
-            function ($scope, $modalInstance, NewsService, news) {
+        .controller('EditNewsCtrl', ['$scope', '$modalInstance', 'NewsService', 'ContextService', 'news',
+            function ($scope, $modalInstance, NewsService, ContextService, news) {
 
             var init = function () {
+                $scope.band = ContextService.getBand();
                 $scope.news = news || {};
                 $scope.news.imageList = $scope.news.imageList || [];
                 $scope.imageList = $scope.news.imageList;

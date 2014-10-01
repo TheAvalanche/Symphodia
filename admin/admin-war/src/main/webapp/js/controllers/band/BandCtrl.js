@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('adminApp.controllers')
-        .controller('MainCtrl', ['$scope', 'BandService', 'MessageService', 'ContextService',
+        .controller('BandCtrl', ['$scope', 'BandService', 'MessageService', 'ContextService',
             function ($scope, BandService, MessageService, ContextService) {
 
             var init = function () {

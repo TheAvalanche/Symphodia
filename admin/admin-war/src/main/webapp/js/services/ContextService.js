@@ -5,6 +5,7 @@
         .factory('ContextService', function () {
             var band;
             var client;
+            var album;
             var properties;
 
             var contextService = {
@@ -19,6 +20,12 @@
                 },
                 getClient: function () {
                     return client;
+                },
+                setAlbum: function (arg) {
+                    album = arg;
+                },
+                getAlbum: function () {
+                    return album;
                 }
             };
 

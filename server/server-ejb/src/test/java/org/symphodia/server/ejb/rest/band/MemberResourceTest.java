@@ -42,8 +42,6 @@ public class MemberResourceTest extends Arquillian {
         setUp();
         testSaveMember();
         testUpdateMember();
-        testCountMember();
-        testGetMemberPart();
         testRemoveMember();
         tearDown();
     }
@@ -93,18 +91,6 @@ public class MemberResourceTest extends Arquillian {
 
     }
 
-    public void testCountMember() throws Exception {
-        Long count = memberResource.getMembersCountByBand(band.getId());
-        Assert.assertEquals(count, new Long(1));
-    }
-
-    public void testGetMemberPart() {
-        memberResource.saveMemberToBand(band.getId(), createTestMember());
-        memberResource.saveMemberToBand(band.getId(), createTestMember());
-
-        List<Member> memberList = memberResource.getMembersPartByBand(band.getId(), 1, 2);
-        Assert.assertEquals(memberList.size(), 2);
-    }
 
     public void testRemoveMember() {
         List<Member> memberList = memberResource.getAllMembersByBand(band.getId());

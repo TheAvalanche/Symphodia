@@ -2,20 +2,12 @@
     'use strict';
 
     angular.module('adminApp.controllers')
-        .controller('MembersCtrl', ['$scope', '$rootScope', '$modal', 'MemberService', 'FileService', 'MessageService', 'ContextService',
-            function ($scope, $rootScope, $modal, MemberService, FileService, MessageService, ContextService) {
+        .controller('MembersCtrl', ['$scope', '$modal', 'MemberService', 'FileService', 'MessageService', 'ContextService',
+            function ($scope, $modal, MemberService, FileService, MessageService, ContextService) {
 
             var init = function () {
                 $scope.band = ContextService.getBand();
-                $scope.currentPage = 1;
-                MemberService.count().success(function (data) {
-                    $scope.totalItems = data;
-                });
-                reloadMemberPart();
-            };
-
-            var reloadMemberPart = function () {
-                MemberService.part(($scope.currentPage - 1) * $rootScope.getProperty('PAGE_SIZE'), $rootScope.getProperty('PAGE_SIZE')).success(function (data) {
+                MemberService.all().success(function (data) {
                     $scope.memberList = data;
                 });
             };
@@ -49,10 +41,6 @@
                     MessageService.warn("Removed");
                     init();
                 });
-            };
-
-            $scope.pageChanged = function () {
-                reloadMemberPart();
             };
 
             init();

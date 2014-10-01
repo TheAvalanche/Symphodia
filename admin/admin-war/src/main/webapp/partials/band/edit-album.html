@@ -1,0 +1,42 @@
+<div class="modal-header">
+    <h3 class="modal-title">Edit album</h3>
+</div>
+<form name="form" role="form" novalidate>
+    <div class="modal-body">
+        <div class="form-group">
+            <label>Title</label>
+            <input ng-model="album.title" type="text" class="form-control" id="titleInput" placeholder="Enter title"
+                   required>
+        </div>
+        <div class="form-group">
+            <label>Creation Date</label>
+            <input ng-model="album.creationDate" type="text" class="form-control" id="creationDateInput"
+                   placeholder="yyyy-mm-dd" is-open="opened" ng-click="opened = !opened" datepicker-popup required/>
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <text-angular ng-model="album.description"
+                          ta-toolbar="{{getProperty('EDITOR_CONTROLS')}}"
+                          type="text" id="contentInput" placeholder="Enter description" required></text-angular>
+        </div>
+        <div class="form-group">
+            <label>Type</label>
+            <select ng-model="album.albumType"
+                    ng-options="albumType | TitleText for albumType in albumTypes"
+                    class="form-control" required>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Images</label><br>
+            <s-image-upload></s-image-upload>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-success" ng-click="save()" type="button" ng-disabled="form.$invalid"><span
+                    class="glyphicon glyphicon-ok"></span> Save
+            </button>
+            <button class="btn btn-warning" ng-click="cancel()" type="button"><span
+                    class="glyphicon glyphicon-remove"></span> Cancel
+            </button>
+        </div>
+    </div>
+</form>

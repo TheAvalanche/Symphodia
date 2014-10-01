@@ -34,22 +34,6 @@ public class MemberResource {
         return service.getAllMembersByBand(bandId);
     }
 
-    @GET
-    @Path("/{bandId}/part/{offset}/{max}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Member> getMembersPartByBand(@NotNull @PathParam("bandId") Long bandId,
-                                             @NotNull @PathParam("offset") int offset,
-                                             @NotNull @PathParam("max") int max) {
-        return service.getMembersPartByBand(bandId, offset, max);
-    }
-
-    @GET
-    @Path("/{bandId}/count")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Long getMembersCountByBand(@NotNull @PathParam("bandId") Long bandId) {
-        return service.getMembersCountByBand(bandId);
-    }
-
     @POST
     @Path("/{bandId}/save")
     @Consumes(MediaType.APPLICATION_JSON)

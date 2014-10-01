@@ -21,19 +21,6 @@ public class MemberService {
         return query.getResultList();
     }
 
-    public List<Member> getMembersPartByBand(Long bandId, int offset, int max) {
-        TypedQuery<Member> query = entityManager.createNamedQuery("Member.allByBand", Member.class);
-        query.setParameter("bandId", bandId);
-        query.setFirstResult(offset);
-        query.setMaxResults(max);
-        return query.getResultList();
-    }
-
-    public Long getMembersCountByBand(Long bandId) {
-        TypedQuery<Long> query = entityManager.createNamedQuery("Member.countByBand", Long.class);
-        query.setParameter("bandId", bandId);
-        return query.getSingleResult();
-    }
 
     public void saveMemberByBand(Long bandId, Member member) {
         Band band = entityManager.find(Band.class, bandId);
