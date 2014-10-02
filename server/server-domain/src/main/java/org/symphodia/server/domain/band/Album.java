@@ -64,6 +64,7 @@ public class Album extends AbstractDomainObject {
     private AlbumType albumType = AlbumType.FULL;
 
     @OneToMany(mappedBy = "album")
+    @JsonIgnore
     private List<Song> songList = new ArrayList<>();
 
     @ElementCollection(fetch = FetchType.EAGER)
