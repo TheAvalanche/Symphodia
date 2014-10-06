@@ -1,6 +1,5 @@
 package org.symphodia.server.ejb.rest.common;
 
-import org.jboss.resteasy.plugins.providers.multipart.InputPart;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 import org.symphodia.server.ejb.service.common.FileService;
 
@@ -15,8 +14,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
-import java.util.Map;
 
 
 @Stateless
@@ -30,13 +27,11 @@ public class FileResource {
     @POST
     @Path("/{bandId}/saveImage")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
-    public void saveImageToBand(@NotNull @PathParam("bandId") Long bandId, MultipartFormDataInput input) throws IOException {
+    public String saveImageToBand(@NotNull @PathParam("bandId") Long bandId, MultipartFormDataInput input) throws IOException {
 
-        for (Map.Entry<String, List<InputPart>> entry : input.getFormDataMap().entrySet()) {
-            for (InputPart inputPart : entry.getValue()) {
-                fileService.saveAndMinimizeImage(inputPart.getBody(InputStream.class, null), entry.getKey(), bandId + "/");
-            }
-        }
+        InputStream inputStream = input.getFormDataMap().get("file").get(0).getBody(InputStream.class, null);
+
+        return fileService.saveAndMinimizeImage(inputStream, bandId + "/");
     }
 
     @POST
@@ -48,13 +43,11 @@ public class FileResource {
     @POST
     @Path("/{bandId}/saveMusic")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
-    public void saveMusicToBand(@NotNull @PathParam("bandId") Long bandId, MultipartFormDataInput input) throws IOException {
+    public String saveMusicToBand(@NotNull @PathParam("bandId") Long bandId, MultipartFormDataInput input) throws IOException {
 
-        for (Map.Entry<String, List<InputPart>> entry : input.getFormDataMap().entrySet()) {
-            for (InputPart inputPart : entry.getValue()) {
-                fileService.saveMusic(inputPart.getBody(InputStream.class, null), entry.getKey(), bandId + "/");
-            }
-        }
+        InputStream inputStream = input.getFormDataMap().get("file").get(0).getBody(InputStream.class, null);
+
+        return fileService.saveMusic(inputStream, bandId + "/");
     }
 
     @POST

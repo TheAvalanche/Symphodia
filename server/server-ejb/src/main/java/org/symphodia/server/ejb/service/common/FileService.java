@@ -1,6 +1,8 @@
 package org.symphodia.server.ejb.service.common;
 
 
+import org.apache.commons.lang3.RandomStringUtils;
+import org.symphodia.server.commons.image.Extension;
 import org.symphodia.server.commons.image.ImageProcessor;
 import org.symphodia.server.domain.common.PropertyKey;
 
@@ -18,34 +20,40 @@ public class FileService {
     @Inject
     private PropertyService propertyService;
 
-    public void saveAndMinimizeImage(InputStream content, String fileName, String bandPath) throws IOException {
-        String uploadsPath = propertyService.get(PropertyKey.UPLOADS_PATH);
-        String pathToFile =  uploadsPath + bandPath + fileName + ".png";
+    public String saveAndMinimizeImage(InputStream content, String bandPath) throws IOException {
+        String fileName = generateFileName();
 
         ImageProcessor imageProcessor = new ImageProcessor(content);
-        writeFile(imageProcessor.toInputStream(), pathToFile);
+        writeFile(imageProcessor.toInputStream(), generatePath(fileName, bandPath, Extension.PNG));
 
         imageProcessor.resizeProportionally(180);
         imageProcessor.cropToSquare(180);
-        writeFile(imageProcessor.toInputStream(), uploadsPath + bandPath + fileName + "_s.png");
+        writeFile(imageProcessor.toInputStream(), generatePath(fileName, bandPath, Extension.PNG_SMALL));
+        return fileName;
     }
 
-    public void saveMusic(InputStream content, String fileName, String bandPath) throws IOException {
-        String uploadsPath = propertyService.get(PropertyKey.UPLOADS_PATH);
-        String pathToFile =  uploadsPath + bandPath + fileName + ".mp3";
+    public String saveMusic(InputStream content, String bandPath) throws IOException {
+        String fileName = generateFileName();
 
-        writeFile(content, pathToFile);
+        writeFile(content, generatePath(fileName, bandPath, Extension.MP3));
+        return fileName;
     }
 
     public void removeImage(String fileName, String bandPath) throws IOException {
-        String uploadsPath = propertyService.get(PropertyKey.UPLOADS_PATH);
-        deleteFile(uploadsPath + bandPath + fileName + ".png");
-        deleteFile(uploadsPath + bandPath + fileName + "_s.png");
+        deleteFile(generatePath(fileName, bandPath, Extension.PNG));
+        deleteFile(generatePath(fileName, bandPath, Extension.PNG_SMALL));
     }
 
     public void removeMusic(String fileName, String bandPath) throws IOException {
-        String uploadsPath = propertyService.get(PropertyKey.UPLOADS_PATH);
-        deleteFile(uploadsPath + bandPath + fileName + ".mp3");
+        deleteFile(generatePath(fileName, bandPath, Extension.MP3));
+    }
+
+    public String generateFileName() {
+        return RandomStringUtils.randomAlphanumeric(32);
+    }
+
+    public String generatePath(String fileName, String bandPath, Extension extension) {
+        return propertyService.get(PropertyKey.UPLOADS_PATH) + "/" + bandPath + "/" + fileName + extension.getExtension();
     }
 
     public void writeFile(InputStream content, String path) throws IOException {

@@ -17,13 +17,11 @@
                             url: '/admin/rest/file/' +  ContextService.getBand().id + '/saveMusic',
 
                             onAfterAddingFile: function (item) {
-                                var uniqueFileName = new Date().getTime().toString();
-                                item.alias = uniqueFileName;
-                                item.file.name = uniqueFileName;
                                 scope.uploader.uploadItem(item);
                             },
 
-                            onCompleteItem: function (item) {
+                            onCompleteItem: function (item, response) {
+                                item.file.name = response;
                                 scope.addQueue.push(item.file.name);
                                 scope.musicList.push(item.file.name);
                                 scope.musicGroupList = $filter('GroupItems')(scope.musicList, 4);

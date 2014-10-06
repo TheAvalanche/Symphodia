@@ -11,22 +11,20 @@
 
                     scope.removeQueue = [];
                     scope.addQueue = [];
-                    scope.musicGroupList = $filter('GroupItems')(scope.imageList, 4);
+                    scope.imageGroupList = $filter('GroupItems')(scope.imageList, 4);
 
                     scope.uploader = new FileUploader({
                         url: '/admin/rest/file/' +  ContextService.getBand().id + '/saveImage',
 
                         onAfterAddingFile: function (item) {
-                            var uniqueFileName = new Date().getTime().toString();
-                            item.alias = uniqueFileName;
-                            item.file.name = uniqueFileName;
                             scope.uploader.uploadItem(item);
                         },
 
-                        onCompleteItem: function (item) {
+                        onCompleteItem: function (item, response) {
+                            item.file.name = response;
                             scope.addQueue.push(item.file.name);
                             scope.imageList.push(item.file.name);
-                            scope.musicGroupList = $filter('GroupItems')(scope.imageList, 4);
+                            scope.imageGroupList = $filter('GroupItems')(scope.imageList, 4);
                         }
                     });
 
@@ -45,7 +43,7 @@
                     scope.removeImage = function (image) {
                         scope.removeQueue.push(image);
                         scope.imageList.splice(scope.imageList.indexOf(image), 1);
-                        scope.musicGroupList = $filter('GroupItems')(scope.imageList, 4);
+                        scope.imageGroupList = $filter('GroupItems')(scope.imageList, 4);
                     };
                 }
             };
