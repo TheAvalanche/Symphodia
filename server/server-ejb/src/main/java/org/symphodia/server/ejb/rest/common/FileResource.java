@@ -46,20 +46,20 @@ public class FileResource {
     }
 
     @POST
-    @Path("/{bandId}/saveSong")
+    @Path("/{bandId}/saveMusic")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
-    public void saveSongToBand(@NotNull @PathParam("bandId") Long bandId, MultipartFormDataInput input) throws IOException {
+    public void saveMusicToBand(@NotNull @PathParam("bandId") Long bandId, MultipartFormDataInput input) throws IOException {
 
         for (Map.Entry<String, List<InputPart>> entry : input.getFormDataMap().entrySet()) {
             for (InputPart inputPart : entry.getValue()) {
-                fileService.saveAndMinimizeImage(inputPart.getBody(InputStream.class, null), entry.getKey(), bandId + "/");
+                fileService.saveMusic(inputPart.getBody(InputStream.class, null), entry.getKey(), bandId + "/");
             }
         }
     }
 
     @POST
-    @Path("/{bandId}/removeSong")
-    public void removeSongFromBand(@NotNull @PathParam("bandId") Long bandId, String filename) throws IOException {
-        fileService.removeSong(filename, bandId + "/");
+    @Path("/{bandId}/removeMusic")
+    public void removeMusicFromBand(@NotNull @PathParam("bandId") Long bandId, String filename) throws IOException {
+        fileService.removeMusic(filename, bandId + "/");
     }
 }

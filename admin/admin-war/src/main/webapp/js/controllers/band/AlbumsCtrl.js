@@ -43,6 +43,10 @@
                     });
                 };
 
+                $scope.setAlbum = function (album) {
+                    ContextService.setAlbum(album);
+                };
+
                 init();
 
             }]);

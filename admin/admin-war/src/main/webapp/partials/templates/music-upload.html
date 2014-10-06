@@ -1,0 +1,14 @@
+<div ng-repeat="musicGroup in musicGroupList" class="row spacer">
+    <div ng-repeat="music in musicGroup" class="col-md-3">
+        <button type="button" class="btn btn-danger btn-xs" ng-click="removeMusic(music)">
+            <span class="glyphicon glyphicon-trash"></span> Remove
+        </button>
+        <audio ng-src="{{music | MusicPath}}" controls></audio>
+    </div>
+</div>
+<div class="spacer">
+    <span class="btn btn-primary btn-file" ng-if="uploader">
+        <span class="glyphicon glyphicon-plus"></span> Add music...
+        <input type="file" nv-file-select uploader="uploader" accept=".mp3" multiple/>
+    </span>
+</div>

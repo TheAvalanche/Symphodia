@@ -67,31 +67,37 @@ public class SongResourceTest extends Arquillian {
         songResource.saveSongToAlbum(album.getId(), createTestSong());
 
         Song song = getOneFromDB(album);
+        Assert.assertEquals(song.getOrderNumber(), new Long(1L));
         Assert.assertEquals(song.getTitle(), "Test title");
         Assert.assertEquals(song.getMusicAuthor(), "Test music author");
         Assert.assertEquals(song.getWordsAuthor(), "Test words author");
         Assert.assertEquals(song.getText(), "Test text");
-        Assert.assertEquals(song.getFile(), "Test file");
+        Assert.assertEquals(song.getMusicList().size(), 3);
 
     }
 
     public void testUpdateAlbum() throws Exception {
 
         Song song = getOneFromDB(album);
+        song.setOrderNumber(2L);
         song.setTitle("Test title updated");
         song.setMusicAuthor("Test music author updated");
         song.setWordsAuthor("Test words author updated");
         song.setText("Test text updated");
-        song.setFile("Test file updated");
+        song.getMusicList().add("music4");
+        song.getMusicList().remove("music3");
 
         songResource.saveSongToAlbum(album.getId(), song);
 
         song = getOneFromDB(album);
+        Assert.assertEquals(song.getOrderNumber(), new Long(2L));
         Assert.assertEquals(song.getTitle(), "Test title updated");
         Assert.assertEquals(song.getMusicAuthor(), "Test music author updated");
         Assert.assertEquals(song.getWordsAuthor(), "Test words author updated");
         Assert.assertEquals(song.getText(), "Test text updated");
-        Assert.assertEquals(song.getFile(), "Test file updated");
+        Assert.assertTrue(song.getMusicList().contains("music1"));
+        Assert.assertTrue(song.getMusicList().contains("music2"));
+        Assert.assertTrue(song.getMusicList().contains("music4"));
 
     }
 
@@ -120,11 +126,12 @@ public class SongResourceTest extends Arquillian {
 
     private Song createTestSong() {
         Song song = new Song();
+        song.setOrderNumber(1L);
         song.setTitle("Test title");
         song.setMusicAuthor("Test music author");
         song.setWordsAuthor("Test words author");
         song.setText("Test text");
-        song.setFile("Test file");
+        song.setMusicList(Arrays.asList("music1", "music2", "music3"));
         return song;
     }
 

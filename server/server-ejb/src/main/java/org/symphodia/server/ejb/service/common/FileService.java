@@ -30,7 +30,7 @@ public class FileService {
         writeFile(imageProcessor.toInputStream(), uploadsPath + bandPath + fileName + "_s.png");
     }
 
-    public void saveSong(InputStream content, String fileName, String bandPath) throws IOException {
+    public void saveMusic(InputStream content, String fileName, String bandPath) throws IOException {
         String uploadsPath = propertyService.get(PropertyKey.UPLOADS_PATH);
         String pathToFile =  uploadsPath + bandPath + fileName + ".mp3";
 
@@ -43,7 +43,7 @@ public class FileService {
         deleteFile(uploadsPath + bandPath + fileName + "_s.png");
     }
 
-    public void removeSong(String fileName, String bandPath) throws IOException {
+    public void removeMusic(String fileName, String bandPath) throws IOException {
         String uploadsPath = propertyService.get(PropertyKey.UPLOADS_PATH);
         deleteFile(uploadsPath + bandPath + fileName + ".mp3");
     }

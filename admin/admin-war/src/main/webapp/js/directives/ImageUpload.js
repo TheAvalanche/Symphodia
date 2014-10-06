@@ -9,9 +9,9 @@
                 templateUrl : '/admin/partials/templates/image-upload.html',
                 link: function (scope) {
 
-                    scope.removeImageQueue = [];
-                    scope.addImageQueue = [];
-                    scope.imageGroupList = $filter('GroupItems')(scope.imageList, 4);
+                    scope.removeQueue = [];
+                    scope.addQueue = [];
+                    scope.musicGroupList = $filter('GroupItems')(scope.imageList, 4);
 
                     scope.uploader = new FileUploader({
                         url: '/admin/rest/file/' +  ContextService.getBand().id + '/saveImage',
@@ -24,28 +24,28 @@
                         },
 
                         onCompleteItem: function (item) {
-                            scope.addImageQueue.push(item.file.name);
+                            scope.addQueue.push(item.file.name);
                             scope.imageList.push(item.file.name);
-                            scope.imageGroupList = $filter('GroupItems')(scope.imageList, 4);
+                            scope.musicGroupList = $filter('GroupItems')(scope.imageList, 4);
                         }
                     });
 
                     scope.$on("beforeSave", function() {
-                        scope.removeImageQueue.forEach(function (image) {
+                        scope.removeQueue.forEach(function (image) {
                             FileService.removeImage(image);
                         });
                     });
 
                     scope.$on("beforeCancel", function() {
-                        scope.addImageQueue.forEach(function (image) {
+                        scope.addQueue.forEach(function (image) {
                             FileService.removeImage(image);
                         });
                     });
 
                     scope.removeImage = function (image) {
-                        scope.removeImageQueue.push(image);
+                        scope.removeQueue.push(image);
                         scope.imageList.splice(scope.imageList.indexOf(image), 1);
-                        scope.imageGroupList = $filter('GroupItems')(scope.imageList, 4);
+                        scope.musicGroupList = $filter('GroupItems')(scope.imageList, 4);
                     };
                 }
             };

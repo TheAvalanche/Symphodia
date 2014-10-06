@@ -17,24 +17,29 @@
                 <tr>
                     <th>ID</th>
                     <th>Image</th>
-                    <th>Title</th>
+                    <th>Content</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="album in albumList" ng-mouseenter="showEdit=true" ng-mouseleave="showEdit=false">
-                    <td class="col-md-1">
-                        <span ng-show="!showEdit">{{member.id}}</span>
+                    <td class="col-md-2">
+                        <span ng-show="!showEdit">{{album.id}}</span>
                         <button type="button" ng-show="showEdit" class="btn btn-xs btn-primary"
                                 ng-click="editAlbum(album)">
                             <span class="glyphicon glyphicon-pencil"></span>
                         </button>
+                        <a type="button" ng-show="showEdit" class="btn btn-xs btn-success"
+                                href="/admin/index.html#/band/songs"
+                                ng-click="setAlbum(album)">
+                            <span class="glyphicon glyphicon-music"></span>
+                        </a>
                         <button type="button" ng-show="showEdit" class="btn btn-xs btn-danger"
                                 ng-click="removeAlbum(album)">
                             <span class="glyphicon glyphicon-trash"></span>
                         </button>
                     </td>
                     <td class="col-md-3"><img class="img-responsive img-thumbnail" ng-src="{{getProperty('HOSTNAME')}}uploaded/{{band.id}}/{{album.imageList[0]}}_s.png"/></td>
-                    <td class="col-md-8"><span ng-bind="album.title"></span></td>
+                    <td class="col-md-7"><span ng-bind="album.title"></span></td>
                 </tr>
                 </tbody>
             </table>

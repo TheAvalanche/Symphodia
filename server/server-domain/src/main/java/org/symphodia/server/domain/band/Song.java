@@ -3,20 +3,11 @@ package org.symphodia.server.domain.band;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.symphodia.server.domain.AbstractDomainObject;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.PrePersist;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "SONG")
@@ -36,6 +27,10 @@ public class Song extends AbstractDomainObject {
     @JsonIgnore
     private Album album;
 
+    @Column(name = "ORDER_NUMBER")
+    @NotNull
+    private Long orderNumber;
+
     @Column(name = "TITLE", length = 255)
     @NotNull
     @Size(min = 1, max = 255)
@@ -51,14 +46,14 @@ public class Song extends AbstractDomainObject {
     @Size(min = 1, max = 255)
     private String musicAuthor;
 
-    @Column(name = "text", length = 4096)
+    @Column(name = "TEXT", length = 4096)
     @Size(min = 1, max = 4096)
     private String text;
 
-    @Column(name = "FILE", length = 255)
-    @NotNull
-    @Size(min = 1, max = 255)
-    private String file;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "SONG_MUSIC_LIST")
+    @Column(name = "MUSIC")
+    private List<String> musicList = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -74,6 +69,14 @@ public class Song extends AbstractDomainObject {
 
     public void setAlbum(Album album) {
         this.album = album;
+    }
+
+    public Long getOrderNumber() {
+        return orderNumber;
+    }
+
+    public void setOrderNumber(Long orderNumber) {
+        this.orderNumber = orderNumber;
     }
 
     public String getTitle() {
@@ -108,12 +111,20 @@ public class Song extends AbstractDomainObject {
         this.text = text;
     }
 
-    public String getFile() {
-        return file;
+    public List<String> getMusicList() {
+        return musicList;
     }
 
-    public void setFile(String file) {
-        this.file = file;
+    public void setMusicList(List<String> musicList) {
+        this.musicList = musicList;
+    }
+
+    public void addMusic(String music) {
+        this.musicList.add(music);
+    }
+
+    public void removeMusic(String music) {
+        this.musicList.remove(music);
     }
 
     @PrePersist
