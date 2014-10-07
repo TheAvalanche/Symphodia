@@ -13,12 +13,12 @@
             };
 
             $scope.save = function () {
-                $scope.$emit("beforeSave");
+                $scope.$broadcast("beforeSave");
                 BandService.save($scope.band);
             };
 
             $scope.cancel = function () {
-                $scope.$emit("beforeCancel");
+                $scope.$broadcast("beforeCancel");
             };
 
             init();

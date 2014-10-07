@@ -15,14 +15,14 @@
                 };
 
                 $scope.save = function () {
-                    $scope.$emit("beforeSave");
+                    $scope.$broadcast("beforeSave");
                     SongService.save($scope.song).success(function () {
                         $modalInstance.close();
                     });
                 };
 
                 $scope.cancel = function () {
-                    $scope.$emit("beforeCancel");
+                    $scope.$broadcast("beforeCancel");
                     $modalInstance.dismiss();
                 };
 

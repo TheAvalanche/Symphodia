@@ -14,14 +14,14 @@
             };
 
             $scope.save = function () {
-                $scope.$emit("beforeSave");
+                $scope.$broadcast("beforeSave");
                 NewsService.save($scope.news).success(function () {
                     $modalInstance.close();
                 });
             };
 
             $scope.cancel = function () {
-                $scope.$emit("beforeCancel");
+                $scope.$broadcast("beforeCancel");
                 $modalInstance.dismiss();
             };
 

@@ -16,14 +16,14 @@
             };
 
             $scope.save = function () {
-                $scope.$emit("beforeSave");
+                $scope.$broadcast("beforeSave");
                 MemberService.save($scope.member).success(function () {
                     $modalInstance.close();
                 });
             };
 
             $scope.cancel = function () {
-                $scope.$emit("beforeCancel");
+                $scope.$broadcast("beforeCancel");
                 $modalInstance.dismiss();
             };
 
