@@ -20,7 +20,7 @@ public class FileService {
     @Inject
     private PropertyService propertyService;
 
-    public String saveAndMinimizeImage(InputStream content, String bandPath) throws IOException {
+    public String saveAndMinimizeImage(InputStream content, Long bandPath) throws IOException {
         String fileName = generateFileName();
 
         ImageProcessor imageProcessor = new ImageProcessor(content);
@@ -32,19 +32,19 @@ public class FileService {
         return fileName;
     }
 
-    public String saveMusic(InputStream content, String bandPath) throws IOException {
+    public String saveMusic(InputStream content, Long bandPath) throws IOException {
         String fileName = generateFileName();
 
         writeFile(content, generatePath(fileName, bandPath, Extension.MP3));
         return fileName;
     }
 
-    public void removeImage(String fileName, String bandPath) throws IOException {
+    public void removeImage(String fileName, Long bandPath) throws IOException {
         deleteFile(generatePath(fileName, bandPath, Extension.PNG));
         deleteFile(generatePath(fileName, bandPath, Extension.PNG_SMALL));
     }
 
-    public void removeMusic(String fileName, String bandPath) throws IOException {
+    public void removeMusic(String fileName, Long bandPath) throws IOException {
         deleteFile(generatePath(fileName, bandPath, Extension.MP3));
     }
 
@@ -52,7 +52,7 @@ public class FileService {
         return RandomStringUtils.randomAlphanumeric(32);
     }
 
-    public String generatePath(String fileName, String bandPath, Extension extension) {
+    public String generatePath(String fileName, Long bandPath, Extension extension) {
         return propertyService.get(PropertyKey.UPLOADS_PATH) + "/" + bandPath + "/" + fileName + extension.getExtension();
     }
 
@@ -63,6 +63,7 @@ public class FileService {
     }
 
     public void deleteFile(String path) throws IOException {
+        System.out.println(path);
         Files.delete(Paths.get(path));
     }
 }

@@ -31,13 +31,13 @@ public class FileResource {
 
         InputStream inputStream = input.getFormDataMap().get("file").get(0).getBody(InputStream.class, null);
 
-        return fileService.saveAndMinimizeImage(inputStream, bandId + "/");
+        return fileService.saveAndMinimizeImage(inputStream, bandId);
     }
 
     @POST
     @Path("/{bandId}/removeImage")
     public void removeImageFromBand(@NotNull @PathParam("bandId") Long bandId, String filename) throws IOException {
-        fileService.removeImage(filename, bandId + "/");
+        fileService.removeImage(filename, bandId);
     }
 
     @POST
@@ -47,12 +47,12 @@ public class FileResource {
 
         InputStream inputStream = input.getFormDataMap().get("file").get(0).getBody(InputStream.class, null);
 
-        return fileService.saveMusic(inputStream, bandId + "/");
+        return fileService.saveMusic(inputStream, bandId);
     }
 
     @POST
     @Path("/{bandId}/removeMusic")
     public void removeMusicFromBand(@NotNull @PathParam("bandId") Long bandId, String filename) throws IOException {
-        fileService.removeMusic(filename, bandId + "/");
+        fileService.removeMusic(filename, bandId);
     }
 }
