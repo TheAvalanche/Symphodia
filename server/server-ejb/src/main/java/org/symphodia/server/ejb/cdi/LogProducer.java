@@ -1,4 +1,4 @@
-package org.symphodia.server.cdi;
+package org.symphodia.server.ejb.cdi;
 
 import org.apache.log4j.Logger;
 
