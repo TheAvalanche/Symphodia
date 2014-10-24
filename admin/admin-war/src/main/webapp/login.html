@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/boom.css">
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
+    <script>
+        var adminLogin = angular.module('adminLogin', []);
+    </script>
+</head>
+<body ng-app="adminLogin">
+<div class="background">
+    <div class="container">
+        <div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h1 class="text-center">Sign-in</h1>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form" action="j_security_check" method="post">
+                            <div class="form-group">
+                                <input type="text" name="j_username" class="form-control input-lg" placeholder="Email">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" name="j_password" class="form-control input-lg" placeholder="Password">
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary btn-lg btn-block" type="submit">Sign In</button>
+                                <span class="pull-right"><a href="signup">Register</a></span><span><a href="faq">Need help?</a></span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

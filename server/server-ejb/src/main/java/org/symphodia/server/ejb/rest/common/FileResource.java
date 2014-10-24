@@ -11,7 +11,9 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -27,11 +29,15 @@ public class FileResource {
     @POST
     @Path("/{bandId}/saveImage")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
-    public String saveImageToBand(@NotNull @PathParam("bandId") Long bandId, MultipartFormDataInput input) throws IOException {
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response saveImageToBand(@NotNull @PathParam("bandId") Long bandId, MultipartFormDataInput input) throws IOException {
 
         InputStream inputStream = input.getFormDataMap().get("file").get(0).getBody(InputStream.class, null);
 
-        return fileService.saveAndMinimizeImage(inputStream, bandId);
+        return Response
+                .status(Response.Status.OK)
+                .entity(new ImageName(fileService.saveAndMinimizeImage(inputStream, bandId)))
+                .build();
     }
 
     @POST
@@ -54,5 +60,22 @@ public class FileResource {
     @Path("/{bandId}/removeMusic")
     public void removeMusicFromBand(@NotNull @PathParam("bandId") Long bandId, String filename) throws IOException {
         fileService.removeMusic(filename, bandId);
+    }
+
+    private class ImageName {
+
+        String name;
+
+        private ImageName(String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
     }
 }

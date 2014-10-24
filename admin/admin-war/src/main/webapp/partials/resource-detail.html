@@ -1,0 +1,31 @@
+<div class="container-fluid" ng-controller="resourceDetailCtrl">
+  <h1>{{item.title}}</h1>
+  <h4>{{item.heading}}</h4>
+  <div class="row">
+    <div class="col-sm-6">
+        <a href="javascript:;" rel="nofollow" target="ext"><img src="{{item.imgUrl}}" class="img-thumbnail img-responsive"></a>
+    </div>
+    <div class="col-sm-6">
+        <p class="list-group-item-text" ng-bind-html="renderHtml(item.body)"></p>
+        <hr>
+        <p class="text-muted"><small>Responsive (Multiple Device Support)</small></p>
+        <p>
+         <i class="fa fa-mobile fa-2x" ></i>
+         <i class="fa fa-tablet fa-2x" ></i>
+         <i class="fa fa-laptop fa-2x" ></i>
+         <i class="fa fa-desktop fa-2x" ></i>
+        </p>
+        <p class="text-muted"><small>Permalink<br><a href="javascript:;">http://bootbundle.com</a></small></p>
+        <p class="text-muted"><small>License &amp; Author Details</p>
+        <p>
+         <a href="javascript:;" rel="nofollow" class="btn btn-info btn-lg" target="ext" title="Download">Download <i class="glyphicon glyphicon-circle-arrow-down"></i></a> 
+         <a href="javascript:;" rel="nofollow" class="btn btn-info btn-lg" target="ext" title="Buy">Buy</a> 
+        </p>
+    </div>
+  </div><!--/row-->
+  <div class="row">
+      <div class="col-sm-12">
+          <h4><span ng-repeat="t in item.tags"><span class="label label-success" ng-click="go('/resources')">{{t}}</span> </span></h4>
+      </div>
+  </div><!--/row-->
+</div><!--/container-->
