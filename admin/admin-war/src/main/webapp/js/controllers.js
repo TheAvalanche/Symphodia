@@ -88,12 +88,14 @@ angular.module('myApp.controllers', [])
 
     $scope.save = function () {
         NewsService.save($scope.editedNews).success(function () {
+            $('#collapse1').collapse('hide');
             noty.add({type:"info",title:"Saved..."});
             reloadNews();
         });
     };
 
     $scope.cancel = function () {
+        $('#collapse1').collapse('hide');
     };
 
     init();

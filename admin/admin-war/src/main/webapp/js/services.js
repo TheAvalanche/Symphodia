@@ -133,23 +133,7 @@ value('version', '0.1')
             return $http.post(restRoot + '/save', property);
         }
     };
-}])
-.factory('uuid', function() {
-    var svc = {
-        new: function() {
-            function _p8(s) {
-                var p = (Math.random().toString(16)+"000000000").substr(2,8);
-                return s ? "-" + p.substr(0,4) + "-" + p.substr(4,4) : p ;
-            }
-            return _p8() + _p8(true) + _p8(true) + _p8();
-        },
-         
-        empty: function() {
-          return '00000000-0000-0000-0000-000000000000';
-        }
-    };
-    return svc;
-}).
+}]).
 service('asyncScript', ['$window', function($window) {
     
     /* on-demand async script loader using jQuery getScript */
@@ -199,87 +183,6 @@ service('asyncScript', ['$window', function($window) {
         }
     }
 
-}]).
-service('googleMapsSvc', ['$window', function($window) {
-    
-    var gAddress, gMapElement, gOptions, gUseSv;
-
-    function initialize(address, mapElement, options, useStreetView) {
-
-        var google = $window.google;
-        var geocoder = new $window.google.maps.Geocoder();
-        var map, center, mapOptions = {
-            zoom: 13,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        $.extend(mapOptions, options); // merge the defaults with options passed in
-        
-        map = new google.maps.Map(document.getElementById(mapElement),mapOptions);
-        
-        if (geocoder) {
-          geocoder.geocode({'address': address}, function(results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-              
-                /* find and set the center */
-                center = results[0].geometry.location;
-                map.setCenter(center);
-                
-                /* wait for the map to be ready */
-                google.maps.event.addListener(map, 'idle', function()
-                {
-                    if (useStreetView && center.lat()) {
-                        var latlng = new google.maps.LatLng(center.lat(), center.lng());
-                        var mapOptions = {
-                             position: latlng,
-                             pov: {
-                              heading: 165,
-                              pitch: 0
-                            },
-                            zoom : 1
-                        };
-                        map = new google.maps.StreetViewPanorama(document.getElementById(mapElement),mapOptions);
-                        map.setVisible(true);
-                    }
-                });
-                
-                /* uncomment this to display an InfoWindow
-                new google.maps.InfoWindow(
-                    {
-                      content: address,
-                      map: map,
-                      position: results[0].geometry.location,
-                    });
-                */
-                
-                /* display a marker */
-                new google.maps.Marker({
-                    position: results[0].geometry.location,
-                    map: map, 
-                    title:address
-                });
-            }
-          });
-        } // if geocoder
-    }
-    
-    /* init map must be attached to the $window so that google callback can access it */
-    $window.initializeMap = function () {
-        initialize(gAddress, gMapElement, gOptions, gUseSv);
-    }
-    
-    return {
-        init: function(address, mapElement, options, useSv) {
-            
-            gAddress = address;
-            gMapElement = mapElement;
-            gOptions = options;
-            gUseSv = useSv||false;
-            
-            /* load google maps if not already attached to $window */
-            $window.initializeMap();
-           
-        }
-    } // return
 }]).
 service('noty', ['$rootScope', function($rootScope) {
     var queue = $rootScope.queue||[];
