@@ -894,23 +894,22 @@ angular.module('myApp.directives', [])
     })
     .directive('textEditor', ['asyncScript', function (asyncScript) {
         return {
-            require: 'ngModel',
             scope: {
                 source: "="
             },
             templateUrl: "partials/texteditor.html",
             link: function (scope, element, attributes, controller) {
-                $(element).wysiwyg();
+                $('#editor').wysiwyg();
                 $('#editor').cleanHtml();
-                scope.$watch(attributes.ngModel, function (value) {
-                    $(element).html(value);
+/*                scope.$watch(attributes.ngModel, function (value) {
+                    $('#element').html(value);
                 });
                 element.bind('blur', function () {
-                    controller.$setViewValue(element.html());
+                    controller.$setViewValue($('#element').html());
                     if (!scope.$$phase) {
                         scope.$apply();
                     }
-                });
+                });*/
             }
         };
     }]);

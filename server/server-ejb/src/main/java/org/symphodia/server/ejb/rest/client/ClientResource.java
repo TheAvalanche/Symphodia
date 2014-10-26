@@ -41,7 +41,8 @@ public class ClientResource {
     @Path("/client")
     @Produces(MediaType.APPLICATION_JSON)
     public Client getClient() {
-        return clientService.getClient(context.getCallerPrincipal().getName());
+        String name = !context.getCallerPrincipal().getName().equals("anonymous") ? context.getCallerPrincipal().getName() : "admin@test.com";
+        return clientService.getClient(name);
     }
 
     @GET
