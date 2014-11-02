@@ -76,6 +76,12 @@ angular.module('myApp.controllers', [])
         });
     };
 
+    $scope.edit = function (news) {
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+        $('#collapse1').collapse('show');
+        $scope.editedNews = news;
+    };
+
     $scope.remove = function (news) {
         news.imageList.forEach(function (image) {
             FileService.removeImage(image);
@@ -88,7 +94,6 @@ angular.module('myApp.controllers', [])
 
     $scope.save = function () {
         NewsService.save($scope.editedNews).success(function () {
-            $('#collapse1').collapse('hide');
             noty.add({type:"info",title:"Saved..."});
             reloadNews();
         });

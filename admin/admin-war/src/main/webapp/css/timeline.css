@@ -111,6 +111,11 @@
  margin-top: 5px;
 }
 
+.timeline-menu {
+    position: absolute;
+    right: 20px;
+}
+
 @media (max-width: 767px) {
  ul.timeline:before {
     left: 40px;
