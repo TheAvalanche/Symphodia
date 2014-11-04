@@ -612,34 +612,43 @@ angular.module('myApp.directives', [])
         return function (scope, element, attrs) {
             scope.removeQueue = [];
             scope.addQueue = [];
-            asyncScript.load('dropzone', function () {
-                element.dropzone({
-                    url: '/admin/rest/file/' + ContextService.getBand().id + '/saveImage',
-                    maxFilesize: 100,
-                    maxThumbnailFilesize: 5,
-                    thumbnailWidth: 180,
-                    thumbnailHeight: 180,
-                    previewsContainer: ".previews",
-                    addRemoveLinks: true,
-                    init: function () {
-                        this.on('success', function (file, json) {
-                            file.imageName = json.name;
-                            scope.addQueue.push(file.imageName);
-                            scope.imageList.push(file.imageName);
-                            $(file.previewElement).find('img').attr('src', 'http://localhost:8080/uploaded/' + ContextService.getBand().id + '/' + file.imageName + '_s.png');
-                        });
-                        this.on('addedfile', function (file) {
 
-                        });
-                        this.on('drop', function (file) {
+            var dropZone = new Dropzone(element[0], {
+                url: '/admin/rest/file/' + ContextService.getBand().id + '/saveImage',
+                maxFilesize: 100,
+                maxThumbnailFilesize: 5,
+                thumbnailWidth: 180,
+                thumbnailHeight: 180,
+                previewsContainer: ".previews",
+                addRemoveLinks: true,
+                init: function () {
+                    this.on('success', function (file, json) {
+                        file.imageName = json.name;
+                        scope.addQueue.push(file.imageName);
+                        scope.imageList.push(file.imageName);
+                        $(file.previewElement).find('img').attr('src', 'http://localhost:8080/uploaded/' + ContextService.getBand().id + '/' + file.imageName + '_s.png');
+                    });
+                    this.on('addedfile', function (file) {
 
-                        });
-                        this.on('removedfile', function (file) {
-                            FileService.removeImage(file.imageName);
-                        });
-                    }
-                });
+                    });
+                    this.on('drop', function (file) {
+
+                    });
+                    this.on('removedfile', function (file) {
+                        FileService.removeImage(file.imageName);
+                    });
+                }
             });
+            scope.$watch('imageList', function(imageList) {
+                $.each(imageList, function(key,value){
+
+                    var mockFile = { imageName: value };
+
+                    dropZone.options.addedfile.call(dropZone, mockFile);
+                    dropZone.options.thumbnail.call(dropZone, mockFile, 'http://localhost:8080/uploaded/' + ContextService.getBand().id + '/' + value + '_s.png');
+
+                });
+            })
         };
     }])
     .directive('gallery', ['asyncScript', '$timeout', function (asyncScript, $timeout) {

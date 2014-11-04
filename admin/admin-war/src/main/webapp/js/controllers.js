@@ -49,14 +49,13 @@ angular.module('myApp.controllers', [])
 
     init();
 }])
-.controller('NewsCtrl', ['$scope', '$rootScope', 'asyncScript', 'noty', 'NewsService', 'FileService', 'MessageService', 'ContextService',
-        function ($scope, $rootScope, asyncScript, noty, NewsService, FileService, MessageService, ContextService) {
+.controller('NewsCtrl', ['$scope', '$rootScope', '$location', '$anchorScroll', 'asyncScript', 'noty', 'NewsService', 'FileService', 'MessageService', 'ContextService',
+        function ($scope, $rootScope, $location, $anchorScroll, asyncScript, noty, NewsService, FileService, MessageService, ContextService) {
 
     var init = function () {
         $scope.sortingOrder = 'dt';
         $scope.reverse = true;
 
-        $scope.band = ContextService.getBand();
         $scope.band = ContextService.getBand();
 
         $scope.editedNews = {
@@ -77,9 +76,11 @@ angular.module('myApp.controllers', [])
     };
 
     $scope.edit = function (news) {
-        $("html, body").animate({ scrollTop: 0 }, "slow");
+        $location.hash('inputTitle');
+        $anchorScroll();
         $('#collapse1').collapse('show');
         $scope.editedNews = news;
+        $scope.imageList = $scope.editedNews.imageList;
     };
 
     $scope.remove = function (news) {
