@@ -356,6 +356,12 @@ input.form-control:focus {
 .margin-bottom-15 {
   margin-bottom:15px; 
 }
+
+.no-margin-sides {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
 .no-margin {
   margin:0 !important;
 }

@@ -58,20 +58,22 @@ angular.module('myApp.controllers', [])
 
         $scope.band = ContextService.getBand();
 
+        reloadNews();
+    };
+
+    var initEditedNews = function () {
         $scope.editedNews = {
             imageList: [],
             creationDate: new Date()
         };
 
         $scope.imageList = $scope.editedNews.imageList;
-
-        reloadNews();
-
     };
 
     var reloadNews = function () {
         NewsService.all().success(function (data) {
             $scope.newsList = data;
+            initEditedNews();
         });
     };
 
@@ -102,6 +104,7 @@ angular.module('myApp.controllers', [])
 
     $scope.cancel = function () {
         $('#collapse1').collapse('hide');
+        initEditedNews();
     };
 
     init();

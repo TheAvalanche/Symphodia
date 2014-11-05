@@ -7,21 +7,24 @@
                 </div>
                 <div id="collapse1" class="collapse">
                     <div class="panel-body">
-                        <div class="form-group">
-                            <div text-editor source="editedNews.content"></div>
-                        </div>
-                        <div class="form-group">
-                            <div drop-zone class="previews dropzone-previews" id="file-dropzone">
-                                <div class="dz-message thumbnail" data-dz-message><span class="fa fa-camera fa-4x"></span></div>
+                        <form class="form-horizontal">
+                            <div class="form-group no-margin-sides">
+                                <div text-editor source="editedNews.content"></div>
                             </div>
-                        </div>
-
-                        <button class="btn btn-success" ng-click="save()" type="button"><span
-                                class="fa fa-check"></span> Save
-                        </button>
-                        <button class="btn btn-warning" ng-click="cancel()" type="button"><span
-                                class="fa fa-times"></span> Cancel
-                        </button>
+                            <div class="form-group no-margin-sides">
+                                <div drop-zone class="previews dropzone-previews" id="file-dropzone">
+                                    <div class="dz-message" data-dz-message data-ng-show="imageList.length == 0">
+                                        <span class="fa fa-camera fa-4x"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-success" ng-click="save()" type="button"><span
+                                    class="fa fa-check"></span> Save
+                            </button>
+                            <button class="btn btn-warning" ng-click="cancel()" type="button"><span
+                                    class="fa fa-times"></span> Cancel
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
