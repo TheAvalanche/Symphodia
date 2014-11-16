@@ -2,13 +2,14 @@
     'use strict';
 
     angular.module('adminApp.controllers')
-        .controller('AlbumsCtrl', ['$scope', '$modal', 'AlbumService', 'FileService', 'MessageService', 'ContextService',
-            function ($scope, $modal, AlbumService, FileService, MessageService, ContextService) {
+        .controller('AlbumsCtrl', ['$scope', '$modal', '$filter', 'AlbumService', 'FileService', 'MessageService', 'ContextService',
+            function ($scope, $modal, $filter, AlbumService, FileService, MessageService, ContextService) {
 
                 var init = function () {
                     $scope.band = ContextService.getBand();
                     AlbumService.all().success(function (data) {
                         $scope.albumList = data;
+                        $scope.albumGroupList = $filter('GroupItems')($scope.albumList, 4);
                     });
                 };
 

@@ -2,13 +2,14 @@
     'use strict';
 
     angular.module('adminApp.controllers')
-        .controller('MembersCtrl', ['$scope', '$modal', 'MemberService', 'FileService', 'MessageService', 'ContextService',
-            function ($scope, $modal, MemberService, FileService, MessageService, ContextService) {
+        .controller('MembersCtrl', ['$scope', '$modal', '$filter', 'MemberService', 'FileService', 'MessageService', 'ContextService',
+            function ($scope, $modal, $filter, MemberService, FileService, MessageService, ContextService) {
 
             var init = function () {
                 $scope.band = ContextService.getBand();
                 MemberService.all().success(function (data) {
                     $scope.memberList = data;
+                    $scope.memberGroupList = $filter('GroupItems')($scope.memberList, 4);
                 });
             };
 

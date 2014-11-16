@@ -49,11 +49,15 @@ public class FileResource {
     @POST
     @Path("/{bandId}/saveMusic")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
-    public String saveMusicToBand(@NotNull @PathParam("bandId") Long bandId, MultipartFormDataInput input) throws IOException {
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response saveMusicToBand(@NotNull @PathParam("bandId") Long bandId, MultipartFormDataInput input) throws IOException {
 
         InputStream inputStream = input.getFormDataMap().get("file").get(0).getBody(InputStream.class, null);
 
-        return fileService.saveMusic(inputStream, bandId);
+        return Response
+                .status(Response.Status.OK)
+                .entity(new MusicName(fileService.saveMusic(inputStream, bandId)))
+                .build();
     }
 
     @POST
@@ -67,6 +71,23 @@ public class FileResource {
         String name;
 
         private ImageName(String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+    }
+
+    private class MusicName {
+
+        String name;
+
+        private MusicName(String name) {
             this.name = name;
         }
 

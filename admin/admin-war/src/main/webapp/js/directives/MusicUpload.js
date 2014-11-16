@@ -21,7 +21,7 @@
                             },
 
                             onCompleteItem: function (item, response) {
-                                item.file.name = response;
+                                item.file.name = response.name;
                                 scope.addQueue.push(item.file.name);
                                 scope.musicList.push(item.file.name);
                                 scope.musicGroupList = $filter('GroupItems')(scope.musicList, 4);

@@ -10,39 +10,26 @@
             </button>
         </div>
     </div>
-    <div class="row spacer">
-        <div class="col-md-12">
-            <table class="table table-striped table-bordered">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Image</th>
-                    <th>Content</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="album in albumList" ng-mouseenter="showEdit=true" ng-mouseleave="showEdit=false">
-                    <td class="col-md-2">
-                        <span ng-show="!showEdit">{{album.id}}</span>
-                        <button type="button" ng-show="showEdit" class="btn btn-xs btn-primary"
-                                ng-click="editAlbum(album)">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                        </button>
-                        <a type="button" ng-show="showEdit" class="btn btn-xs btn-success"
-                                href="/admin/index.html#/band/songs"
-                                ng-click="setAlbum(album)">
-                            <span class="glyphicon glyphicon-music"></span>
-                        </a>
-                        <button type="button" ng-show="showEdit" class="btn btn-xs btn-danger"
-                                ng-click="removeAlbum(album)">
-                            <span class="glyphicon glyphicon-trash"></span>
-                        </button>
-                    </td>
-                    <td class="col-md-3"><img class="img-responsive img-thumbnail" ng-src="{{getProperty('HOSTNAME')}}uploaded/{{band.id}}/{{album.imageList[0]}}_s.png"/></td>
-                    <td class="col-md-7"><span ng-bind="album.title"></span></td>
-                </tr>
-                </tbody>
-            </table>
+    <div ng-repeat="albumGroup in albumGroupList" class="row spacer">
+        <div ng-repeat="album in albumGroup" class="col-md-3">
+            <div class="thumbnail">
+                <span class="dropdown pull-right" on-toggle="toggled(open)">
+                    <a href class="dropdown-toggle">
+                        <span class="glyphicon glyphicon-cog"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a ng-click="editAlbum(album)"><span class="glyphicon glyphicon-pencil"></span> Edit</a></li>
+                        <li><a ng-click="removeAlbum(album)"><span class="glyphicon glyphicon-trash"></span> Remove</a></li>
+                    </ul>
+                </span>
+                <img class="img-responsive img-thumbnail" ng-src="{{getProperty('HOSTNAME')}}uploaded/{{band.id}}/{{album.imageList[0]}}_s.png"/>
+                <div class="caption">
+                    <h3>{{album.title}}</h3>
+                    <p>{{album.creationDate}}</p>
+                    <p><div ng-bind-html="album.description | MinimizeText"></div></p>
+                    <p><a href="/admin/index.html#/band/songs" class="btn btn-success" ng-click="setAlbum(album)">Songs</a></p>
+                </div>
+            </div>
         </div>
     </div>
 </div>

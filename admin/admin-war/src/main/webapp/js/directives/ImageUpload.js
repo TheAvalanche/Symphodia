@@ -21,7 +21,7 @@
                         },
 
                         onCompleteItem: function (item, response) {
-                            item.file.name = response;
+                            item.file.name = response.name;
                             scope.addQueue.push(item.file.name);
                             scope.imageList.push(item.file.name);
                             scope.imageGroupList = $filter('GroupItems')(scope.imageList, 4);

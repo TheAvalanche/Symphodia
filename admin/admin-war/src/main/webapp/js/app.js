@@ -12,6 +12,13 @@ var adminApp = angular.module('adminApp', [
     'angularFileUpload',
     'ui.bootstrap']);
 
+adminApp.config(function($sceDelegateProvider) {
+    $sceDelegateProvider.resourceUrlWhitelist([
+        'self',
+        'http://localhost:8080/**'
+    ]);
+});
+
 adminApp.run(["$rootScope", "ClientService", "PropertyService", function($rootScope, ClientService, PropertyService) {
 
     PropertyService.getAll().success(function (data) {
