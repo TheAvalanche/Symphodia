@@ -21,6 +21,8 @@ adminApp.config(function($sceDelegateProvider) {
 
 adminApp.run(["$rootScope", "ClientService", "PropertyService", function($rootScope, ClientService, PropertyService) {
 
+    $rootScope.facebookAppId = 541802519281855;
+
     PropertyService.getAll().success(function (data) {
         $rootScope.propertyList = data;
         $rootScope.getProperty = function (propertyKey) {

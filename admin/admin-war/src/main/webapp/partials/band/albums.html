@@ -22,7 +22,7 @@
                         <li><a ng-click="removeAlbum(album)"><span class="glyphicon glyphicon-trash"></span> Remove</a></li>
                     </ul>
                 </span>
-                <img class="img-responsive img-thumbnail" ng-src="{{getProperty('HOSTNAME')}}uploaded/{{band.id}}/{{album.imageList[0]}}_s.png"/>
+                <img class="img-responsive img-thumbnail" ng-src="{{album.imageList[0] | ImagePath}}"/>
                 <div class="caption">
                     <h3>{{album.title}}</h3>
                     <p>{{album.creationDate}}</p>

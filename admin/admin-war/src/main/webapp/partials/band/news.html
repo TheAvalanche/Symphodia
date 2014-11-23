@@ -32,6 +32,9 @@
                 </div>
                 <div class="panel-body">
                     <span ng-bind-html="news.content"></span>
+                    <div ng-repeat="image in news.imageList" class="col-md-2">
+                        <img class="img-responsive img-thumbnail" ng-src="{{image | ImagePath}}"/>
+                    </div>
                 </div>
             </div>
         </div>

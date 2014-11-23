@@ -22,7 +22,7 @@
                         <li><a ng-click="removeMember(member)"><span class="glyphicon glyphicon-trash"></span> Remove</a></li>
                     </ul>
                 </span>
-                <img class="img-responsive img-thumbnail" ng-src="{{getProperty('HOSTNAME')}}uploaded/{{band.id}}/{{member.imageList[0]}}_s.png"/>
+                <img class="img-responsive img-thumbnail" ng-src="{{member.imageList[0] | ImagePath}}"/>
                 <div class="caption">
                     <h3>{{member.name}} {{member.surname}}</h3>
                     <p>{{member.dateOfBirth}}</p>
