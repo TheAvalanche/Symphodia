@@ -10,6 +10,7 @@
     <modules>
         <module>../admin</module>
         <module>../server</module>
+        <module>../front</module>
     </modules>
 
     <properties>
