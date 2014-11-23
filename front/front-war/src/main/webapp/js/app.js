@@ -1,16 +1,10 @@
 "use strict";
 
-var adminApp = angular.module('adminApp', [
-    'adminApp.controllers',
-    'adminApp.services',
-    'adminApp.directives',
-    'adminApp.filters',
-    'ngRoute',
-    'ngAnimate',
-    'ngSanitize',
-    'textAngular',
-    'angularFileUpload',
-    'ui.bootstrap']);
+var adminApp = angular.module('frontApp', [
+    'frontApp.controllers',
+    'frontApp.services',
+    'frontApp.directives',
+    'frontApp.filters']);
 
 adminApp.config(function($sceDelegateProvider) {
     $sceDelegateProvider.resourceUrlWhitelist([

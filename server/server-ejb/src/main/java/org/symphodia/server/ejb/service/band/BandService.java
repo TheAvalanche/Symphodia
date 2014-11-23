@@ -27,4 +27,10 @@ public class BandService {
         band = entityManager.find(Band.class, band.getId());
         entityManager.remove(band);
     }
+
+    public Band getBandById(Long bandId) {
+        TypedQuery<Band> query = entityManager.createNamedQuery("Band.byId", Band.class);
+        query.setParameter("id", bandId);
+        return query.getResultList().get(0);
+    }
 }

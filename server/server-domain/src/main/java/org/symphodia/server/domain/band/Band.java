@@ -24,7 +24,8 @@ import java.util.List;
 @Entity
 @Table(name = "BAND")
 @NamedQueries({
-        @NamedQuery(name = "Band.all", query = "SELECT b FROM Band b ORDER BY b.id DESC")
+        @NamedQuery(name = "Band.all", query = "SELECT b FROM Band b ORDER BY b.id DESC"),
+        @NamedQuery(name = "Band.byId", query = "SELECT b FROM Band b WHERE b.id = :id")
 })
 @SequenceGenerator(name = "BAND_SEQ", sequenceName = "BAND_SEQ", initialValue = 100000)
 public class Band extends AbstractDomainObject {

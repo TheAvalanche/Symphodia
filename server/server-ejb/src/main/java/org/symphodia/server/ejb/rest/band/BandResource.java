@@ -8,11 +8,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
@@ -43,5 +39,11 @@ public class BandResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public void removeBand(@NotNull Band band) {
         service.removeBand(band);
+    }
+
+    @GET
+    @Path("/id/{bandId}")
+    public Band getBandById(@NotNull @PathParam("bandId") Long bandId) {
+        return service.getBandById(bandId);
     }
 }
