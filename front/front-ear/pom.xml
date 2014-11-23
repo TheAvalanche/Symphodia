@@ -41,7 +41,7 @@
             <plugin>
                 <artifactId>maven-ear-plugin</artifactId>
                 <configuration>
-                    <applicationName>admin</applicationName>
+                    <applicationName>front</applicationName>
                     <filtering>true</filtering>
                     <modules>
                         <ejbModule>
