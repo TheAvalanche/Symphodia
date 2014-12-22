@@ -6,7 +6,7 @@ var adminApp = angular.module('frontApp', [
     'frontApp.directives',
     'frontApp.filters']);
 
-adminApp.config(function($sceDelegateProvider) {
+adminApp.config(function ($sceDelegateProvider) {
     $sceDelegateProvider.resourceUrlWhitelist([
         'self',
         'http://localhost:8080/**'

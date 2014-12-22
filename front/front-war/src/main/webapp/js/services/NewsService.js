@@ -4,7 +4,7 @@
     angular.module('frontApp.services')
         .factory('NewsService', ['$http', 'ContextService', function ($http, ContextService) {
             var restRoot = '/front/rest/news';
-            var restRootBand = restRoot + '/' + ContextService.getBand().id;
+            var restRootBand = restRoot + '/' + ContextService.getBandId();
 
             return {
                 all: function() {

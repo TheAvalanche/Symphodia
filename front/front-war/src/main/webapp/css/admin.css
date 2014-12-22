@@ -1,0 +1,79 @@
+.background {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-image: url('img/texture.jpg');
+    background-repeat:repeat;
+}
+
+.admin-modal > .modal-dialog {
+    width: 850px;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+.spacer {
+    margin-top: 10px;
+}
+
+.spacer-big {
+    margin-top: 50px;
+}
+
+.notifications {
+    position: fixed;
+    top: 55px;
+    left: 10px;
+    z-index: 1000;
+}
+
+.notification {
+    margin-bottom: 0 !important;
+}
+
+.notification-fade {
+    width: 300px;
+    display: block;
+    margin: 10px 25px;
+}
+
+.notification-fade.ng-enter,
+.notification-fade.ng-leave {
+    -webkit-transition:all linear 0.5s;
+    -moz-transition:all linear 0.5s;
+    -o-transition:all linear 0.5s;
+    transition:all linear 0.5s;
+    display:block !important;
+}
+
+.notification-fade.ng-enter.ng-enter-active,
+.notification-fade.ng-leave {
+    opacity:1;
+}
+
+.notification-fade.ng-enter,
+.notification-fade.ng-leave.ng-leave-active {
+    opacity:0;
+}

@@ -4,8 +4,8 @@
     angular.module('frontApp.services')
         .factory('ContextService', function () {
             var band;
-            var client;
             var album;
+            var bandId = 1000;
             var properties;
 
             var contextService = {
@@ -15,11 +15,8 @@
                 getBand: function () {
                     return band;
                 },
-                setClient: function (arg) {
-                    client = arg;
-                },
-                getClient: function () {
-                    return client;
+                getBandId: function () {
+                    return bandId;
                 },
                 setAlbum: function (arg) {
                     album = arg;
