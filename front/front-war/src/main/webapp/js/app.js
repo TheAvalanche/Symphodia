@@ -4,7 +4,8 @@ var adminApp = angular.module('frontApp', [
     'frontApp.controllers',
     'frontApp.services',
     'frontApp.directives',
-    'frontApp.filters']);
+    'frontApp.filters',
+    'ngSanitize']);
 
 adminApp.config(function ($sceDelegateProvider) {
     $sceDelegateProvider.resourceUrlWhitelist([

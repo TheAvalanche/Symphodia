@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html ng-app="frontApp">
+<head>
+    <title>Symphodia</title>
+    <meta charset="UTF-8"/>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/front.css">
+    <script src="lib/angular/angular.min.js"></script>
+    <script src="lib/angular/angular-sanitize.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/directives.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/controllers/FrontCtrl.js"></script>
+    <script src="js/services/AlbumService.js"></script>
+    <script src="js/services/BandService.js"></script>
+    <script src="js/services/ClientService.js"></script>
+    <script src="js/services/ContextService.js"></script>
+    <script src="js/services/MemberService.js"></script>
+    <script src="js/services/MessageService.js"></script>
+    <script src="js/services/NewsService.js"></script>
+    <script src="js/services/PropertyService.js"></script>
+    <script src="js/services/SongService.js"></script>
+    <script src="js/filters/ImagePath.js"></script>
+</head>
+<body ng-controller="FrontCtrl">
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Symphodia</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#">News</a>
+                    </li>
+                    <li>
+                        <a href="#">Music</a>
+                    </li>
+                    <li>
+                        <a href="#">Members</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header class="main-header">
+        <span id="logo">{{band.name}}</span>
+    </header>
+    <div class="container-fluid">
+        <section>
+            <article ng-repeat="news in newsList">
+                <figure><img ng-src="{{news.imageList[0] | ImagePath}}"/></figure>
+                <h2>{{news.title}}</h2>
+
+                <p ng-bind-html="news.content"></p>
+            </article>
+        </section>
+    </div>
+</body>
+</html>
