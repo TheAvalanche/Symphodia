@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/front.css">
     <script src="lib/angular/angular.min.js"></script>
     <script src="lib/angular/angular-sanitize.min.js"></script>
+    <script src="lib/angular-addon/angular-ui/ui-bootstrap-tpls-0.11.0.min.js"></script>
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
     <script src="js/directives.js"></script>
@@ -31,45 +32,52 @@
 
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <button type="button" class="navbar-toggle" ng-init="navbarCollapsed=true" ng-click="navbarCollapsed = !navbarCollapsed">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Symphodia</a>
+                <a class="navbar-brand" href="#">
+                    Symphodia
+                </a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="collapse navbar-collapse" collapse="navbarCollapsed">
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="#">News</a>
-                    </li>
-                    <li>
-                        <a href="#">Music</a>
-                    </li>
-                    <li>
-                        <a href="#">Members</a>
-                    </li>
+                    <li class="active"><a href="#">Link1<span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">Link2</a></li>
+                    <li><a href="#">Link3</a></li>
                 </ul>
             </div>
         </div>
     </nav>
     <header class="main-header">
-        <span id="logo">{{band.name}}</span>
+        <div id="cover"></div>
+        <div id="logo-wrapper">
+            <span id="logo">{{band.name}}</span>
+        </div>
     </header>
     <div class="container-fluid">
-        <section>
+        <section id="news-section">
             <article ng-repeat="news in newsList">
                 <figure><img ng-src="{{news.imageList[0] | ImagePath}}"/></figure>
                 <h2>{{news.title}}</h2>
-
                 <p ng-bind-html="news.content"></p>
             </article>
         </section>
+        <section id="music-section">
+            <article ng-repeat="album in albumList">
+                <h2>{{album.title}}</h2>
+            </article>
+        </section>
+    </div>
+    <button class="btn btn-default" ng-init="isCollapsed=true" ng-click="isCollapsed = !isCollapsed">Toggle collapse</button>
+    <hr>
+    <div collapse="isCollapsed">
+        <div class="well well-lg">Some content {{isCollapsed}}</div>
     </div>
 </body>
 </html>
