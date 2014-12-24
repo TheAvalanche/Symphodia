@@ -28,16 +28,13 @@
     background-size: cover;
     width: 100%;
     height: 100%;
+    overflow: hidden;
     opacity: 0;
     -webkit-filter: blur(2px);
     -moz-filter: blur(2px);
-    -o-filter: blur(2px);
-    -ms-filter: blur(2px);
     filter: blur(2px);
     -webkit-animation: fadein 2s ease-in-out 0.5s forwards; /* Safari, Chrome and Opera > 12.1 */
     -moz-animation: fadein 2s ease-in-out 0.5s forwards; /* Firefox < 16 */
-    -ms-animation: fadein 2s ease-in-out 0.5s forwards; /* Internet Explorer */
-    -o-animation: fadein 2s ease-in-out 0.5s forwards; /* Opera < 12.1 */
     animation: fadein 2s ease-in-out 0.5s forwards;
 }
 
@@ -79,6 +76,89 @@
     height: 100%;
 }
 
+.shadow {
+    -moz-box-shadow:    0 -10px 20px 0 #000;
+    -webkit-box-shadow: 0 -10px 20px 0 #000;
+    box-shadow:         0 -10px 20px 0 #000;
+    position: relative;
+    z-index: 100;
+}
+
 html, body {
     height: 100%;
+}
+
+.infinite-slider-window {
+    position: relative;
+    max-width: 100%;
+    width: 100%;
+    overflow: hidden;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.infinite-slider-container {
+    position: relative;
+    margin: auto;
+    z-index: 1;
+    overflow: visible;
+}
+
+.infinite-slider-container,
+.infinite-slider-boundary {
+    height: 410px;
+}
+
+.boundary-inside .infinite-slider-boundary {
+    position: absolute;
+    z-index: 2;
+    width: 410px;
+    border: 1px solid rgba(255, 0, 0, 0.7);
+}
+
+.infinite-slider-container {
+    width: 410px;
+}
+
+.infinite-slider-content {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+}
+.infinite-slider-content .slide {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 390px;
+    height: 390px;
+    overflow: hidden;
+    opacity: .2;
+    -moz-transform: scale(0.85);
+    -webkit-transform: scale(0.85);
+    transform: scale(0.85);
+    transition: opacity 2s, border 0.5s, transform .5s;
+    -webkit-transition: opacity 2s, border 0.5s, -webkit-transform .5s;
+    border: 10px solid transparent;
+}
+
+.allow-click .infinite-slider-content .slide {
+    opacity: .5;
+    transition: opacity .5s, border 0.5s, transform .5s;
+    -webkit-transition: opacity .5s, border 0.5s, -webkit-transform .5s;
+}
+.infinite-slider-content .slide.closest {
+    opacity: 1;
+    transition: opacity .5s, border 0.5s, transform .5s;
+    -webkit-transition: opacity .5s, border 0.5s, -webkit-transform .5s;
+    -moz-transform: scale(1);
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+.infinite-slider-content .slide.snapped {
+    border: 10px solid rgba(255, 0, 0, 0.5);
 }

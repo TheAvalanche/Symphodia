@@ -6,7 +6,8 @@ var adminApp = angular.module('frontApp', [
     'frontApp.directives',
     'frontApp.filters',
     'ngSanitize',
-    'ui.bootstrap']);
+    'ui.bootstrap',
+    'gilbox.infiniteSlider']);
 
 adminApp.config(function ($sceDelegateProvider) {
     $sceDelegateProvider.resourceUrlWhitelist([
