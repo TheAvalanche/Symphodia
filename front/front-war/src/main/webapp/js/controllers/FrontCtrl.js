@@ -24,11 +24,12 @@
                 });
 
                 $scope.openAlbum = function (album) {
+                    ContextService.setAlbum(album);
                     $modal.open({
-                        templateUrl: 'myModalContent.html',
+                        templateUrl: 'album.html',
                         controller: 'AlbumCtrl',
                         resolve: {
-                            items: function () {
+                            album: function () {
                                 return album;
                             }
                         }

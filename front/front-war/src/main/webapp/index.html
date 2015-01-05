@@ -107,7 +107,7 @@
             <h2>Singles</h2>
         </header>
         <div class="row voffset4">
-            <article ng-repeat="album in singleAlbumList" class="col-md-3">
+            <article ng-repeat="album in singleAlbumList" class="col-md-3" ng-click="openAlbum(album)">
                 <figure><img ng-src="{{album.imageList[0] | ImagePath}}"/></figure>
                 <h3>{{album.title}}</h3>
                 <time>({{album.creationDate | date : 'yyyy'}})</time>

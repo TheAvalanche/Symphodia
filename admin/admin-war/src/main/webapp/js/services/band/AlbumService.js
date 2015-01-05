@@ -4,20 +4,19 @@
     angular.module('adminApp.services')
         .factory('AlbumService', ['$http', 'ContextService', function ($http, ContextService) {
             var restRoot = '/admin/rest/album';
-            var restRootBand = restRoot + '/' + ContextService.getBand().id;
 
             return {
                 all: function() {
-                    return $http.get(restRootBand + '/all');
+                    return $http.get(restRoot + ContextService.getBand().id + '/all');
                 },
                 save: function(album) {
-                    return $http.post(restRootBand + '/save', album);
+                    return $http.post(restRoot + ContextService.getBand().id + '/save', album);
                 },
                 remove: function(album) {
-                    return $http.post(restRootBand + '/remove', album);
+                    return $http.post(restRoot + ContextService.getBand().id + '/remove', album);
                 },
                 albumTypes: function () {
-                    return $http.get(restRoot + '/albumTypes');
+                    return $http.get(restRoot + ContextService.getBand().id + '/albumTypes');
                 }
             };
         }]);
