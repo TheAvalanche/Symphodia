@@ -9,15 +9,6 @@
             return {
                 all: function() {
                     return $http.get(restRootBand + '/all');
-                },
-                save: function(news) {
-                    return $http.post(restRootBand + '/save', news);
-                },
-                remove: function(news) {
-                    return $http.post(restRootBand + '/remove', news);
-                },
-                instruments: function () {
-                    return $http.get(restRoot + '/instruments');
                 }
             };
         }]);

@@ -9,12 +9,6 @@
             return {
                 all: function() {
                     return $http.get(restRootAlbum + '/all');
-                },
-                save: function(song) {
-                    return $http.post(restRootAlbum + '/save', song);
-                },
-                remove: function(song) {
-                    return $http.post(restRootAlbum + '/remove', song);
                 }
             };
         }]);

@@ -10,14 +10,11 @@
                 all: function() {
                     return $http.get(restRootBand + '/all');
                 },
-                save: function(album) {
-                    return $http.post(restRootBand + '/save', album);
+                allFull: function () {
+                    return $http.get(restRootBand + '/FULL/all');
                 },
-                remove: function(album) {
-                    return $http.post(restRootBand + '/remove', album);
-                },
-                albumTypes: function () {
-                    return $http.get(restRoot + '/albumTypes');
+                allSingles: function () {
+                    return $http.get(restRootBand + '/SINGLE/all');
                 }
             };
         }]);

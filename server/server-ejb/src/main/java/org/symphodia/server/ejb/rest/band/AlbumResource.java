@@ -35,6 +35,14 @@ public class AlbumResource {
         return service.getAllAlbumsByBand(bandId);
     }
 
+    @GET
+    @Path("/{bandId}/{albumType}/all")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Album> getAllAlbumsByBandAndType(@NotNull @PathParam("bandId") Long bandId,
+                                                 @NotNull @PathParam("albumType") AlbumType albumType) {
+        return service.getAllAlbumsByBandAndType(bandId, albumType);
+    }
+
     @POST
     @Path("/{bandId}/save")
     @Consumes(MediaType.APPLICATION_JSON)

@@ -16,7 +16,7 @@ adminApp.config(function ($sceDelegateProvider) {
     ]);
 });
 
-adminApp.run(["$rootScope", "ClientService", "PropertyService", function($rootScope, ClientService, PropertyService) {
+adminApp.run(["$rootScope", "PropertyService", function($rootScope, PropertyService) {
 
     PropertyService.getAll().success(function (data) {
         $rootScope.propertyList = data;

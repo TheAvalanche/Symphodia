@@ -19,14 +19,13 @@
     <script src="js/filters.js"></script>
     <script src="js/services.js"></script>
     <script src="js/controllers/FrontCtrl.js"></script>
+    <script src="js/controllers/AlbumCtrl.js"></script>
     <script src="js/services/AlbumService.js"></script>
     <script src="js/services/BandService.js"></script>
-    <script src="js/services/ClientService.js"></script>
     <script src="js/services/ContextService.js"></script>
-    <script src="js/services/MemberService.js"></script>
-    <script src="js/services/MessageService.js"></script>
-    <script src="js/services/NewsService.js"></script>
     <script src="js/services/PropertyService.js"></script>
+    <script src="js/services/MemberService.js"></script>
+    <script src="js/services/NewsService.js"></script>
     <script src="js/services/SongService.js"></script>
     <script src="js/filters/ImagePath.js"></script>
 </head>
@@ -58,35 +57,77 @@
     </div>
 </nav>
 <header class="main-header">
-    <div id="cover"></div>
-    <div id="logo-wrapper">
-        <span id="logo">{{band.name}}</span>
+    <div class="cover"></div>
+    <div class="logo-wrapper">
+        <span class="logo">{{band.name}}</span>
     </div>
 </header>
-<div class="">
-    <section id="news-section">
-        <div infinite-slider-boundary class="infinite-slider-boundary infinite-slider-window">
-            <div infinite-slider snap classify-closest classify-snapped closest-item-id="closestItemId" is-jumping="listData.isJumping" snapped-item-id="listData.snappedItemId" class="infinite-slider-container">
-                <div infinite-slider-content class="infinite-slider-content">
-
-<!--                    <div class="slide" ng-repeat="item in listData.items track by $index">
-                        <img draggable="false" ng-src="{{item.img}}" alt=""/>
-                    </div>-->
-                    <article class="slide" ng-repeat="news in newsList">
-                        <figure><img ng-src="{{news.imageList[0] | ImagePath}}"/></figure>
-                        <h2>{{news.title}}</h2>
-                        <p ng-bind-html="news.content"></p>
-                    </article>
-
-                </div>
+<section id="news-section" class="shadow">
+    <div class="container">
+        <article id="first-news" class="row voffset4">
+            <figure class="col-md-4">
+                <img ng-src="{{firstNews.imageList[0] | ImagePath}}"/>
+            </figure>
+            <div class="col-md-8">
+                <h3>{{firstNews.title}}</h3>
+                <time>{{firstNews.creationDate | date : 'dd/MM/yyyy H:mm'}}</time>
+                <p ng-bind-html="firstNews.content"></p>
+            </div>
+        </article>
+    </div>
+    <div infinite-slider-boundary class="infinite-slider-boundary infinite-slider-window">
+        <div infinite-slider snap classify-closest classify-snapped closest-item-id="closestItemId"
+             is-jumping="listData.isJumping" snapped-item-id="listData.snappedItemId" class="infinite-slider-container">
+            <div infinite-slider-content class="infinite-slider-content">
+                <article class="slide" ng-repeat="news in newsList">
+                    <figure><img ng-src="{{news.imageList[0] | ImagePath}}"/></figure>
+                    <h3>{{news.title}}</h3>
+                    <p ng-bind-html="news.content"></p>
+                </article>
             </div>
         </div>
-    </section>
-    <section id="music-section">
-        <article ng-repeat="album in albumList">
-            <h2>{{album.title}}</h2>
-        </article>
-    </section>
+    </div>
+</section>
+<div class="intersection">
+    <div class="cover"></div>
 </div>
+<section id="music-section" class="shadow">
+    <div class="container">
+        <header>
+            <h2>Albums</h2>
+        </header>
+        <div class="row voffset4">
+            <article ng-repeat="album in fullAlbumList" class="col-md-3" ng-click="openAlbum(album)">
+                <figure><img ng-src="{{album.imageList[0] | ImagePath}}"/></figure>
+                <h3>{{album.title}}</h3>
+                <time>({{album.creationDate | date : 'yyyy'}})</time>
+            </article>
+        </div>
+        <header>
+            <h2>Singles</h2>
+        </header>
+        <div class="row voffset4">
+            <article ng-repeat="album in singleAlbumList" class="col-md-3">
+                <figure><img ng-src="{{album.imageList[0] | ImagePath}}"/></figure>
+                <h3>{{album.title}}</h3>
+                <time>({{album.creationDate | date : 'yyyy'}})</time>
+            </article>
+        </div>
+    </div>
+</section>
+<div class="intersection2">
+    <div class="cover"></div>
+</div>
+<section id="members-section" class="shadow">
+    <div class="container">
+        <div class="row voffset4">
+            <article ng-repeat="member in memberList" class="col-md-3">
+                <figure><img ng-src="{{member.imageList[0] | ImagePath}}"/></figure>
+                <h3>{{member.name}} {{member.surname}}</h3>
+                <p ng-bind-html="member.description"></p>
+            </article>
+        </div>
+    </div>
+</section>
 </body>
 </html>

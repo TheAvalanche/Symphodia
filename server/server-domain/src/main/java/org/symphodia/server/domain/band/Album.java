@@ -14,6 +14,7 @@ import java.util.List;
 @Table(name = "ALBUM")
 @NamedQueries({
         @NamedQuery(name = "Album.allByBand", query = "SELECT a FROM Album a WHERE a.band.id = :bandId ORDER BY a.id DESC"),
+        @NamedQuery(name = "Album.allByBandAndType", query = "SELECT a FROM Album a WHERE a.band.id = :bandId AND a.albumType = :albumType ORDER BY a.id DESC")
 })
 @SequenceGenerator(name = "ALBUM_SEQ", sequenceName = "ALBUM_SEQ", initialValue = 200000)
 public class Album extends AbstractDomainObject {

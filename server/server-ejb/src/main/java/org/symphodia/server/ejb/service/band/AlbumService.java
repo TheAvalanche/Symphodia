@@ -1,6 +1,7 @@
 package org.symphodia.server.ejb.service.band;
 
 import org.symphodia.server.domain.band.Album;
+import org.symphodia.server.domain.band.AlbumType;
 import org.symphodia.server.domain.band.Band;
 
 import javax.ejb.Stateless;
@@ -18,6 +19,13 @@ public class AlbumService {
     public List<Album> getAllAlbumsByBand(Long bandId) {
         TypedQuery<Album> query = entityManager.createNamedQuery("Album.allByBand", Album.class);
         query.setParameter("bandId", bandId);
+        return query.getResultList();
+    }
+
+    public List<Album> getAllAlbumsByBandAndType(Long bandId, AlbumType albumType) {
+        TypedQuery<Album> query = entityManager.createNamedQuery("Album.allByBandAndType", Album.class);
+        query.setParameter("bandId", bandId);
+        query.setParameter("albumType", albumType);
         return query.getResultList();
     }
 
