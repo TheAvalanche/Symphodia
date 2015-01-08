@@ -8,5 +8,9 @@
                 SongService.all().success(function (data) {
                     $scope.songList = data;
                 });
+
+                $scope.cancel = function () {
+                    $modalInstance.close();
+                };
             }]);
 }());

@@ -2,11 +2,24 @@
     <h3 class="modal-title">{{album.title}}</h3>
 </div>
 <div class="modal-body">
-    <table>
-        <tr ng-repeat="song in songList">
-            <td>{{song.title}}</td>
-        </tr>
-    </table>
+    <div class="row">
+        <div class="col-md-5">
+            <img ng-src="{{album.imageList[0] | ImagePath}}">
+        </div>
+        <div class="col-md-7">
+            <table>
+                <tr ng-repeat="song in songList | orderBy : 'orderNumber'">
+                    <td>{{song.orderNumber}}. </td>
+                    <td>{{song.title}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row voffset2">
+        <div class="col-md-12">
+            <p ng-bind-html="album.description"></p>
+        </div>
+    </div>
 </div>
 <div class="modal-footer">
     <button class="btn btn-warning" ng-click="cancel()" type="button"><span

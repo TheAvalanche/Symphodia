@@ -13,6 +13,7 @@
     <script src="lib/angular-addon/angular-ui/ui-bootstrap-tpls-0.11.0.min.js"></script>
     <script src="lib/angular-addon/angular-slider/infinite-slider.js"></script>
     <script src="lib/angular-addon/angular-slider/AnimationFrame.js"></script>
+    <script src="lib/angular-addon/angular-scroll/angular-scroll.min.js"></script>
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
     <script src="js/directives.js"></script>
@@ -42,16 +43,16 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#">
-                Symphodia
+                <span class="brand text-warning" style="font-size: 48px; position: relative; top: 9px;">Symphodia</span>
             </a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" collapse="navbarCollapsed">
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="#">Link1<span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Link2</a></li>
-                <li><a href="#">Link3</a></li>
+                <li du-scrollspy="news-section"><a href="#news-section" du-smooth-scroll duration="2000" offset="40">News</a></li>
+                <li du-scrollspy="music-section"><a href="#music-section" du-smooth-scroll duration="2000" offset="40">Releases</a></li>
+                <li du-scrollspy="members-section"><a href="#members-section" du-smooth-scroll duration="2000" offset="40">Members</a></li>
             </ul>
         </div>
     </div>
@@ -94,9 +95,9 @@
 <section id="music-section" class="shadow">
     <div class="container">
         <header>
-            <h2>Albums</h2>
+            <h2 class="text-warning">Albums</h2>
         </header>
-        <div class="row voffset4">
+        <div class="row voffset4 voffsetb4">
             <article ng-repeat="album in fullAlbumList" class="col-md-3" ng-click="openAlbum(album)">
                 <figure><img ng-src="{{album.imageList[0] | ImagePath}}"/></figure>
                 <h3>{{album.title}}</h3>
@@ -104,9 +105,9 @@
             </article>
         </div>
         <header>
-            <h2>Singles</h2>
+            <h2 class="text-warning">Singles</h2>
         </header>
-        <div class="row voffset4">
+        <div class="row voffset4 voffsetb4">
             <article ng-repeat="album in singleAlbumList" class="col-md-3" ng-click="openAlbum(album)">
                 <figure><img ng-src="{{album.imageList[0] | ImagePath}}"/></figure>
                 <h3>{{album.title}}</h3>
@@ -120,7 +121,7 @@
 </div>
 <section id="members-section" class="shadow">
     <div class="container">
-        <div class="row voffset4">
+        <div class="row voffset4 voffsetb4">
             <article ng-repeat="member in memberList" class="col-md-3">
                 <figure><img ng-src="{{member.imageList[0] | ImagePath}}"/></figure>
                 <h3>{{member.name}} {{member.surname}}</h3>
@@ -129,5 +130,10 @@
         </div>
     </div>
 </section>
+<footer class="main-footer">
+    <div class="container">
+        All rights reserved
+    </div>
+</footer>
 </body>
 </html>
