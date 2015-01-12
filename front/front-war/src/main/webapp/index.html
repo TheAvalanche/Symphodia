@@ -28,6 +28,7 @@
     <script src="js/services/MemberService.js"></script>
     <script src="js/services/NewsService.js"></script>
     <script src="js/services/SongService.js"></script>
+    <script src="js/directives/BackImg.js"></script>
     <script src="js/filters/ImagePath.js"></script>
 </head>
 <body ng-controller="FrontCtrl">
@@ -58,7 +59,7 @@
     </div>
 </nav>
 <header class="main-header">
-    <div class="cover"></div>
+    <div class="cover" s-back-img="{{band.page.imageList[0] | ImagePath}}"></div>
     <div class="logo-wrapper">
         <span class="logo">{{band.name}}</span>
     </div>
@@ -67,7 +68,7 @@
     <div class="container">
         <article id="first-news" class="row voffset4">
             <figure class="col-md-4">
-                <img ng-src="{{firstNews.imageList[0] | ImagePath}}"/>
+                <img ng-src="{{firstNews.imageList[0] | ImagePath:'s'}}"/>
             </figure>
             <div class="col-md-8">
                 <h3>{{firstNews.title}}</h3>
@@ -81,7 +82,7 @@
              is-jumping="listData.isJumping" snapped-item-id="listData.snappedItemId" class="infinite-slider-container">
             <div infinite-slider-content class="infinite-slider-content">
                 <article class="slide" ng-repeat="news in newsList">
-                    <figure><img ng-src="{{news.imageList[0] | ImagePath}}"/></figure>
+                    <figure><img ng-src="{{news.imageList[0] | ImagePath:'s'}}"/></figure>
                     <h3>{{news.title}}</h3>
                     <p ng-bind-html="news.content"></p>
                 </article>
@@ -90,7 +91,7 @@
     </div>
 </section>
 <div class="intersection">
-    <div class="cover"></div>
+    <div class="cover" s-back-img="{{band.page.imageList[1] | ImagePath}}"></div>
 </div>
 <section id="music-section" class="shadow">
     <div class="container">
@@ -99,7 +100,7 @@
         </header>
         <div class="row voffset4 voffsetb4">
             <article ng-repeat="album in fullAlbumList" class="col-md-3" ng-click="openAlbum(album)">
-                <figure><img ng-src="{{album.imageList[0] | ImagePath}}"/></figure>
+                <figure><img ng-src="{{album.imageList[0] | ImagePath:'s'}}"/></figure>
                 <h3>{{album.title}}</h3>
                 <time>({{album.creationDate | date : 'yyyy'}})</time>
             </article>
@@ -109,7 +110,7 @@
         </header>
         <div class="row voffset4 voffsetb4">
             <article ng-repeat="album in singleAlbumList" class="col-md-3" ng-click="openAlbum(album)">
-                <figure><img ng-src="{{album.imageList[0] | ImagePath}}"/></figure>
+                <figure><img ng-src="{{album.imageList[0] | ImagePath:'s'}}"/></figure>
                 <h3>{{album.title}}</h3>
                 <time>({{album.creationDate | date : 'yyyy'}})</time>
             </article>
@@ -117,13 +118,13 @@
     </div>
 </section>
 <div class="intersection2">
-    <div class="cover"></div>
+    <div class="cover" s-back-img="{{band.page.imageList[2] | ImagePath}}"></div>
 </div>
 <section id="members-section" class="shadow">
     <div class="container">
         <div class="row voffset4 voffsetb4">
             <article ng-repeat="member in memberList" class="col-md-3">
-                <figure><img ng-src="{{member.imageList[0] | ImagePath}}"/></figure>
+                <figure><img ng-src="{{member.imageList[0] | ImagePath:'s'}}"/></figure>
                 <h3>{{member.name}} {{member.surname}}</h3>
                 <p ng-bind-html="member.description"></p>
             </article>
