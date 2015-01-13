@@ -21,6 +21,7 @@
     <script src="js/services.js"></script>
     <script src="js/controllers/FrontCtrl.js"></script>
     <script src="js/controllers/AlbumCtrl.js"></script>
+    <script src="js/controllers/MemberCtrl.js"></script>
     <script src="js/services/AlbumService.js"></script>
     <script src="js/services/BandService.js"></script>
     <script src="js/services/ContextService.js"></script>
@@ -51,8 +52,10 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" collapse="navbarCollapsed">
             <ul class="nav navbar-nav navbar-right">
-                <li du-scrollspy="news-section"><a href="#news-section" du-smooth-scroll duration="2000" offset="40">News</a></li>
-                <li du-scrollspy="music-section"><a href="#music-section" du-smooth-scroll duration="2000" offset="40">Releases</a></li>
+                <li du-scrollspy="news-section"><a href="#news-section" du-smooth-scroll duration="2000" offset="50">News</a>
+                </li>
+                <li du-scrollspy="music-section"><a href="#music-section" du-smooth-scroll duration="2000" offset="40">Releases</a>
+                </li>
                 <li du-scrollspy="members-section"><a href="#members-section" du-smooth-scroll duration="2000" offset="40">Members</a></li>
             </ul>
         </div>
@@ -63,30 +66,37 @@
     <div class="logo-wrapper">
         <span class="logo">{{band.name}}</span>
     </div>
+    <div class="start-wrapper">
+        <span class="start">
+            <a href="#news-section" du-smooth-scroll duration="2000" offset="50">
+                <span class="fa fa-chevron-down fa-5x"></span>
+            </a>
+        </span>
+    </div>
 </header>
 <section id="news-section" class="shadow">
     <div class="container">
-        <article id="first-news" class="row voffset4">
+        <article id="first-news" class="row voffset5">
             <figure class="col-md-4">
-                <img ng-src="{{firstNews.imageList[0] | ImagePath:'s'}}"/>
+                <img ng-src="{{firstNews.imageList[0] | ImagePath}}" width="360" height="360"/>
             </figure>
             <div class="col-md-8">
-                <h3>{{firstNews.title}}</h3>
-                <time>{{firstNews.creationDate | date : 'dd/MM/yyyy H:mm'}}</time>
-                <p ng-bind-html="firstNews.content"></p>
+                <h2>{{firstNews.title}}</h2>
+                <time><small><em>{{firstNews.creationDate | date : 'dd/MM/yyyy H:mm'}}</em></small></time>
+                <p class="voffset3" ng-bind-html="firstNews.content"></p>
             </div>
         </article>
     </div>
-    <div infinite-slider-boundary class="infinite-slider-boundary infinite-slider-window">
-        <div infinite-slider snap classify-closest classify-snapped closest-item-id="closestItemId"
-             is-jumping="listData.isJumping" snapped-item-id="listData.snappedItemId" class="infinite-slider-container">
-            <div infinite-slider-content class="infinite-slider-content">
-                <article class="slide" ng-repeat="news in newsList">
+
+    <div class="container-fluid">
+        <div class="row well voffset5 voffsetb5">
+            <article class="col-md-2" ng-repeat="news in newsList">
+                <div class="thumbnail">
                     <figure><img ng-src="{{news.imageList[0] | ImagePath:'s'}}"/></figure>
                     <h3>{{news.title}}</h3>
                     <p ng-bind-html="news.content"></p>
-                </article>
-            </div>
+                </div>
+            </article>
         </div>
     </div>
 </section>
@@ -123,7 +133,7 @@
 <section id="members-section" class="shadow">
     <div class="container">
         <div class="row voffset4 voffsetb4">
-            <article ng-repeat="member in memberList" class="col-md-3">
+            <article ng-repeat="member in memberList" class="col-md-3" ng-click="openMember(member)">
                 <figure><img ng-src="{{member.imageList[0] | ImagePath:'s'}}"/></figure>
                 <h3>{{member.name}} {{member.surname}}</h3>
                 <p ng-bind-html="member.description"></p>

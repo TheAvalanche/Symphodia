@@ -28,13 +28,26 @@
                     $modal.open({
                         templateUrl: 'album.html',
                         controller: 'AlbumCtrl',
+                        size: 'lg',
                         resolve: {
                             album: function () {
                                 return album;
                             }
                         }
                     });
+                };
 
+                $scope.openMember = function (member) {
+                    $modal.open({
+                        templateUrl: 'member.html',
+                        controller: 'MemberCtrl',
+                        size: 'lg',
+                        resolve: {
+                            member: function () {
+                                return member;
+                            }
+                        }
+                    });
                 }
             }]);
 }());
