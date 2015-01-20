@@ -217,3 +217,16 @@ html, body {
     left: 0;
     right: 0;
 }
+
+.custom-carousel .carousel-indicators {
+    bottom: -20px;
+    margin-bottom: 0;
+}
+
+.custom-carousel .carousel-control.right {
+    background-image: none;
+}
+
+.custom-carousel .carousel-control.left {
+    background-image: none;
+}

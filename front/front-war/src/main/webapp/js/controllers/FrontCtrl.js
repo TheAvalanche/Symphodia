@@ -10,8 +10,6 @@
                 });
                 NewsService.all().success(function (data) {
                     $scope.newsList = data;
-                    $scope.firstNews = data[0];
-                    $scope.newsList.shift();
                 });
                 AlbumService.allFull().success(function (data) {
                     $scope.fullAlbumList = data;
