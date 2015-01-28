@@ -8,6 +8,7 @@ import org.symphodia.server.domain.common.PropertyKey;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -24,11 +25,28 @@ public class FileService {
         String fileName = generateFileName();
 
         ImageProcessor imageProcessor = new ImageProcessor(content);
+        BufferedImage originalImage = imageProcessor.getImage();
         writeFile(imageProcessor.toInputStream(), generatePath(fileName, bandPath, Extension.PNG));
 
+        imageProcessor = new ImageProcessor(originalImage);
+        imageProcessor.resizeProportionally(360);
+        imageProcessor.cropToSquare(360);
+        writeFile(imageProcessor.toInputStream(), generatePath(fileName, bandPath, Extension.PNG_MEDIUM));
+
+        imageProcessor = new ImageProcessor(originalImage);
         imageProcessor.resizeProportionally(180);
         imageProcessor.cropToSquare(180);
         writeFile(imageProcessor.toInputStream(), generatePath(fileName, bandPath, Extension.PNG_SMALL));
+
+        imageProcessor = new ImageProcessor(originalImage);
+        imageProcessor.resizeProportionally(360);
+        imageProcessor.cropTo(360, 200);
+        writeFile(imageProcessor.toInputStream(), generatePath(fileName, bandPath, Extension.PNG_MEDIUM_WIDE));
+
+        imageProcessor = new ImageProcessor(originalImage);
+        imageProcessor.resizeProportionally(180);
+        imageProcessor.cropTo(180, 100);
+        writeFile(imageProcessor.toInputStream(), generatePath(fileName, bandPath, Extension.PNG_SMALL_WIDE));
         return fileName;
     }
 
@@ -42,6 +60,9 @@ public class FileService {
     public void removeImage(String fileName, Long bandPath) throws IOException {
         deleteFile(generatePath(fileName, bandPath, Extension.PNG));
         deleteFile(generatePath(fileName, bandPath, Extension.PNG_SMALL));
+        deleteFile(generatePath(fileName, bandPath, Extension.PNG_SMALL_WIDE));
+        deleteFile(generatePath(fileName, bandPath, Extension.PNG_MEDIUM));
+        deleteFile(generatePath(fileName, bandPath, Extension.PNG_MEDIUM_WIDE));
     }
 
     public void removeMusic(String fileName, Long bandPath) throws IOException {

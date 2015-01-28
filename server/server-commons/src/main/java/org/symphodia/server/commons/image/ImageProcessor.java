@@ -21,6 +21,14 @@ public class ImageProcessor {
         image = ImageIO.read(stream);
     }
 
+    public ImageProcessor(BufferedImage image) {
+        this.image = image;
+    }
+
+    public BufferedImage getImage() {
+        return image;
+    }
+
     public InputStream toInputStream() throws IOException {
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         ImageIO.write(image, "png", os);
@@ -48,6 +56,12 @@ public class ImageProcessor {
         int x = (image.getWidth() - size) / 2;
         int y = (image.getHeight() - size) / 2;
         image = image.getSubimage(x, y, size, size);
+    }
+
+    public void cropTo(int width, int height) {
+        int x = (image.getWidth() - width) / 2;
+        int y = (image.getHeight() - height) / 2;
+        image = image.getSubimage(x, y, width, height);
     }
 
     private BufferedImage resizeImage(int width, int height, int type) {

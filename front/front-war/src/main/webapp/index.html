@@ -32,6 +32,7 @@
     <script src="js/services/SongService.js"></script>
     <script src="js/directives/BackImg.js"></script>
     <script src="js/filters/ImagePath.js"></script>
+    <script src="js/filters/MinimizeText.js"></script>
 </head>
 <body ng-controller="FrontCtrl">
 
@@ -77,13 +78,13 @@
 </header>
 <section id="news-section" class="shadow">
     <div class="container">
-        <carousel interval="5000" class="row voffset5 custom-carousel">
+        <carousel interval="10000" class="row voffset5 custom-carousel">
             <slide ng-repeat="news in newsList" active="news.active">
                 <article class="col-md-10 col-md-offset-1">
                     <figure class="col-md-5">
-                        <img ng-src="{{news.imageList[0] | ImagePath}}" width="360" height="360"/>
+                        <img class="img-responsive" ng-src="{{news.imageList[0] | ImagePath:'m'}}" width="360" height="360"/>
                     </figure>
-                    <div class="col-md-5 text-left">
+                    <div class="col-md-5 text-left" style="height: 360px;">
                         <h2>{{news.title}}</h2>
                         <time><small><em>{{news.creationDate | date : 'dd/MM/yyyy H:mm'}}</em></small></time>
                         <p class="voffset3" ng-bind-html="news.content"></p>
@@ -95,11 +96,12 @@
 
     <div class="container-fluid">
         <div class="row well voffset5 voffsetb5">
-            <article class="col-md-2" ng-repeat="news in newsList">
-                <div class="thumbnail">
-                    <figure><img ng-src="{{news.imageList[0] | ImagePath:'s'}}"/></figure>
+            <article class="col-lg-2 col-md-3 col-sm-4 col-xs-6" ng-repeat="news in newsList">
+                <div class="thumbnail" style="height: 400px">
+                    <figure><img class="img-responsive" ng-src="{{news.imageList[0] | ImagePath:'mw'}}"/></figure>
                     <h3>{{news.title}}</h3>
-                    <p ng-bind-html="news.content"></p>
+                    <time><small><em>{{news.creationDate | date : 'dd/MM/yyyy H:mm'}}</em></small></time>
+                    <p class="voffset3" ng-bind-html="news.content | MinimizeText:200"></p>
                 </div>
             </article>
         </div>
