@@ -57,7 +57,7 @@ public class Band extends AbstractDomainObject {
     private List<Album> albumList = new ArrayList<>();
 
     @Embedded
-    private Page page;
+    private Page page = new Page();
 
     public Long getId() {
         return id;

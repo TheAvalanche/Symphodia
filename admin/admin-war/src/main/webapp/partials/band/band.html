@@ -22,6 +22,49 @@
             <s-image-upload></s-image-upload>
         </div>
         <div class="form-group">
+            <label>Social Links</label><br>
+        </div>
+        <div class="form-group">
+            <div ng-show="!editable">
+                <span class="label label-default"><span class="fa fa-facebook"></span></span>
+                <span><a ng-href="{{band.page.socialData.facebookLink}}">{{band.page.socialData.facebookLink}}</a></span>
+            </div>
+            <div class="input-group" ng-show="editable">
+                <span class="input-group-addon" id="facebook-link"><span class="fa fa-facebook"></span></span>
+                <input ng-model="band.page.socialData.facebookLink" type="text" class="form-control" placeholder="Enter Facebook link" aria-describedby="facebook-link">
+            </div>
+        </div>
+        <div class="form-group">
+            <div ng-show="!editable">
+                <span class="label label-default"><span class="fa fa-youtube"></span></span>
+                <span><a ng-href="{{band.page.socialData.youtubeLink}}">{{band.page.socialData.youtubeLink}}</a></span>
+            </div>
+            <div class="input-group" ng-show="editable">
+                <span class="input-group-addon" id="youtube-link"><span class="fa fa-youtube"></span></span>
+                <input ng-model="band.page.socialData.youtubeLink" type="text" class="form-control" placeholder="Enter Youtube link" aria-describedby="youtube-link">
+            </div>
+        </div>
+        <div class="form-group">
+            <div ng-show="!editable">
+                <span class="label label-default"><span class="fa fa-twitter"></span></span>
+                <span><a ng-href="{{band.page.socialData.twitterLink}}">{{band.page.socialData.twitterLink}}</a></span>
+            </div>
+            <div class="input-group" ng-show="editable">
+                <span class="input-group-addon" id="twitter-link"><span class="fa fa-twitter"></span></span>
+                <input ng-model="band.page.socialData.twitterLink" type="text" class="form-control" placeholder="Enter Twitter link" aria-describedby="twitter-link">
+            </div>
+        </div>
+        <div class="form-group">
+            <div ng-show="!editable">
+                <span class="label label-default"><span class="fa fa-vk"></span></span>
+                <span><a ng-href="{{band.page.socialData.vkLink}}">{{band.page.socialData.vkLink}}</a></span>
+            </div>
+            <div class="input-group" ng-show="editable">
+                <span class="input-group-addon" id="vk-link"><span class="fa fa-vk"></span></span>
+                <input ng-model="band.page.socialData.vkLink" type="text" class="form-control" placeholder="Enter VK link" aria-describedby="vk-link">
+            </div>
+        </div>
+        <div class="form-group">
             <button ng-show="!editable" class="btn btn-primary" ng-click="edit()" type="button"><span
                     class="glyphicon glyphicon-pencil"></span> Edit
             </button>

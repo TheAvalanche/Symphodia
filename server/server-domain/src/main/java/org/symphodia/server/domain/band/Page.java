@@ -2,11 +2,7 @@ package org.symphodia.server.domain.band;
 
 import org.symphodia.server.domain.AbstractDomainObject;
 
-import javax.persistence.CollectionTable;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Embeddable;
-import javax.persistence.FetchType;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +13,9 @@ public class Page extends AbstractDomainObject {
     @CollectionTable(name = "PAGE_IMAGE_LIST")
     @Column(name = "IMAGE")
     private List<String> imageList = new ArrayList<>();
+
+    @Embedded
+    private SocialData socialData = new SocialData();
 
     public List<String> getImageList() {
         return imageList;
@@ -32,5 +31,13 @@ public class Page extends AbstractDomainObject {
 
     public void removeImage(String image) {
         this.imageList.remove(image);
+    }
+
+    public SocialData getSocialData() {
+        return socialData;
+    }
+
+    public void setSocialData(SocialData socialData) {
+        this.socialData = socialData;
     }
 }
