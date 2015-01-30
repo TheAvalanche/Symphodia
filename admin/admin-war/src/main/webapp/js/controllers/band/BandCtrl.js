@@ -15,10 +15,16 @@
             $scope.save = function () {
                 $scope.$broadcast("beforeSave");
                 BandService.save($scope.band);
+                $scope.editable = false;
             };
 
             $scope.cancel = function () {
                 $scope.$broadcast("beforeCancel");
+                $scope.editable = false;
+            };
+
+            $scope.edit = function () {
+                $scope.editable = true;
             };
 
             init();

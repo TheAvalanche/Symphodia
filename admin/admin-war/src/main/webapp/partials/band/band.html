@@ -6,12 +6,14 @@
     <form name="form" role="form" novalidate>
         <div class="form-group">
             <label>Name</label>
-            <input ng-model="band.name" type="text" class="form-control" id="nameInput" placeholder="Enter name"
+            <p ng-show="!editable">{{band.name}}</p>
+            <input ng-show="editable" ng-model="band.name" type="text" class="form-control" id="nameInput" placeholder="Enter name"
                    required>
         </div>
         <div class="form-group">
             <label>Description</label>
-            <text-angular ng-model="band.description"
+            <p ng-show="!editable" ng-bind-html="band.description"></p>
+            <text-angular ng-show="editable" ng-model="band.description"
                           ta-toolbar="{{getProperty('EDITOR_CONTROLS')}}"
                           type="text" id="contentInput" placeholder="Enter description" required></text-angular>
         </div>
@@ -20,10 +22,13 @@
             <s-image-upload></s-image-upload>
         </div>
         <div class="form-group">
-            <button class="btn btn-success" ng-click="save()" type="button" ng-disabled="form.$invalid"><span
+            <button ng-show="!editable" class="btn btn-primary" ng-click="edit()" type="button"><span
+                    class="glyphicon glyphicon-pencil"></span> Edit
+            </button>
+            <button ng-show="editable" class="btn btn-success" ng-click="save()" type="button" ng-disabled="form.$invalid"><span
                     class="glyphicon glyphicon-ok"></span> Save
             </button>
-            <button class="btn btn-warning" ng-click="cancel()" type="button"><span
+            <button ng-show="editable" class="btn btn-warning" ng-click="cancel()" type="button"><span
                     class="glyphicon glyphicon-remove"></span> Cancel
             </button>
         </div>

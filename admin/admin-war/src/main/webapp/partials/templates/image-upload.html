@@ -1,13 +1,13 @@
 <div ng-repeat="imageGroup in imageGroupList" class="row spacer">
     <div ng-repeat="image in imageGroup" class="col-md-3">
-        <button type="button" class="btn btn-danger btn-xs" ng-click="removeImage(image)">
+        <button ng-show="editable" type="button" class="btn btn-danger btn-xs" ng-click="removeImage(image)">
             <span class="glyphicon glyphicon-trash"></span> Remove
         </button>
         <img class="img-responsive img-thumbnail"
              ng-src="{{image | ImagePath}}"/>
     </div>
 </div>
-<div class="spacer">
+<div class="spacer" ng-show="editable">
     <span class="btn btn-primary btn-file" ng-if="uploader">
         <span class="glyphicon glyphicon-plus"></span> Add image...
         <input type="file" nv-file-select uploader="uploader" accept="image/*" multiple/>
