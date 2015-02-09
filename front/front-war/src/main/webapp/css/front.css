@@ -43,6 +43,10 @@
     margin-top: 150px;
 }
 
+.novoffssetb {
+    margin-bottom: 0;
+}
+
 .voffsetb {
     margin-bottom: 2px;
 }
@@ -83,8 +87,16 @@
     margin-bottom: 150px;
 }
 
+.clear {
+    clear: both;
+}
+
 html, body {
     height: 100%;
+}
+
+.brand-font {
+    font-family: "English Gothic", serif;
 }
 
 .logo-wrapper {
@@ -99,6 +111,26 @@ html, body {
     color: #fff;
     position: relative;
     left: -50%;
+}
+
+.footer-social-wrapper {
+    float: right;
+    right: 50%;
+    position: relative;
+}
+
+.footer-social-wrapper .footer-social {
+    float: right;
+    right: -50%;
+    position: relative;
+    background-color: #3e4245;
+    border: 1px solid #0c0d0e;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.footer-social-wrapper .footer-social > a {
+    padding: 5px 20px;
 }
 
 .start-wrapper {

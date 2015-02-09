@@ -113,7 +113,7 @@
 <section id="music-section" class="shadow">
     <div class="container">
         <header>
-            <h2 class="text-warning">Albums</h2>
+            <h2 class="text-warning brand-font">Albums</h2>
         </header>
         <div class="row voffset4 voffsetb4">
             <article ng-repeat="album in fullAlbumList" class="col-md-3" ng-click="openAlbum(album)">
@@ -123,7 +123,7 @@
             </article>
         </div>
         <header>
-            <h2 class="text-warning">Singles</h2>
+            <h2 class="text-warning brand-font">Singles</h2>
         </header>
         <div class="row voffset4 voffsetb4">
             <article ng-repeat="album in singleAlbumList" class="col-md-3" ng-click="openAlbum(album)">
@@ -139,6 +139,9 @@
 </div>
 <section id="members-section" class="shadow">
     <div class="container">
+        <header>
+            <h2 class="text-warning brand-font">Members</h2>
+        </header>
         <div class="row voffset4 voffsetb4">
             <article ng-repeat="member in memberList" class="col-md-3" ng-click="openMember(member)">
                 <figure><img ng-src="{{member.imageList[0] | ImagePath:'s'}}"/></figure>
@@ -148,15 +151,20 @@
         </div>
     </div>
 </section>
-<footer class="main-footer">
-    <div class="container">
-        <div class="row voffset4">
+<footer class="main-footer well novoffssetb">
+    <h2 class="text-center text-warning brand-font"><strong>Follow Us:</strong></h2>
+    <div class="footer-social-wrapper">
+        <div class="footer-social">
             <a ng-href="{{band.page.socialData.facebookLink}}"><span class="fa fa-facebook fa-2x"></span></a>
             <a ng-href="{{band.page.socialData.youtubeLink}}"><span class="fa fa-youtube fa-2x"></span></a>
             <a ng-href="{{band.page.socialData.twitterLink}}"><span class="fa fa-twitter fa-2x"></span></a>
             <a ng-href="{{band.page.socialData.vkLink}}"><span class="fa fa-vk fa-2x"></span></a>
         </div>
-        <span class="fa fa-copyright"></span> Symphodia. All rights reserved.
+    </div>
+    <div class="clear">
+    </div>
+    <div>
+        <span class="text-center"><span class="fa fa-copyright"></span> Symphodia. All rights reserved.</span>
     </div>
 </footer>
 </body>
