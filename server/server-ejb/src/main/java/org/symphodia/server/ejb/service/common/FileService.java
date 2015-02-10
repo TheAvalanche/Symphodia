@@ -50,6 +50,24 @@ public class FileService {
         return fileName;
     }
 
+    public String saveAndMinimizeLogo(InputStream content, Long bandPath) throws IOException {
+        String fileName = generateFileName();
+
+        ImageProcessor imageProcessor = new ImageProcessor(content);
+        BufferedImage originalImage = imageProcessor.getImage();
+        writeFile(imageProcessor.toInputStream(), generatePath(fileName, bandPath, Extension.PNG));
+
+        imageProcessor = new ImageProcessor(originalImage);
+        imageProcessor.resizeProportionally(360);
+        writeFile(imageProcessor.toInputStream(), generatePath(fileName, bandPath, Extension.PNG_MEDIUM));
+
+        imageProcessor = new ImageProcessor(originalImage);
+        imageProcessor.resizeProportionally(180);
+        writeFile(imageProcessor.toInputStream(), generatePath(fileName, bandPath, Extension.PNG_SMALL));
+
+        return fileName;
+    }
+
     public String saveMusic(InputStream content, Long bandPath) throws IOException {
         String fileName = generateFileName();
 
@@ -63,6 +81,12 @@ public class FileService {
         deleteFile(generatePath(fileName, bandPath, Extension.PNG_SMALL_WIDE));
         deleteFile(generatePath(fileName, bandPath, Extension.PNG_MEDIUM));
         deleteFile(generatePath(fileName, bandPath, Extension.PNG_MEDIUM_WIDE));
+    }
+
+    public void removeLogo(String fileName, Long bandPath) throws IOException {
+        deleteFile(generatePath(fileName, bandPath, Extension.PNG));
+        deleteFile(generatePath(fileName, bandPath, Extension.PNG_SMALL));
+        deleteFile(generatePath(fileName, bandPath, Extension.PNG_MEDIUM));
     }
 
     public void removeMusic(String fileName, Long bandPath) throws IOException {

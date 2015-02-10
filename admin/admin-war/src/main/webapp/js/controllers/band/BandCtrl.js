@@ -10,6 +10,8 @@
                 $scope.band.page = $scope.band.page || {};
                 $scope.band.page.imageList = $scope.band.page.imageList || [];
                 $scope.imageList = $scope.band.page.imageList;
+                $scope.band.page.logoList = $scope.band.page.logoList || [];
+                $scope.logoList = $scope.band.page.logoList;
             };
 
             $scope.save = function () {

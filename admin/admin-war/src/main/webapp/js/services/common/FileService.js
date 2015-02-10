@@ -10,6 +10,9 @@
                 removeImage: function(filename) {
                     return $http.post(restRootBand + '/removeImage', filename);
                 },
+                removeLogo: function(filename) {
+                    return $http.post(restRootBand + '/removeLogo', filename);
+                },
                 removeMusic: function(filename) {
                     return $http.post(restRootBand + '/removeMusic', filename);
                 }

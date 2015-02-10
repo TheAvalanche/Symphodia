@@ -10,6 +10,11 @@ import java.util.List;
 public class Page extends AbstractDomainObject {
 
     @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "PAGE_LOGO_LIST")
+    @Column(name = "LOGO")
+    private List<String> logoList = new ArrayList<>();
+
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "PAGE_IMAGE_LIST")
     @Column(name = "IMAGE")
     private List<String> imageList = new ArrayList<>();
@@ -31,6 +36,22 @@ public class Page extends AbstractDomainObject {
 
     public void removeImage(String image) {
         this.imageList.remove(image);
+    }
+
+    public List<String> getLogoList() {
+        return logoList;
+    }
+
+    public void setLogoList(List<String> logoList) {
+        this.logoList = logoList;
+    }
+
+    public void addLogo(String logo) {
+        this.logoList.add(logo);
+    }
+
+    public void removeLogo(String logo) {
+        this.logoList.remove(logo);
     }
 
     public SocialData getSocialData() {

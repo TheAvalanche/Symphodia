@@ -101,7 +101,7 @@ html, body {
 
 .logo-wrapper {
     position: absolute;
-    top: 40%;
+    top: 20%;
     left: 50%;
 }
 
@@ -109,6 +109,11 @@ html, body {
     font-family: "English Gothic", serif;
     font-size: 100px;
     color: #fff;
+    position: relative;
+    left: -50%;
+}
+
+.logo-wrapper .logo-image {
     position: relative;
     left: -50%;
 }

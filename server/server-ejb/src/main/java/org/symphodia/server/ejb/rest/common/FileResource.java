@@ -47,6 +47,26 @@ public class FileResource {
     }
 
     @POST
+    @Path("/{bandId}/saveLogo")
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response saveLogoToBand(@NotNull @PathParam("bandId") Long bandId, MultipartFormDataInput input) throws IOException {
+
+        InputStream inputStream = input.getFormDataMap().get("file").get(0).getBody(InputStream.class, null);
+
+        return Response
+                .status(Response.Status.OK)
+                .entity(new ImageName(fileService.saveAndMinimizeLogo(inputStream, bandId)))
+                .build();
+    }
+
+    @POST
+    @Path("/{bandId}/removeLogo")
+    public void removeLogoFromBand(@NotNull @PathParam("bandId") Long bandId, String filename) throws IOException {
+        fileService.removeLogo(filename, bandId);
+    }
+
+    @POST
     @Path("/{bandId}/saveMusic")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces(MediaType.APPLICATION_JSON)

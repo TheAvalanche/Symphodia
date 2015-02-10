@@ -1,0 +1,15 @@
+<div ng-repeat="logoGroup in logoGroupList" class="row spacer">
+    <div ng-repeat="logo in logoGroup" class="col-md-3">
+        <button ng-show="editable" type="button" class="btn btn-danger btn-xs" ng-click="removeLogo(logo)">
+            <span class="glyphicon glyphicon-trash"></span> Remove
+        </button>
+        <img class="img-responsive img-thumbnail"
+             ng-src="{{logo | ImagePath}}"/>
+    </div>
+</div>
+<div class="spacer" ng-show="editable">
+    <span class="btn btn-primary btn-file" ng-if="uploader">
+        <span class="glyphicon glyphicon-plus"></span> Add logo...
+        <input type="file" nv-file-select uploader="uploader" accept="image/*" multiple/>
+    </span>
+</div>
