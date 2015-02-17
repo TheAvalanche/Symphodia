@@ -31,6 +31,7 @@
     <script src="js/services/NewsService.js"></script>
     <script src="js/services/SongService.js"></script>
     <script src="js/directives/BackImg.js"></script>
+    <script src="js/directives/ScrollListener.js"></script>
     <script src="js/filters/ImagePath.js"></script>
     <script src="js/filters/MinimizeText.js"></script>
 </head>
@@ -46,8 +47,8 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">
-                <span class="brand text-warning" style="font-size: 48px; position: relative; top: 9px;">Symphodia</span>
+            <a class="navbar-brand" href="#" s-scroll-listener="200" ng-class="{'show-element' : show, 'hide-element': !show}">
+                <img style="height: 80px; position: relative; top: -30px;" ng-src="{{band.page.logoList[0] | ImagePath:'s'}}"/>
             </a>
         </div>
 
