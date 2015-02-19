@@ -17,23 +17,9 @@
     <script src="lib/angular-addon/angular-scroll/angular-scroll.min.js"></script>
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
+    <script src="js/services.js"></script>
     <script src="js/directives.js"></script>
     <script src="js/filters.js"></script>
-    <script src="js/services.js"></script>
-    <script src="js/controllers/FrontCtrl.js"></script>
-    <script src="js/controllers/AlbumCtrl.js"></script>
-    <script src="js/controllers/MemberCtrl.js"></script>
-    <script src="js/services/AlbumService.js"></script>
-    <script src="js/services/BandService.js"></script>
-    <script src="js/services/ContextService.js"></script>
-    <script src="js/services/PropertyService.js"></script>
-    <script src="js/services/MemberService.js"></script>
-    <script src="js/services/NewsService.js"></script>
-    <script src="js/services/SongService.js"></script>
-    <script src="js/directives/BackImg.js"></script>
-    <script src="js/directives/ScrollListener.js"></script>
-    <script src="js/filters/ImagePath.js"></script>
-    <script src="js/filters/MinimizeText.js"></script>
 </head>
 <body ng-controller="FrontCtrl">
 
@@ -95,7 +81,7 @@
     </div>
 
     <div class="container-fluid">
-        <div class="row well voffset5 voffsetb5 news-article-container-wrapper">
+        <div class="row well voffset5 voffsetb5 news-article-container-wrapper" s-reel>
             <div id="news-article-container" class="news-article-container">
                 <article class="news-article" ng-repeat="news in newsList">
                     <div class="thumbnail" style="height: 400px">
