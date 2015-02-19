@@ -10,6 +10,7 @@
                 $scope.news = news || {};
                 $scope.news.imageList = $scope.news.imageList || [];
                 $scope.imageList = $scope.news.imageList;
+                $scope.editable = true;
                 $scope.news.creationDate = $scope.news.creationDate || new Date();
             };
 

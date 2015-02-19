@@ -48,11 +48,10 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#" s-scroll-listener="200" ng-class="{'show-element' : show, 'hide-element': !show}">
-                <img style="height: 80px; position: relative; top: -30px;" ng-src="{{band.page.logoList[0] | ImagePath:'s'}}"/>
+                <img ng-if="band" style="height: 80px; position: relative; top: -30px;" ng-src="{{band.page.logoList[0] | ImagePath:'s'}}"/>
             </a>
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" collapse="navbarCollapsed">
             <ul class="nav navbar-nav navbar-right">
                 <li du-scrollspy="news-section"><a href="#news-section" du-smooth-scroll duration="2000" offset="50">News</a>
@@ -65,9 +64,9 @@
     </div>
 </nav>
 <header class="main-header">
-    <div class="cover" s-back-img="{{band.page.imageList[0] | ImagePath}}"></div>
+    <div ng-if="band" class="cover" s-back-img="{{band.page.imageList[0] | ImagePath}}"></div>
     <div class="logo-wrapper">
-        <img class="logo-image img-responsive" ng-src="{{band.page.logoList[0] | ImagePath}}"/>
+        <img ng-if="band" class="logo-image img-responsive" ng-src="{{band.page.logoList[0] | ImagePath}}"/>
     </div>
     <div class="start-wrapper">
         <span class="start">
@@ -96,20 +95,24 @@
     </div>
 
     <div class="container-fluid">
-        <div class="row well voffset5 voffsetb5">
-            <article class="col-lg-2 col-md-3 col-sm-4 col-xs-6" ng-repeat="news in newsList">
-                <div class="thumbnail" style="height: 400px">
-                    <figure><img class="img-responsive" ng-src="{{news.imageList[0] | ImagePath:'mw'}}"/></figure>
-                    <h3>{{news.title}}</h3>
-                    <time><small><em>{{news.creationDate | date : 'dd/MM/yyyy H:mm'}}</em></small></time>
-                    <p class="voffset3" ng-bind-html="news.content | MinimizeText:200"></p>
-                </div>
-            </article>
+        <div class="row well voffset5 voffsetb5 news-article-container-wrapper">
+            <div id="news-article-container" class="news-article-container">
+                <article class="news-article" ng-repeat="news in newsList">
+                    <div class="thumbnail" style="height: 400px">
+                        <figure><img class="img-responsive" ng-src="{{news.imageList[0] | ImagePath:'mw'}}"/></figure>
+                        <h3>{{news.title}}</h3>
+                        <time><small><em>{{news.creationDate | date : 'dd/MM/yyyy H:mm'}}</em></small></time>
+                        <p class="voffset3" ng-bind-html="news.content | MinimizeText:200"></p>
+                    </div>
+                </article>
+            </div>
+            <span class="backward" ng-mouseenter="moveBackward()" ng-mouseleave="moveStop()"><i class="fa fa-angle-left fa-3x"></i></span>
+            <span class="forward" ng-mouseenter="moveForward()" ng-mouseleave="moveStop()"><i class="fa fa-angle-right fa-3x"></i></span>
         </div>
     </div>
 </section>
 <div class="intersection">
-    <div class="cover" s-back-img="{{band.page.imageList[1] | ImagePath}}"></div>
+    <div ng-if="band" class="cover" s-back-img="{{band.page.imageList[1] | ImagePath}}"></div>
 </div>
 <section id="music-section" class="shadow">
     <div class="container">
@@ -136,7 +139,7 @@
     </div>
 </section>
 <div class="intersection2">
-    <div class="cover" s-back-img="{{band.page.imageList[2] | ImagePath}}"></div>
+    <div ng-if="band" class="cover" s-back-img="{{band.page.imageList[2] | ImagePath}}"></div>
 </div>
 <section id="members-section" class="shadow">
     <div class="container">

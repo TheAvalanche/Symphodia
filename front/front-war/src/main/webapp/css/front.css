@@ -93,12 +93,10 @@
 
 .show-element {
     opacity: 1;
-    -webkit-transition: opacity 2s; /* For Safari 3.1 to 6.0 */
     transition: opacity 2s;
 }
 .hide-element {
     opacity: 0;
-    -webkit-transition: opacity 2s; /* For Safari 3.1 to 6.0 */
     transition: opacity 2s;
 }
 
@@ -185,6 +183,25 @@ html, body {
     animation: fadein 2s ease-in-out 0.5s forwards;
 }
 
+.news-article-container-wrapper {
+    overflow: hidden;
+    position: relative;
+}
+
+.news-article-container {
+    overflow: visible;
+    white-space: nowrap;
+    position: relative;
+}
+
+.news-article {
+    width: 360px;
+    display: inline-block;
+    margin-left: 20px;
+    white-space: normal;
+    vertical-align: top;
+}
+
 .intersection {
     background: #000;
     width: 100%;
@@ -213,6 +230,51 @@ html, body {
     overflow: hidden;
 }
 
+.news-article-container-wrapper .forward,
+.news-article-container-wrapper .backward
+{
+    position: absolute;
+    top: 50%;
+    width: 6em;
+    height: 6em;
+    cursor: pointer;
+    border-radius: 100%;
+    background-color: rgba(247, 147, 6, 0.10);
+    margin-top: -3em;
+    transition: background-color 0.35s ease-in-out;
+}
+
+.news-article-container-wrapper .forward
+{
+    right: -3em;
+}
+
+.news-article-container-wrapper .forward i
+{
+    position: absolute;
+    top: 25%;
+    left: 20%;
+}
+
+.news-article-container-wrapper .backward i
+{
+    position: absolute;
+    top: 25%;
+    right: 20%;
+}
+
+.news-article-container-wrapper .backward
+{
+    left: -3em;
+}
+
+.news-article-container-wrapper .forward:hover,
+.news-article-container-wrapper .backward:hover
+{
+    background-color: rgba(247, 147, 6, 0.75);
+}
+
+
 @keyframes fadein {
     to   { opacity: 1; }
 }
@@ -240,8 +302,6 @@ html, body {
 }
 
 .shadow {
-    -moz-box-shadow: 0 -10px 20px 0 #000;
-    -webkit-box-shadow: 0 -10px 20px 0 #000;
     box-shadow: 0 -10px 20px 0 #000;
     position: relative;
     z-index: 100;

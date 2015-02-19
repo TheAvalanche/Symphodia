@@ -10,6 +10,7 @@
                     $scope.album = album || {};
                     $scope.album.imageList = $scope.album.imageList || [];
                     $scope.imageList = $scope.album.imageList;
+                    $scope.editable = true;
                     AlbumService.albumTypes().success(function(data) {
                         $scope.albumTypes = data;
                     });

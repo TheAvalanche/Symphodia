@@ -10,6 +10,7 @@
                 $scope.member = member || {};
                 $scope.member.imageList = $scope.member.imageList || [];
                 $scope.imageList = $scope.member.imageList;
+                $scope.editable = true;
                 MemberService.instruments().success(function(data) {
                     $scope.instruments = data;
                 });

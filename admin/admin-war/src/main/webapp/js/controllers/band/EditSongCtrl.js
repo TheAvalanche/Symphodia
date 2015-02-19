@@ -11,6 +11,7 @@
                     $scope.song = song || {};
                     $scope.song.musicList = $scope.song.musicList || [];
                     $scope.musicList = $scope.song.musicList;
+                    $scope.editable = true;
                     $scope.song.orderNumber = $scope.song.orderNumber || 1; //todo
                 };
 
