@@ -39,8 +39,7 @@ public class Album extends AbstractDomainObject {
     @NotNull
     private Date creationDate;
 
-    @Column(name = "DESCRIPTION", length = 4096)
-    @Size(min = 1, max = 4096)
+    @Column(name = "DESCRIPTION")
     private String description;
 
     @Column(name = "ALBUM_TYPE", length = 255)

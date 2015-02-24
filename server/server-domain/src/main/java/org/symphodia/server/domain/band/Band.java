@@ -40,8 +40,7 @@ public class Band extends AbstractDomainObject {
     @Size(min = 1, max = 255)
     private String name;
 
-    @Column(name = "DESCRIPTION", length = 2048)
-    @Size(min = 1, max = 2048)
+    @Column(name = "DESCRIPTION")
     private String description;
 
     @OneToMany(mappedBy = "band")

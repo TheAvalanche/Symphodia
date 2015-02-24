@@ -57,9 +57,8 @@ public class Member extends AbstractDomainObject {
     @Size(min = 1, max = 255)
     private String surname;
 
-    @Column(name = "DESCRIPTION", length = 2048)
+    @Column(name = "DESCRIPTION")
     @NotNull
-    @Size(min = 1, max = 2048)
     private String description;
 
     @Column(name = "DATE_OF_BIRTH")

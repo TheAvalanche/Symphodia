@@ -54,9 +54,8 @@ public class News extends AbstractDomainObject {
     @Size(min = 1, max = 255)
     private String title;
 
-    @Column(name = "CONTENT", length = 8096)
+    @Column(name = "CONTENT")
     @NotNull
-    @Size(min = 1, max = 8096)
     private String content;
 
     @ElementCollection(fetch = FetchType.EAGER)

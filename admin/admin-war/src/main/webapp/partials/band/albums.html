@@ -13,8 +13,8 @@
     <div ng-repeat="albumGroup in albumGroupList" class="row spacer">
         <div ng-repeat="album in albumGroup" class="col-md-3">
             <div class="thumbnail">
-                <span class="dropdown pull-right" on-toggle="toggled(open)">
-                    <a href class="dropdown-toggle">
+                <span class="dropdown pull-right" dropdown on-toggle="toggled(open)">
+                    <a href class="dropdown-toggle" dropdown-toggle>
                         <span class="glyphicon glyphicon-cog"></span>
                     </a>
                     <ul class="dropdown-menu">

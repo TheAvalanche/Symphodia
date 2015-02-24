@@ -46,8 +46,7 @@ public class Song extends AbstractDomainObject {
     @Size(min = 1, max = 255)
     private String musicAuthor;
 
-    @Column(name = "TEXT", length = 4096)
-    @Size(min = 1, max = 4096)
+    @Column(name = "TEXT")
     private String text;
 
     @ElementCollection(fetch = FetchType.EAGER)

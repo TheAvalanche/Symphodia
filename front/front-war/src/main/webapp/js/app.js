@@ -7,7 +7,6 @@ var adminApp = angular.module('frontApp', [
     'frontApp.filters',
     'ngSanitize',
     'ui.bootstrap',
-    'gilbox.infiniteSlider',
     'duScroll']);
 
 angular.module('frontApp.controllers', []);
