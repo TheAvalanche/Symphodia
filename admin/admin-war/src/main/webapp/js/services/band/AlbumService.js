@@ -3,7 +3,7 @@
 
     angular.module('adminApp.services')
         .factory('AlbumService', ['$http', 'ContextService', function ($http, ContextService) {
-            var restRoot = '/admin/rest/album';
+            var restRoot = '/admin/rest/album/';
 
             return {
                 all: function() {
@@ -16,7 +16,7 @@
                     return $http.post(restRoot + ContextService.getBand().id + '/remove', album);
                 },
                 albumTypes: function () {
-                    return $http.get(restRoot + ContextService.getBand().id + '/albumTypes');
+                    return $http.get(restRoot + 'albumTypes');
                 }
             };
         }]);

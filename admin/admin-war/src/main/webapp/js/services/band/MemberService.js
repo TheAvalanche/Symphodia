@@ -15,7 +15,7 @@
                     return $http.post(restRoot + ContextService.getBand().id + '/remove', news);
                 },
                 instruments: function () {
-                    return $http.get(restRoot + ContextService.getBand().id + '/instruments');
+                    return $http.get(restRoot + 'instruments');
                 }
             };
         }]);
