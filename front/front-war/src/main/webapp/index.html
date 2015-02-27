@@ -71,7 +71,7 @@
                     <div class="col-md-5 text-left" style="height: 360px;">
                         <h2>{{news.title}}</h2>
                         <time><small><em>{{news.creationDate | date : 'dd/MM/yyyy H:mm'}}</em></small></time>
-                        <p class="voffset3" ng-bind-html="news.content"></p>
+                        <p class="voffset3" ng-bind-html="news.content | MinimizeText:400"></p>
                     </div>
                 </article>
             </slide>
@@ -82,7 +82,7 @@
         <div class="row well voffset5 voffsetb5 news-article-container-wrapper" s-reel>
             <div id="news-article-container" class="news-article-container">
                 <article class="news-article" ng-repeat="news in newsList">
-                    <div class="thumbnail" style="height: 400px">
+                    <div class="thumbnail" style="height: 420px">
                         <figure><img class="img-responsive" ng-src="{{news.imageList[0] | ImagePath:'mw'}}"/></figure>
                         <h3>{{news.title}}</h3>
                         <time><small><em>{{news.creationDate | date : 'dd/MM/yyyy H:mm'}}</em></small></time>
