@@ -67,7 +67,7 @@
         </header>
         <hr/>
         <carousel interval="10000" class="row voffset5 custom-carousel">
-            <slide ng-repeat="news in hotNewsList" active="news.active">
+            <slide ng-repeat="news in hotNewsList" active="news.active" class="pointer" ng-click="openNews(news)">
                 <article class="col-md-10 col-md-offset-1">
                     <figure class="col-md-5">
                         <img class="img-responsive" ng-src="{{news.imageList[0] | ImagePath:'m'}}" width="360" height="360"/>
@@ -85,7 +85,7 @@
     <div class="container-fluid">
         <div class="row well voffset5 voffsetb5 news-article-container-wrapper" s-reel>
             <div id="news-article-container" class="news-article-container">
-                <article class="news-article" ng-repeat="news in newsList">
+                <article class="news-article pointer" ng-repeat="news in newsList" ng-click="openNews(news)">
                     <div class="thumbnail" style="height: 420px">
                         <figure><img class="img-responsive" ng-src="{{news.imageList[0] | ImagePath:'mw'}}"/></figure>
                         <h3>{{news.title}}</h3>
@@ -109,7 +109,7 @@
         </header>
         <hr/>
         <div class="row voffset4">
-            <article ng-repeat="album in fullAlbumList" class="col-md-3 voffsetb4" ng-click="openAlbum(album)">
+            <article ng-repeat="album in fullAlbumList" class="col-md-3 col-sm-4 col-xs-6 voffsetb4 pointer" ng-click="openAlbum(album)">
                 <figure><img ng-src="{{album.imageList[0] | ImagePath:'s'}}"/></figure>
                 <h4>{{album.title}}</h4>
                 <time><em>({{album.creationDate | date : 'yyyy'}})</em></time>
@@ -120,7 +120,7 @@
         </header>
         <hr/>
         <div class="row voffset4">
-            <article ng-repeat="album in singleAlbumList" class="col-md-3 voffsetb4" ng-click="openAlbum(album)">
+            <article ng-repeat="album in singleAlbumList" class="col-md-3 col-sm-4 col-xs-6 voffsetb4 pointer" ng-click="openAlbum(album)">
                 <figure><img ng-src="{{album.imageList[0] | ImagePath:'s'}}"/></figure>
                 <h4>{{album.title}}</h4>
                 <time><em>({{album.creationDate | date : 'yyyy'}})</em></time>
@@ -138,7 +138,7 @@
         </header>
         <hr/>
         <div class="row voffset4">
-            <article ng-repeat="member in memberList" class="col-md-3 voffsetb4" ng-click="openMember(member)">
+            <article ng-repeat="member in memberList" class="col-md-3 col-sm-4 col-xs-6 voffsetb4 pointer" ng-click="openMember(member)">
                 <figure><img ng-src="{{member.imageList[0] | ImagePath:'s'}}"/></figure>
                 <h4>{{member.name}} {{member.surname}}</h4>
                 <div><em>({{member.instrument | TitleText}})</em></div>

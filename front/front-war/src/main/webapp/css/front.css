@@ -100,6 +100,10 @@
     transition: opacity 2s;
 }
 
+.pointer {
+    cursor: pointer;
+}
+
 html, body {
     height: 100%;
 }
@@ -178,8 +182,8 @@ html, body {
     -webkit-filter: blur(2px);
     -moz-filter: blur(2px);
     filter: blur(2px);
-    -webkit-animation: fadein 2s ease-in-out 0.5s forwards; /* Safari, Chrome and Opera > 12.1 */
-    -moz-animation: fadein 2s ease-in-out 0.5s forwards; /* Firefox < 16 */
+    -webkit-animation: fadein 2s ease-in-out 0.5s forwards;
+    -moz-animation: fadein 2s ease-in-out 0.5s forwards;
     animation: fadein 2s ease-in-out 0.5s forwards;
 }
 
@@ -205,28 +209,28 @@ html, body {
 .intersection {
     background: #000;
     width: 100%;
-    height: 200px;
+    height: 400px;
 }
 
 .intersection .cover {
     background: url(img/cover1.jpg) no-repeat fixed center center;
     background-size: cover;
     width: 100%;
-    height: 200px;
+    height: 400px;
     overflow: hidden;
 }
 
 .intersection2 {
     background: #000;
     width: 100%;
-    height: 300px;
+    height: 600px;
 }
 
 .intersection2 .cover {
     background: url(img/cover2.jpg) no-repeat fixed center center;
     background-size: cover;
     width: 100%;
-    height: 300px;
+    height: 600px;
     overflow: hidden;
 }
 

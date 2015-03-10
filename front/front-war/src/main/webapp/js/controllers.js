@@ -47,6 +47,19 @@ angular.module('frontApp.controllers')
                     }
                 });
             };
+
+            $scope.openNews = function (news) {
+                $modal.open({
+                    templateUrl: 'news.html',
+                    controller: 'NewsCtrl',
+                    size: 'lg',
+                    resolve: {
+                        news: function () {
+                            return news;
+                        }
+                    }
+                });
+            };
         }]
     ).controller('AlbumCtrl', ['$scope', '$modalInstance', 'ContextService', 'SongService', 'album',
         function ($scope, $modalInstance, ContextService, SongService, album) {
@@ -67,4 +80,12 @@ angular.module('frontApp.controllers')
                 $modalInstance.close();
             };
         }]
-    );
+    ).controller('NewsCtrl', ['$scope', '$modalInstance', 'ContextService', 'news',
+        function ($scope, $modalInstance, ContextService, news) {
+            $scope.news = news;
+
+            $scope.cancel = function () {
+                $modalInstance.close();
+            };
+        }]
+);
