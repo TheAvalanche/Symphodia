@@ -29,6 +29,13 @@ public class NewsService {
         return query.getResultList();
     }
 
+    public List<News> getNewsByBandAndHot(Long bandId, Boolean hot) {
+        TypedQuery<News> query = entityManager.createNamedQuery("News.allByBandAndHot", News.class);
+        query.setParameter("bandId", bandId);
+        query.setParameter("hot", hot);
+        return query.getResultList();
+    }
+
     public Long getNewsCountByBand(Long bandId) {
         TypedQuery<Long> query = entityManager.createNamedQuery("News.countByBand", Long.class);
         query.setParameter("bandId", bandId);

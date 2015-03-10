@@ -28,7 +28,9 @@
                             <li><a ng-click="removeNews(news)"><span class="glyphicon glyphicon-trash"></span> Remove</a></li>
                         </ul>
                     </span>
-                    <h3 class="panel-title">{{news.title}} <small>{{news.creationDate | date : 'dd/MM/yyyy H:mm'}}</small></h3>
+                    <h3 class="panel-title">
+                        <span ng-show="{{news.hot}}" class="fa fa-fire text-danger"></span> {{news.title}}
+                        <small>{{news.creationDate | date : 'dd/MM/yyyy H:mm'}}</small></h3>
                 </div>
                 <div class="panel-body">
                     <span ng-bind-html="news.content"></span>

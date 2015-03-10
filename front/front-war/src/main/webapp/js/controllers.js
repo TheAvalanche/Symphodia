@@ -8,6 +8,9 @@ angular.module('frontApp.controllers')
             NewsService.all().success(function (data) {
                 $scope.newsList = data;
             });
+            NewsService.allHot().success(function (data) {
+                $scope.hotNewsList = data;
+            });
             AlbumService.allFull().success(function (data) {
                 $scope.fullAlbumList = data;
             });

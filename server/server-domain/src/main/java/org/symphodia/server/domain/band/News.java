@@ -29,6 +29,7 @@ import java.util.List;
 @Table(name = "NEWS")
 @NamedQueries({
         @NamedQuery(name = "News.allByBand", query = "SELECT n FROM News n WHERE n.band.id = :bandId ORDER BY n.id DESC"),
+        @NamedQuery(name = "News.allByBandAndHot", query = "SELECT n FROM News n WHERE n.band.id = :bandId AND n.hot = :hot ORDER BY n.id DESC"),
         @NamedQuery(name = "News.countByBand", query = "SELECT COUNT(n) FROM News n WHERE n.band.id = :bandId")
 })
 @SequenceGenerator(name = "NEWS_SEQ", sequenceName = "NEWS_SEQ", initialValue = 1000000)
@@ -62,6 +63,9 @@ public class News extends AbstractDomainObject {
     @CollectionTable(name = "NEWS_IMAGE_LIST")
     @Column(name = "IMAGE")
     private List<String> imageList = new ArrayList<>();
+
+    @Column(name = "HOT")
+    private Boolean hot = Boolean.FALSE;
 
     public Long getId() {
         return id;
@@ -117,6 +121,14 @@ public class News extends AbstractDomainObject {
 
     public void removeImage(String image) {
         this.imageList.remove(image);
+    }
+
+    public Boolean getHot() {
+        return hot;
+    }
+
+    public void setHot(Boolean hot) {
+        this.hot = hot;
     }
 
     @PrePersist

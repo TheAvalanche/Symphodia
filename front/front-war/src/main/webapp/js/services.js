@@ -7,6 +7,9 @@ angular.module('frontApp.services')
             all: function() {
                 return $http.get(restRootBand + '/all');
             },
+            allHot: function() {
+                return $http.get(restRootBand + '/true/all');
+            },
             count: function() {
                 return $http.get(restRootBand + '/count');
             },

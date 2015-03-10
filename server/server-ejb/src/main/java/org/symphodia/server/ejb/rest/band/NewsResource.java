@@ -33,6 +33,14 @@ public class NewsResource {
     }
 
     @GET
+    @Path("/{bandId}/{hot}/all")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<News> getAllNewsByBandAndHot(@NotNull @PathParam("bandId") Long bandId, @NotNull @PathParam("hot") Boolean hot) {
+        return service.getNewsByBandAndHot(bandId, hot);
+    }
+
+
+    @GET
     @Path("/{bandId}/part/{offset}/{max}")
     @Produces(MediaType.APPLICATION_JSON)
     public List<News> getNewsPartByBand(@NotNull @PathParam("bandId") Long bandId,

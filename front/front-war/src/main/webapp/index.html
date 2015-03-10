@@ -62,8 +62,12 @@
 </header>
 <section id="news-section" class="shadow">
     <div class="container">
+        <header>
+            <h2 class="text-warning text-center brand-font">News</h2>
+        </header>
+        <hr/>
         <carousel interval="10000" class="row voffset5 custom-carousel">
-            <slide ng-repeat="news in newsList" active="news.active">
+            <slide ng-repeat="news in hotNewsList" active="news.active">
                 <article class="col-md-10 col-md-offset-1">
                     <figure class="col-md-5">
                         <img class="img-responsive" ng-src="{{news.imageList[0] | ImagePath:'m'}}" width="360" height="360"/>
@@ -101,8 +105,9 @@
 <section id="music-section" class="shadow">
     <div class="container">
         <header>
-            <h2 class="text-warning brand-font">Albums</h2>
+            <h2 class="text-warning text-center brand-font">Albums</h2>
         </header>
+        <hr/>
         <div class="row voffset4">
             <article ng-repeat="album in fullAlbumList" class="col-md-3 voffsetb4" ng-click="openAlbum(album)">
                 <figure><img ng-src="{{album.imageList[0] | ImagePath:'s'}}"/></figure>
@@ -111,8 +116,9 @@
             </article>
         </div>
         <header>
-            <h2 class="text-warning brand-font">Singles</h2>
+            <h2 class="text-warning text-center brand-font">Singles</h2>
         </header>
+        <hr/>
         <div class="row voffset4">
             <article ng-repeat="album in singleAlbumList" class="col-md-3 voffsetb4" ng-click="openAlbum(album)">
                 <figure><img ng-src="{{album.imageList[0] | ImagePath:'s'}}"/></figure>
@@ -128,8 +134,9 @@
 <section id="members-section" class="shadow">
     <div class="container">
         <header>
-            <h2 class="text-warning brand-font">Members</h2>
+            <h2 class="text-warning text-center brand-font">Members</h2>
         </header>
+        <hr/>
         <div class="row voffset4">
             <article ng-repeat="member in memberList" class="col-md-3 voffsetb4" ng-click="openMember(member)">
                 <figure><img ng-src="{{member.imageList[0] | ImagePath:'s'}}"/></figure>
