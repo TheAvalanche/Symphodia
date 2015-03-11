@@ -108,7 +108,6 @@ public class FileService {
     }
 
     public void deleteFile(String path) throws IOException {
-        System.out.println(path);
         Files.delete(Paths.get(path));
     }
 }
