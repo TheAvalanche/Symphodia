@@ -1,4 +1,4 @@
 Symphodia
 =========
 
-Symphodia Web Application
+Band management system
